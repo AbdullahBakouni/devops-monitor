@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Mutation {
+  createServiceEvent(cluster: String!, message: String, service: String!, status: String!): ServiceEvent!
+}
+
+type Query {
+  getServiceEvents: [ServiceEvent!]!
+}
+
+type ServiceEvent {
+  cluster: String!
+  createdAt: String!
+  id: String!
+  message: String
+  service: String!
+  status: String!
+}
+
+type Subscription {
+  serviceEventCreated: ServiceEvent!
+}
