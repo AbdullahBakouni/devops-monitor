@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { GatewayController } from './gateway.controller';
 import { GatewayService } from './gateway.service';
 import { AppLoggerModule } from './app-logger/app-logger.module';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
-import { APP_GUARD } from '@nestjs/core';
+// import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+// import { APP_GUARD } from '@nestjs/core';
 import { MetricsServiceModule } from 'apps/metrics-service/src/metrics-service.module';
 import { MonitorServiceModule } from 'apps/monitor-service/src/monitor-service.module';
 import { NotificationServiceModule } from 'apps/notification-service/src/notification-service.module';
@@ -14,7 +14,6 @@ import { ConfigModule } from '@nestjs/config';
 import { EventsModule } from './events/events.module';
 import { DatabaseModule } from '@app/database';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import { DateTimeResolver } from 'graphql-scalars';
 @Module({
   imports: [
     AppLoggerModule,

@@ -8,7 +8,6 @@ import { useServer } from 'graphql-ws/use/ws';
 import { GraphQLSchemaHost } from '@nestjs/graphql';
 
 async function bootstrap() {
-  // ⚙️ إنشاء تطبيق Nest
   const app = await NestFactory.create(GatewayModule, {
     bufferLogs: true,
   });

@@ -129,9 +129,44 @@ exports.Prisma.ServiceEventScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ServiceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  cluster: 'cluster',
+  type: 'type',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  runtimeStatus: 'runtimeStatus',
+  lastReason: 'lastReason',
+  lastSeenAt: 'lastSeenAt'
+};
+
+exports.Prisma.ServiceDependencyScalarFieldEnum = {
+  id: 'id',
+  fromServiceId: 'fromServiceId',
+  toServiceId: 'toServiceId',
+  reason: 'reason',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceAIScalarFieldEnum = {
+  id: 'id',
+  serviceId: 'serviceId',
+  aiData: 'aiData',
+  failCount: 'failCount',
+  lastUpdated: 'lastUpdated',
+  lastRefreshedAt: 'lastRefreshedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -144,9 +179,18 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
-  ServiceEvent: 'ServiceEvent'
+  ServiceEvent: 'ServiceEvent',
+  Service: 'Service',
+  ServiceDependency: 'ServiceDependency',
+  ServiceAI: 'ServiceAI'
 };
 
 /**
