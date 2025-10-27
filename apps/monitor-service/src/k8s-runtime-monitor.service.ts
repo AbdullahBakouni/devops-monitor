@@ -6,19 +6,20 @@ import {
   Inject,
 } from '@nestjs/common';
 import * as k8s from '@kubernetes/client-node';
-import { DatabaseService } from '@app/database';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { DatabaseService } from '@app/database';
+import * as fs from 'fs';
+import * as path from 'path';
 import { PUB_SUB } from './pubsub.provider';
-
 @Injectable()
 export class K8sRuntimeMonitorService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(K8sRuntimeMonitorService.name);
-  private kubeConfig: k8s.KubeConfig;
-  private coreApi: k8s.CoreV1Api;
-  private watch: k8s.Watch;
+  private k8sClient: k8s.CoreV1Api | null = null;
+  private kubeConfig: k8s.KubeConfig | null = null;
+  private watch: k8s.Watch | null = null;
+  private abortController: AbortController | null = null;
   private latestStatuses: {
     name: string;
-    namespace: string;
     status: string;
     reason: string;
     updatedAt: Date;
@@ -27,43 +28,93 @@ export class K8sRuntimeMonitorService implements OnModuleInit, OnModuleDestroy {
   constructor(
     private readonly prisma: DatabaseService,
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
-  ) {
-    this.kubeConfig = new k8s.KubeConfig();
-    try {
-      this.kubeConfig.loadFromDefault();
-      this.logger.log('✅ Loaded Kubernetes configuration');
-    } catch {
-      try {
-        this.kubeConfig.loadFromCluster();
-        this.logger.log('✅ Loaded in-cluster Kubernetes config');
-      } catch {
-        this.logger.warn('⚠️ Could not load any Kubernetes config');
-      }
-    }
-    this.coreApi = this.kubeConfig.makeApiClient(k8s.CoreV1Api);
-    this.watch = new k8s.Watch(this.kubeConfig);
-  }
+  ) {}
 
   onModuleInit() {
-    this.startWatchPods();
+    this.k8sClient = this.initializeK8sClient();
+    if (this.k8sClient) {
+      this.startK8sWatch();
+    }
   }
 
   onModuleDestroy() {
-    this.logger.log('🛑 Stopping K8s runtime monitor');
+    if (this.abortController) {
+      this.logger.log('🛑 Stopping Kubernetes watch stream...');
+      this.abortController.abort();
+    }
   }
 
-  private startWatchPods(): void {
+  /**
+   * ☸️ Initialize Kubernetes client with auto-detection
+   */
+  private initializeK8sClient(): k8s.CoreV1Api | null {
+    try {
+      const kc = new k8s.KubeConfig();
+
+      // Detect if running inside Kubernetes
+      const inCluster = fs.existsSync(
+        '/var/run/secrets/kubernetes.io/serviceaccount/token',
+      );
+
+      if (inCluster) {
+        kc.loadFromCluster();
+        this.logger.log(
+          '🏗️ Detected in-cluster environment — using in-cluster K8s configuration',
+        );
+      } else {
+        // Try local configs
+        const kubeconfigPath =
+          process.env.KUBECONFIG ||
+          path.join(process.env.HOME || '/root', '.kube', 'config');
+
+        if (fs.existsSync(kubeconfigPath)) {
+          kc.loadFromFile(kubeconfigPath);
+          this.logger.log(`🧩 Using kubeconfig from: ${kubeconfigPath}`);
+        } else {
+          kc.loadFromDefault();
+          this.logger.log('☁️ Using default kubeconfig context');
+        }
+      }
+
+      this.kubeConfig = kc;
+      const client = kc.makeApiClient(k8s.CoreV1Api);
+      this.logger.log('✅ Kubernetes client initialized successfully');
+      return client;
+    } catch (err) {
+      this.logger.warn(
+        `⚠️ Failed to initialize Kubernetes client: ${(err as Error).message}`,
+      );
+      return null;
+    }
+  }
+
+  /**
+   * 📡 Start watching Kubernetes pods
+   */
+  private startK8sWatch() {
+    if (!this.k8sClient || !this.kubeConfig) {
+      this.logger.warn('⚠️ No Kubernetes client available — skipping watch');
+      return;
+    }
+
+    this.watch = new k8s.Watch(this.kubeConfig);
+    this.abortController = new AbortController();
+
     this.logger.log('📡 Watching Kubernetes pods for changes...');
 
     void this.watch
       .watch(
         '/api/v1/pods',
         {},
-        (type, pod: k8s.V1Pod) => {
-          void this.handlePodEvent(type, pod);
+        (type, obj: k8s.V1Pod) => {
+          void this.handlePodEvent(type, obj);
         },
         (err) => {
-          this.logger.error(`K8s Watch error: ${(err as Error).message}`);
+          if (err) {
+            this.logger.error(
+              `❌ Kubernetes watch error: ${(err as Error).message}`,
+            );
+          }
         },
       )
       .catch((err) => {
@@ -73,50 +124,45 @@ export class K8sRuntimeMonitorService implements OnModuleInit, OnModuleDestroy {
       });
   }
 
-  private async handlePodEvent(type: string, pod: k8s.V1Pod): Promise<void> {
+  /**
+   * Handle individual pod events
+   */
+  private async handlePodEvent(type: string, obj: k8s.V1Pod): Promise<void> {
     try {
-      const name = pod.metadata?.name ?? 'unknown';
-      const ns = pod.metadata?.namespace ?? 'default';
-      const phase = pod.status?.phase ?? 'Unknown';
-
-      let status = 'UNKNOWN';
-      let reason = phase;
-
-      const containerStatuses = pod.status?.containerStatuses || [];
-      for (const c of containerStatuses) {
-        if (c.state?.waiting?.reason) reason = c.state.waiting.reason;
-        if (c.state?.terminated?.reason) reason = c.state.terminated.reason;
-        if (
-          c.state?.terminated?.exitCode &&
-          c.state.terminated.exitCode !== 0
-        ) {
-          reason = `Exited code ${c.state.terminated.exitCode}`;
-        }
+      const podName = obj.metadata?.name;
+      if (!podName) {
+        return;
       }
 
-      switch (phase) {
-        case 'Running':
-          status = 'UP';
-          break;
-        case 'Pending':
-          status = 'PENDING';
-          break;
-        case 'Succeeded':
-          status = 'COMPLETED';
-          break;
-        case 'Failed':
-          status = 'DOWN';
-          break;
-        default:
-          status = 'UNKNOWN';
-      }
+      const phase = obj.status?.phase;
+      const reason =
+        obj.status?.containerStatuses?.[0]?.state?.waiting?.reason ||
+        obj.status?.containerStatuses?.[0]?.state?.terminated?.reason ||
+        phase;
 
-      if (reason === 'CrashLoopBackOff') status = 'DOWN';
-      if (reason === 'OOMKilled') status = 'DOWN';
-      if (reason === 'ImagePullBackOff') status = 'DOWN';
+      const status =
+        phase === 'Running'
+          ? 'UP'
+          : phase === 'Pending'
+            ? 'STARTING'
+            : phase === 'Succeeded'
+              ? 'COMPLETED'
+              : phase === 'Failed'
+                ? 'DOWN'
+                : 'UNKNOWN';
+
+      this.latestStatuses = this.latestStatuses.filter(
+        (s) => s.name !== podName,
+      );
+      this.latestStatuses.push({
+        name: podName,
+        status,
+        reason: reason || 'Unknown',
+        updatedAt: new Date(),
+      });
 
       await this.prisma.service.updateMany({
-        where: { name: name },
+        where: { name: podName },
         data: {
           runtimeStatus: status,
           lastReason: reason,
@@ -126,30 +172,23 @@ export class K8sRuntimeMonitorService implements OnModuleInit, OnModuleDestroy {
 
       await this.pubSub.publish('serviceEventCreated', {
         serviceEventCreated: {
-          id: `${name}-${Date.now()}`,
-          service: name,
-          cluster: `k8s-${ns}`,
+          id: `${podName}-${Date.now()}`,
+          service: podName,
+          cluster: 'kubernetes',
           status,
           message: reason,
           createdAt: new Date().toISOString(),
         },
       });
 
-      this.logger.log(`☸️ [${ns}/${name}] -> ${status} (${reason})`);
-      this.latestStatuses = this.latestStatuses.filter((s) => s.name !== name);
-      this.latestStatuses.push({
-        name,
-        namespace: ns,
-        status,
-        reason,
-        updatedAt: new Date(),
-      });
+      this.logger.debug(`☸️ Pod ${podName} → ${status} (${reason})`);
     } catch (err) {
       this.logger.error(
         `Error processing pod event: ${(err as Error).message}`,
       );
     }
   }
+
   getLatestStatuses() {
     return this.latestStatuses;
   }

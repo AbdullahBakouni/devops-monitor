@@ -454,16 +454,29 @@ export class DockerK8sDiscoveryService {
       const to = await this.prisma.service.findFirst({
         where: { name: rel.to },
       });
+
       if (from && to) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        await this.prisma.serviceDependency.create({
-          data: {
+        const existing = await this.prisma.serviceDependency.findFirst({
+          where: {
             fromServiceId: from.id,
             toServiceId: to.id,
-            reason: rel.reason,
           },
         });
-        this.logger.log(`🔗 Stored relation: ${rel.from} → ${rel.to}`);
+
+        if (!existing) {
+          await this.prisma.serviceDependency.create({
+            data: {
+              fromServiceId: from.id,
+              toServiceId: to.id,
+              reason: rel.reason,
+            },
+          });
+          this.logger.log(`🔗 Stored relation: ${rel.from} → ${rel.to}`);
+        } else {
+          this.logger.debug(
+            `⏭️ Relation ${rel.from} → ${rel.to} already exists, skipping.`,
+          );
+        }
       }
     }
 

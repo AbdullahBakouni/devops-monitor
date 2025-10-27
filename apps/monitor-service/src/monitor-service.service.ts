@@ -7,8 +7,9 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { DockerK8sDiscoveryService } from './docker-k8s-discovery.service';
 import { DockerRuntimeMonitorService } from './docker-runtime-monitor.service';
 import { K8sRuntimeMonitorService } from './k8s-runtime-monitor.service';
+import * as fs from 'fs';
+import { addMinutes } from 'date-fns';
 import * as dotenv from 'dotenv';
-
 dotenv.config();
 
 @Injectable()
@@ -26,25 +27,43 @@ export class MonitorServiceService {
 
   @Cron(CronExpression.EVERY_MINUTE)
   async checkServices(): Promise<void> {
-    this.logger.log('🔍 Checking all services (Docker & K8s)...');
+    const env = this.detectEnvironment();
+    this.logger.log(`🌍 Running environment detected: ${env}`);
+    this.logger.log('🔍 Checking all services (Docker, K8s)...');
     await this.discovery.discoverAllServices();
     const services = await this.prisma.service.findMany();
 
     const dockerStatuses = this.dockerMonitor.getLatestStatuses?.() || [];
     const k8sStatuses = this.k8sMonitor.getLatestStatuses?.() || [];
-    console.log('services', services);
-    console.log('Dockerstatus', dockerStatuses);
+    // console.log('services', services);
+    // console.log('Dockerstatus', dockerStatuses);
+    // console.log('K8sService', k8sStatuses);
+    let k8sConnected = true;
+    try {
+      await this.k8sMonitor['k8sClient']?.listNamespace();
+    } catch {
+      k8sConnected = false;
+      this.logger.warn('⚠️ Kubernetes cluster appears offline.');
+    }
+    if (!k8sConnected) {
+      await this.prisma.service.updateMany({
+        where: { cluster: { startsWith: 'k8s' } },
+        data: {
+          runtimeStatus: 'DOWN',
+          lastReason: 'Kubernetes cluster unreachable',
+          lastSeenAt: new Date(),
+        },
+      });
+    }
     for (const svc of services) {
       let status = 'UNKNOWN';
       let reason = '';
 
-      // اسم الخدمة بعد التنظيف
       const normalizedName = svc.name
         .toLowerCase()
         .replace(/^docker-/, '')
         .replace(/-service$/, '');
 
-      // وظيفة للمقارنة المرنة
       const fuzzyMatch = (a: string, b: string): boolean => {
         const na = a
           .toLowerCase()
@@ -81,6 +100,15 @@ export class MonitorServiceService {
 
     this.logger.log('✅ Full check cycle completed.');
   }
+  private detectEnvironment(): string {
+    if (fs.existsSync('/var/run/secrets/kubernetes.io/serviceaccount/token')) {
+      return 'KUBERNETES';
+    } else if (fs.existsSync('/.dockerenv')) {
+      return 'DOCKER';
+    } else {
+      return 'LOCAL';
+    }
+  }
 
   private async updateServiceStatus(
     serviceId: string,
@@ -96,7 +124,47 @@ export class MonitorServiceService {
       },
     });
   }
+  @Cron(CronExpression.EVERY_10_MINUTES)
+  async cleanupStaleServices(): Promise<void> {
+    this.logger.log('🧹 Running auto-cleanup for stale services...');
 
+    const thresholdMinutes = Number(process.env.SERVICE_CLEANUP_MINUTES || 30);
+    const now = new Date();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const threshold = addMinutes(now, -thresholdMinutes) as Date;
+    const staleServices = await this.prisma.service.findMany({
+      where: {
+        lastSeenAt: { lt: threshold },
+      },
+    });
+
+    if (staleServices.length === 0) {
+      this.logger.log('✅ No stale services found.');
+      return;
+    }
+
+    for (const svc of staleServices) {
+      await this.prisma.service.delete({ where: { id: svc.id } });
+      this.logger.warn(
+        `🗑️ Removed stale service: ${svc.name} (last seen at ${svc.lastSeenAt?.toISOString()})`,
+      );
+
+      await this.pubSub.publish('serviceEventCreated', {
+        serviceEventCreated: {
+          id: `${svc.name}-${Date.now()}`,
+          service: svc.name,
+          cluster: svc.cluster,
+          status: 'REMOVED',
+          message: 'Service removed after inactivity timeout',
+          createdAt: new Date().toISOString(),
+        },
+      });
+    }
+
+    this.logger.log(
+      `🧹 Cleanup completed. Removed ${staleServices.length} inactive services.`,
+    );
+  }
   private async publishServiceEvent(
     name: string,
     cluster: string,

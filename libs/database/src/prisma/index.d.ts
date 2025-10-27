@@ -5904,6 +5904,7 @@ export namespace Prisma {
 
   export type ServiceDependencyWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    unique_service_relation?: ServiceDependencyUnique_service_relationCompoundUniqueInput
     AND?: ServiceDependencyWhereInput | ServiceDependencyWhereInput[]
     OR?: ServiceDependencyWhereInput[]
     NOT?: ServiceDependencyWhereInput | ServiceDependencyWhereInput[]
@@ -5913,7 +5914,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ServiceDependency"> | Date | string
     fromService?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
     toService?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
-  }, "id">
+  }, "id" | "unique_service_relation">
 
   export type ServiceDependencyOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6501,6 +6502,11 @@ export namespace Prisma {
   export type ServiceScalarRelationFilter = {
     is?: ServiceWhereInput
     isNot?: ServiceWhereInput
+  }
+
+  export type ServiceDependencyUnique_service_relationCompoundUniqueInput = {
+    fromServiceId: string
+    toServiceId: string
   }
 
   export type ServiceDependencyCountOrderByAggregateInput = {

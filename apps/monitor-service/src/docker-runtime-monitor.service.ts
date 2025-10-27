@@ -9,7 +9,8 @@ import Docker from 'dockerode';
 import { DatabaseService } from '@app/database';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { PUB_SUB } from './pubsub.provider';
-
+import * as os from 'os';
+import * as fs from 'fs';
 interface DockerEvent {
   id: string;
   status: string;
@@ -47,9 +48,40 @@ export class DockerRuntimeMonitorService
     private readonly prisma: DatabaseService,
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
   ) {
-    this.docker = new Docker({ socketPath: '/var/run/docker.sock' });
+    this.docker = this.initializeDockerClient();
   }
+  private initializeDockerClient(): Docker {
+    const platform = os.platform();
+    let socketPath: string;
 
+    switch (platform) {
+      case 'win32':
+        socketPath = '//./pipe/docker_engine';
+        this.logger.log('🪟 Detected Windows - using named pipe for Docker');
+        break;
+
+      case 'darwin':
+        socketPath = '/var/run/docker.sock';
+        this.logger.log('🍎 Detected macOS - using Unix socket for Docker');
+        break;
+
+      case 'linux':
+      default:
+        socketPath = '/var/run/docker.sock';
+        this.logger.log('🐧 Detected Linux - using Unix socket for Docker');
+        break;
+    }
+
+    if (!fs.existsSync(socketPath) && platform !== 'win32') {
+      this.logger.warn(
+        `⚠️ Docker socket not found at ${socketPath}. Make sure Docker is running.`,
+      );
+    }
+
+    const docker = new Docker({ socketPath });
+
+    return docker;
+  }
   async onModuleInit() {
     this.startDockerEventsStream().catch((err) => {
       const error = err as Error;
