@@ -170,20 +170,74 @@ export class MonitorServiceService {
     cluster: string,
     status: string,
     message: string,
-  ) {
-    const event = {
-      id: `${name}-${Date.now()}`,
-      service: name,
-      cluster,
-      status,
-      message,
-      createdAt: new Date().toISOString(),
-    };
+  ): Promise<void> {
+    const now = new Date();
 
-    await this.pubSub.publish('serviceEventCreated', {
-      serviceEventCreated: event,
+    const lastEvent = await this.prisma.serviceEvent.findFirst({
+      where: { service: name },
+      orderBy: { createdAt: 'desc' },
     });
 
-    this.logger.log(`📡 Event published: ${name} → ${status}`);
+    const isFirstEvent = !lastEvent;
+    const hasChanged =
+      isFirstEvent ||
+      lastEvent.status !== status ||
+      (lastEvent.message || '') !== (message || '');
+    let eventType: 'INITIAL' | 'STATUS_CHANGE' | 'RECOVERY' | 'FAILURE' =
+      'STATUS_CHANGE';
+
+    if (isFirstEvent) {
+      eventType = 'INITIAL';
+    } else if (lastEvent.status === 'DOWN' && status === 'UP') {
+      eventType = 'RECOVERY';
+    } else if (lastEvent.status === 'UP' && status === 'DOWN') {
+      eventType = 'FAILURE';
+    } else if (lastEvent.status !== status) {
+      eventType = 'STATUS_CHANGE';
+    }
+
+    await this.prisma.$transaction(async (tx) => {
+      await tx.service.updateMany({
+        where: { name },
+        data: {
+          runtimeStatus: status,
+          lastReason: message,
+          lastSeenAt: now,
+        },
+      });
+
+      if (hasChanged) {
+        const newEvent = await tx.serviceEvent.create({
+          data: {
+            service: name,
+            status,
+            cluster,
+            message,
+            eventType,
+            createdAt: now,
+          },
+        });
+
+        await this.pubSub.publish('serviceEventCreated', {
+          serviceEventCreated: {
+            id: newEvent.id,
+            service: newEvent.service,
+            status: newEvent.status,
+            cluster: newEvent.cluster,
+            message: newEvent.message,
+            eventType: newEvent.eventType,
+            createdAt: newEvent.createdAt.toISOString(),
+          },
+        });
+
+        this.logger.log(
+          `📡 [${eventType}] Event for ${name}: ${status} (${message})`,
+        );
+      } else {
+        this.logger.debug(
+          `⏭️ No change for ${name} (status=${status}) → skipping event creation.`,
+        );
+      }
+    });
   }
 }

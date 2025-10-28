@@ -178,16 +178,16 @@ export class DockerRuntimeMonitorService
         },
       });
 
-      await this.pubSub.publish('serviceEventCreated', {
-        serviceEventCreated: {
-          id: `${name}-${Date.now()}`,
-          service: name,
-          status,
-          cluster: 'docker',
-          message: reason,
-          createdAt: new Date().toISOString(),
-        },
-      });
+      // await this.pubSub.publish('serviceEventCreated', {
+      //   serviceEventCreated: {
+      //     id: `${name}-${Date.now()}`,
+      //     service: name,
+      //     status,
+      //     cluster: 'docker',
+      //     message: reason,
+      //     createdAt: new Date().toISOString(),
+      //   },
+      // });
 
       this.logger.log(`🐳 [${name}] -> ${status} (${reason})`);
       this.latestStatuses = this.latestStatuses.filter((s) => s.name !== name);

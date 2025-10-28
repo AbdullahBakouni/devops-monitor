@@ -35,6 +35,25 @@ export type ServiceDependency = $Result.DefaultSelection<Prisma.$ServiceDependen
 export type ServiceAI = $Result.DefaultSelection<Prisma.$ServiceAIPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const EventType: {
+  INITIAL: 'INITIAL',
+  STATUS_CHANGE: 'STATUS_CHANGE',
+  RECOVERY: 'RECOVERY',
+  FAILURE: 'FAILURE'
+};
+
+export type EventType = (typeof EventType)[keyof typeof EventType]
+
+}
+
+export type EventType = $Enums.EventType
+
+export const EventType: typeof $Enums.EventType
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1188,6 +1207,7 @@ export namespace Prisma {
     status: string | null
     cluster: string | null
     message: string | null
+    eventType: $Enums.EventType | null
     createdAt: Date | null
   }
 
@@ -1197,6 +1217,7 @@ export namespace Prisma {
     status: string | null
     cluster: string | null
     message: string | null
+    eventType: $Enums.EventType | null
     createdAt: Date | null
   }
 
@@ -1206,6 +1227,7 @@ export namespace Prisma {
     status: number
     cluster: number
     message: number
+    eventType: number
     createdAt: number
     _all: number
   }
@@ -1217,6 +1239,7 @@ export namespace Prisma {
     status?: true
     cluster?: true
     message?: true
+    eventType?: true
     createdAt?: true
   }
 
@@ -1226,6 +1249,7 @@ export namespace Prisma {
     status?: true
     cluster?: true
     message?: true
+    eventType?: true
     createdAt?: true
   }
 
@@ -1235,6 +1259,7 @@ export namespace Prisma {
     status?: true
     cluster?: true
     message?: true
+    eventType?: true
     createdAt?: true
     _all?: true
   }
@@ -1317,6 +1342,7 @@ export namespace Prisma {
     status: string
     cluster: string | null
     message: string | null
+    eventType: $Enums.EventType
     createdAt: Date
     _count: ServiceEventCountAggregateOutputType | null
     _min: ServiceEventMinAggregateOutputType | null
@@ -1343,6 +1369,7 @@ export namespace Prisma {
     status?: boolean
     cluster?: boolean
     message?: boolean
+    eventType?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["serviceEvent"]>
 
@@ -1352,6 +1379,7 @@ export namespace Prisma {
     status?: boolean
     cluster?: boolean
     message?: boolean
+    eventType?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["serviceEvent"]>
 
@@ -1361,6 +1389,7 @@ export namespace Prisma {
     status?: boolean
     cluster?: boolean
     message?: boolean
+    eventType?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["serviceEvent"]>
 
@@ -1370,10 +1399,11 @@ export namespace Prisma {
     status?: boolean
     cluster?: boolean
     message?: boolean
+    eventType?: boolean
     createdAt?: boolean
   }
 
-  export type ServiceEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "status" | "cluster" | "message" | "createdAt", ExtArgs["result"]["serviceEvent"]>
+  export type ServiceEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "status" | "cluster" | "message" | "eventType" | "createdAt", ExtArgs["result"]["serviceEvent"]>
 
   export type $ServiceEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ServiceEvent"
@@ -1384,6 +1414,7 @@ export namespace Prisma {
       status: string
       cluster: string | null
       message: string | null
+      eventType: $Enums.EventType
       createdAt: Date
     }, ExtArgs["result"]["serviceEvent"]>
     composites: {}
@@ -1813,6 +1844,7 @@ export namespace Prisma {
     readonly status: FieldRef<"ServiceEvent", 'String'>
     readonly cluster: FieldRef<"ServiceEvent", 'String'>
     readonly message: FieldRef<"ServiceEvent", 'String'>
+    readonly eventType: FieldRef<"ServiceEvent", 'EventType'>
     readonly createdAt: FieldRef<"ServiceEvent", 'DateTime'>
   }
     
@@ -5566,6 +5598,7 @@ export namespace Prisma {
     status: 'status',
     cluster: 'cluster',
     message: 'message',
+    eventType: 'eventType',
     createdAt: 'createdAt'
   };
 
@@ -5672,6 +5705,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'EventType'
+   */
+  export type EnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType'>
+    
+
+
+  /**
+   * Reference to a field of type 'EventType[]'
+   */
+  export type ListEnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -5739,6 +5786,7 @@ export namespace Prisma {
     status?: StringFilter<"ServiceEvent"> | string
     cluster?: StringNullableFilter<"ServiceEvent"> | string | null
     message?: StringNullableFilter<"ServiceEvent"> | string | null
+    eventType?: EnumEventTypeFilter<"ServiceEvent"> | $Enums.EventType
     createdAt?: DateTimeFilter<"ServiceEvent"> | Date | string
   }
 
@@ -5748,6 +5796,7 @@ export namespace Prisma {
     status?: SortOrder
     cluster?: SortOrderInput | SortOrder
     message?: SortOrderInput | SortOrder
+    eventType?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -5760,6 +5809,7 @@ export namespace Prisma {
     status?: StringFilter<"ServiceEvent"> | string
     cluster?: StringNullableFilter<"ServiceEvent"> | string | null
     message?: StringNullableFilter<"ServiceEvent"> | string | null
+    eventType?: EnumEventTypeFilter<"ServiceEvent"> | $Enums.EventType
     createdAt?: DateTimeFilter<"ServiceEvent"> | Date | string
   }, "id">
 
@@ -5769,6 +5819,7 @@ export namespace Prisma {
     status?: SortOrder
     cluster?: SortOrderInput | SortOrder
     message?: SortOrderInput | SortOrder
+    eventType?: SortOrder
     createdAt?: SortOrder
     _count?: ServiceEventCountOrderByAggregateInput
     _max?: ServiceEventMaxOrderByAggregateInput
@@ -5784,6 +5835,7 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter<"ServiceEvent"> | string
     cluster?: StringNullableWithAggregatesFilter<"ServiceEvent"> | string | null
     message?: StringNullableWithAggregatesFilter<"ServiceEvent"> | string | null
+    eventType?: EnumEventTypeWithAggregatesFilter<"ServiceEvent"> | $Enums.EventType
     createdAt?: DateTimeWithAggregatesFilter<"ServiceEvent"> | Date | string
   }
 
@@ -6006,6 +6058,7 @@ export namespace Prisma {
     status: string
     cluster?: string | null
     message?: string | null
+    eventType?: $Enums.EventType
     createdAt?: Date | string
   }
 
@@ -6015,6 +6068,7 @@ export namespace Prisma {
     status: string
     cluster?: string | null
     message?: string | null
+    eventType?: $Enums.EventType
     createdAt?: Date | string
   }
 
@@ -6024,6 +6078,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     cluster?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6033,6 +6088,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     cluster?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6042,6 +6098,7 @@ export namespace Prisma {
     status: string
     cluster?: string | null
     message?: string | null
+    eventType?: $Enums.EventType
     createdAt?: Date | string
   }
 
@@ -6051,6 +6108,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     cluster?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6060,6 +6118,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     cluster?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6319,6 +6378,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeFilter<$PrismaModel> | $Enums.EventType
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6341,6 +6407,7 @@ export namespace Prisma {
     status?: SortOrder
     cluster?: SortOrder
     message?: SortOrder
+    eventType?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -6350,6 +6417,7 @@ export namespace Prisma {
     status?: SortOrder
     cluster?: SortOrder
     message?: SortOrder
+    eventType?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -6359,6 +6427,7 @@ export namespace Prisma {
     status?: SortOrder
     cluster?: SortOrder
     message?: SortOrder
+    eventType?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -6396,6 +6465,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.EventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumEventTypeFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6650,6 +6729,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type EnumEventTypeFieldUpdateOperationsInput = {
+    set?: $Enums.EventType
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -6852,6 +6935,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedEnumEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeFilter<$PrismaModel> | $Enums.EventType
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6917,6 +7007,16 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.EventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumEventTypeFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

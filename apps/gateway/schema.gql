@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type Mutation {
-  createServiceEvent(cluster: String!, message: String, service: String!, status: String!): ServiceEvent!
+  createServiceEvent(cluster: String!, eventType: String!, message: String, service: String!, status: String!): ServiceEvent!
 }
 
 type Query {
@@ -13,6 +13,7 @@ type Query {
 type ServiceEvent {
   cluster: String!
   createdAt: String!
+  eventType: String!
   id: String!
   message: String
   service: String!
@@ -20,5 +21,5 @@ type ServiceEvent {
 }
 
 type Subscription {
-  serviceEventCreated: ServiceEvent!
+  serviceEventCreated(service: String, status: String): ServiceEvent!
 }

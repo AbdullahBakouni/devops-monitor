@@ -170,16 +170,16 @@ export class K8sRuntimeMonitorService implements OnModuleInit, OnModuleDestroy {
         },
       });
 
-      await this.pubSub.publish('serviceEventCreated', {
-        serviceEventCreated: {
-          id: `${podName}-${Date.now()}`,
-          service: podName,
-          cluster: 'kubernetes',
-          status,
-          message: reason,
-          createdAt: new Date().toISOString(),
-        },
-      });
+      // await this.pubSub.publish('serviceEventCreated', {
+      //   serviceEventCreated: {
+      //     id: `${podName}-${Date.now()}`,
+      //     service: podName,
+      //     cluster: 'kubernetes',
+      //     status,
+      //     message: reason,
+      //     createdAt: new Date().toISOString(),
+      //   },
+      // });
 
       this.logger.debug(`☸️ Pod ${podName} → ${status} (${reason})`);
     } catch (err) {

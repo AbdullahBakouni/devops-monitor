@@ -126,6 +126,7 @@ exports.Prisma.ServiceEventScalarFieldEnum = {
   status: 'status',
   cluster: 'cluster',
   message: 'message',
+  eventType: 'eventType',
   createdAt: 'createdAt'
 };
 
@@ -184,7 +185,12 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
-
+exports.EventType = exports.$Enums.EventType = {
+  INITIAL: 'INITIAL',
+  STATUS_CHANGE: 'STATUS_CHANGE',
+  RECOVERY: 'RECOVERY',
+  FAILURE: 'FAILURE'
+};
 
 exports.Prisma.ModelName = {
   ServiceEvent: 'ServiceEvent',

@@ -8,13 +8,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum EventType {
+  INITIAL
+  STATUS_CHANGE
+  RECOVERY
+  FAILURE
+}
+
 model ServiceEvent {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   service   String
   status    String
   cluster   String?
   message   String?
-  createdAt DateTime @default(now())
+  eventType EventType @default(INITIAL)
+  createdAt DateTime  @default(now())
+
+  @@index([service, createdAt])
 }
 
 model Service {
