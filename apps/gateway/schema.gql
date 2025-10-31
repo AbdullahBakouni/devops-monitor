@@ -6,7 +6,18 @@ type Mutation {
   createServiceEvent(cluster: String!, eventType: String!, message: String, service: String!, status: String!): ServiceEvent!
 }
 
+type NotificationDTO {
+  cluster: String
+  createdAt: String!
+  id: String!
+  message: String!
+  service: String!
+  title: String!
+  type: String!
+}
+
 type Query {
+  getNotifications: [NotificationDTO!]!
   getServiceEvents: [ServiceEvent!]!
 }
 
@@ -21,5 +32,6 @@ type ServiceEvent {
 }
 
 type Subscription {
+  notificationCreated: NotificationDTO!
   serviceEventCreated(service: String, status: String): ServiceEvent!
 }

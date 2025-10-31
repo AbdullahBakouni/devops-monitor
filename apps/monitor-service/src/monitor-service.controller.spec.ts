@@ -11,7 +11,9 @@ describe('MonitorServiceController', () => {
       providers: [MonitorServiceService],
     }).compile();
 
-    monitorServiceController = app.get<MonitorServiceController>(MonitorServiceController);
+    monitorServiceController = app.get<MonitorServiceController>(
+      MonitorServiceController,
+    );
   });
 
   describe('root', () => {

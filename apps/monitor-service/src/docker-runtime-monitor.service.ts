@@ -8,7 +8,7 @@ import {
 import Docker from 'dockerode';
 import { DatabaseService } from '@app/database';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-import { PUB_SUB } from './pubsub.provider';
+import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
 import * as os from 'os';
 import * as fs from 'fs';
 interface DockerEvent {

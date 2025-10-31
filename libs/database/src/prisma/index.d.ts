@@ -14,10 +14,20 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
  * Model ServiceEvent
  * 
  */
 export type ServiceEvent = $Result.DefaultSelection<Prisma.$ServiceEventPayload>
+/**
+ * Model ServiceEventHistory
+ * 
+ */
+export type ServiceEventHistory = $Result.DefaultSelection<Prisma.$ServiceEventHistoryPayload>
 /**
  * Model Service
  * 
@@ -42,7 +52,8 @@ export namespace $Enums {
   INITIAL: 'INITIAL',
   STATUS_CHANGE: 'STATUS_CHANGE',
   RECOVERY: 'RECOVERY',
-  FAILURE: 'FAILURE'
+  FAILURE: 'FAILURE',
+  CRASH_LOOP: 'CRASH_LOOP'
 };
 
 export type EventType = (typeof EventType)[keyof typeof EventType]
@@ -60,8 +71,8 @@ export const EventType: typeof $Enums.EventType
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more ServiceEvents
- * const serviceEvents = await prisma.serviceEvent.findMany()
+ * // Fetch zero or more Notifications
+ * const notifications = await prisma.notification.findMany()
  * ```
  *
  *
@@ -81,8 +92,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more ServiceEvents
-   * const serviceEvents = await prisma.serviceEvent.findMany()
+   * // Fetch zero or more Notifications
+   * const notifications = await prisma.notification.findMany()
    * ```
    *
    *
@@ -172,6 +183,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.serviceEvent`: Exposes CRUD operations for the **ServiceEvent** model.
     * Example usage:
     * ```ts
@@ -180,6 +201,16 @@ export class PrismaClient<
     * ```
     */
   get serviceEvent(): Prisma.ServiceEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceEventHistory`: Exposes CRUD operations for the **ServiceEventHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceEventHistories
+    * const serviceEventHistories = await prisma.serviceEventHistory.findMany()
+    * ```
+    */
+  get serviceEventHistory(): Prisma.ServiceEventHistoryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.service`: Exposes CRUD operations for the **Service** model.
@@ -650,7 +681,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    Notification: 'Notification',
     ServiceEvent: 'ServiceEvent',
+    ServiceEventHistory: 'ServiceEventHistory',
     Service: 'Service',
     ServiceDependency: 'ServiceDependency',
     ServiceAI: 'ServiceAI'
@@ -672,10 +705,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "serviceEvent" | "service" | "serviceDependency" | "serviceAI"
+      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "serviceAI"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
       ServiceEvent: {
         payload: Prisma.$ServiceEventPayload<ExtArgs>
         fields: Prisma.ServiceEventFieldRefs
@@ -747,6 +854,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ServiceEventCountArgs<ExtArgs>
             result: $Utils.Optional<ServiceEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServiceEventHistory: {
+        payload: Prisma.$ServiceEventHistoryPayload<ExtArgs>
+        fields: Prisma.ServiceEventHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceEventHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceEventHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceEventHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceEventHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceEventHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceEventHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceEventHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServiceEventHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.ServiceEventHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>
+          }
+          update: {
+            args: Prisma.ServiceEventHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceEventHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceEventHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ServiceEventHistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.ServiceEventHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceEventHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceEventHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceEventHistory>
+          }
+          groupBy: {
+            args: Prisma.ServiceEventHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceEventHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServiceEventHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceEventHistoryCountAggregateOutputType> | number
           }
         }
       }
@@ -1068,7 +1249,9 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    notification?: NotificationOmit
     serviceEvent?: ServiceEventOmit
+    serviceEventHistory?: ServiceEventHistoryOmit
     service?: ServiceOmit
     serviceDependency?: ServiceDependencyOmit
     serviceAI?: ServiceAIOmit
@@ -1190,6 +1373,1027 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: string | null
+    type: string | null
+    title: string | null
+    message: string | null
+    service: string | null
+    cluster: string | null
+    createdAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: string | null
+    type: string | null
+    title: string | null
+    message: string | null
+    service: string | null
+    cluster: string | null
+    createdAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    type: number
+    title: number
+    message: number
+    service: number
+    cluster: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    type?: true
+    title?: true
+    message?: true
+    service?: true
+    cluster?: true
+    createdAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    type?: true
+    title?: true
+    message?: true
+    service?: true
+    cluster?: true
+    createdAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    type?: true
+    title?: true
+    message?: true
+    service?: true
+    cluster?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: string
+    type: string
+    title: string
+    message: string
+    service: string
+    cluster: string | null
+    createdAt: Date
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    service?: boolean
+    cluster?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    service?: boolean
+    cluster?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    service?: boolean
+    cluster?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    service?: boolean
+    cluster?: boolean
+    createdAt?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "title" | "message" | "service" | "cluster" | "createdAt", ExtArgs["result"]["notification"]>
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: string
+      title: string
+      message: string
+      service: string
+      cluster: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'String'>
+    readonly type: FieldRef<"Notification", 'String'>
+    readonly title: FieldRef<"Notification", 'String'>
+    readonly message: FieldRef<"Notification", 'String'>
+    readonly service: FieldRef<"Notification", 'String'>
+    readonly cluster: FieldRef<"Notification", 'String'>
+    readonly createdAt: FieldRef<"Notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification createManyAndReturn
+   */
+  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification updateManyAndReturn
+   */
+  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+  }
+
 
   /**
    * Model ServiceEvent
@@ -2209,6 +3413,1027 @@ export namespace Prisma {
      * Omit specific fields from the ServiceEvent
      */
     omit?: ServiceEventOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ServiceEventHistory
+   */
+
+  export type AggregateServiceEventHistory = {
+    _count: ServiceEventHistoryCountAggregateOutputType | null
+    _min: ServiceEventHistoryMinAggregateOutputType | null
+    _max: ServiceEventHistoryMaxAggregateOutputType | null
+  }
+
+  export type ServiceEventHistoryMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    status: string | null
+    cluster: string | null
+    message: string | null
+    eventType: $Enums.EventType | null
+    recordedAt: Date | null
+  }
+
+  export type ServiceEventHistoryMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    status: string | null
+    cluster: string | null
+    message: string | null
+    eventType: $Enums.EventType | null
+    recordedAt: Date | null
+  }
+
+  export type ServiceEventHistoryCountAggregateOutputType = {
+    id: number
+    service: number
+    status: number
+    cluster: number
+    message: number
+    eventType: number
+    recordedAt: number
+    _all: number
+  }
+
+
+  export type ServiceEventHistoryMinAggregateInputType = {
+    id?: true
+    service?: true
+    status?: true
+    cluster?: true
+    message?: true
+    eventType?: true
+    recordedAt?: true
+  }
+
+  export type ServiceEventHistoryMaxAggregateInputType = {
+    id?: true
+    service?: true
+    status?: true
+    cluster?: true
+    message?: true
+    eventType?: true
+    recordedAt?: true
+  }
+
+  export type ServiceEventHistoryCountAggregateInputType = {
+    id?: true
+    service?: true
+    status?: true
+    cluster?: true
+    message?: true
+    eventType?: true
+    recordedAt?: true
+    _all?: true
+  }
+
+  export type ServiceEventHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceEventHistory to aggregate.
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceEventHistories to fetch.
+     */
+    orderBy?: ServiceEventHistoryOrderByWithRelationInput | ServiceEventHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceEventHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceEventHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceEventHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceEventHistories
+    **/
+    _count?: true | ServiceEventHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceEventHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceEventHistoryMaxAggregateInputType
+  }
+
+  export type GetServiceEventHistoryAggregateType<T extends ServiceEventHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceEventHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceEventHistory[P]>
+      : GetScalarType<T[P], AggregateServiceEventHistory[P]>
+  }
+
+
+
+
+  export type ServiceEventHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceEventHistoryWhereInput
+    orderBy?: ServiceEventHistoryOrderByWithAggregationInput | ServiceEventHistoryOrderByWithAggregationInput[]
+    by: ServiceEventHistoryScalarFieldEnum[] | ServiceEventHistoryScalarFieldEnum
+    having?: ServiceEventHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceEventHistoryCountAggregateInputType | true
+    _min?: ServiceEventHistoryMinAggregateInputType
+    _max?: ServiceEventHistoryMaxAggregateInputType
+  }
+
+  export type ServiceEventHistoryGroupByOutputType = {
+    id: string
+    service: string
+    status: string
+    cluster: string | null
+    message: string | null
+    eventType: $Enums.EventType
+    recordedAt: Date
+    _count: ServiceEventHistoryCountAggregateOutputType | null
+    _min: ServiceEventHistoryMinAggregateOutputType | null
+    _max: ServiceEventHistoryMaxAggregateOutputType | null
+  }
+
+  type GetServiceEventHistoryGroupByPayload<T extends ServiceEventHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceEventHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceEventHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceEventHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceEventHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceEventHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    cluster?: boolean
+    message?: boolean
+    eventType?: boolean
+    recordedAt?: boolean
+  }, ExtArgs["result"]["serviceEventHistory"]>
+
+  export type ServiceEventHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    cluster?: boolean
+    message?: boolean
+    eventType?: boolean
+    recordedAt?: boolean
+  }, ExtArgs["result"]["serviceEventHistory"]>
+
+  export type ServiceEventHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    cluster?: boolean
+    message?: boolean
+    eventType?: boolean
+    recordedAt?: boolean
+  }, ExtArgs["result"]["serviceEventHistory"]>
+
+  export type ServiceEventHistorySelectScalar = {
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    cluster?: boolean
+    message?: boolean
+    eventType?: boolean
+    recordedAt?: boolean
+  }
+
+  export type ServiceEventHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "status" | "cluster" | "message" | "eventType" | "recordedAt", ExtArgs["result"]["serviceEventHistory"]>
+
+  export type $ServiceEventHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceEventHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      status: string
+      cluster: string | null
+      message: string | null
+      eventType: $Enums.EventType
+      recordedAt: Date
+    }, ExtArgs["result"]["serviceEventHistory"]>
+    composites: {}
+  }
+
+  type ServiceEventHistoryGetPayload<S extends boolean | null | undefined | ServiceEventHistoryDefaultArgs> = $Result.GetResult<Prisma.$ServiceEventHistoryPayload, S>
+
+  type ServiceEventHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceEventHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceEventHistoryCountAggregateInputType | true
+    }
+
+  export interface ServiceEventHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceEventHistory'], meta: { name: 'ServiceEventHistory' } }
+    /**
+     * Find zero or one ServiceEventHistory that matches the filter.
+     * @param {ServiceEventHistoryFindUniqueArgs} args - Arguments to find a ServiceEventHistory
+     * @example
+     * // Get one ServiceEventHistory
+     * const serviceEventHistory = await prisma.serviceEventHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceEventHistoryFindUniqueArgs>(args: SelectSubset<T, ServiceEventHistoryFindUniqueArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceEventHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceEventHistoryFindUniqueOrThrowArgs} args - Arguments to find a ServiceEventHistory
+     * @example
+     * // Get one ServiceEventHistory
+     * const serviceEventHistory = await prisma.serviceEventHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceEventHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceEventHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceEventHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryFindFirstArgs} args - Arguments to find a ServiceEventHistory
+     * @example
+     * // Get one ServiceEventHistory
+     * const serviceEventHistory = await prisma.serviceEventHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceEventHistoryFindFirstArgs>(args?: SelectSubset<T, ServiceEventHistoryFindFirstArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceEventHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryFindFirstOrThrowArgs} args - Arguments to find a ServiceEventHistory
+     * @example
+     * // Get one ServiceEventHistory
+     * const serviceEventHistory = await prisma.serviceEventHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceEventHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceEventHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceEventHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceEventHistories
+     * const serviceEventHistories = await prisma.serviceEventHistory.findMany()
+     * 
+     * // Get first 10 ServiceEventHistories
+     * const serviceEventHistories = await prisma.serviceEventHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceEventHistoryWithIdOnly = await prisma.serviceEventHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceEventHistoryFindManyArgs>(args?: SelectSubset<T, ServiceEventHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceEventHistory.
+     * @param {ServiceEventHistoryCreateArgs} args - Arguments to create a ServiceEventHistory.
+     * @example
+     * // Create one ServiceEventHistory
+     * const ServiceEventHistory = await prisma.serviceEventHistory.create({
+     *   data: {
+     *     // ... data to create a ServiceEventHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceEventHistoryCreateArgs>(args: SelectSubset<T, ServiceEventHistoryCreateArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceEventHistories.
+     * @param {ServiceEventHistoryCreateManyArgs} args - Arguments to create many ServiceEventHistories.
+     * @example
+     * // Create many ServiceEventHistories
+     * const serviceEventHistory = await prisma.serviceEventHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceEventHistoryCreateManyArgs>(args?: SelectSubset<T, ServiceEventHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServiceEventHistories and returns the data saved in the database.
+     * @param {ServiceEventHistoryCreateManyAndReturnArgs} args - Arguments to create many ServiceEventHistories.
+     * @example
+     * // Create many ServiceEventHistories
+     * const serviceEventHistory = await prisma.serviceEventHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServiceEventHistories and only return the `id`
+     * const serviceEventHistoryWithIdOnly = await prisma.serviceEventHistory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServiceEventHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, ServiceEventHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServiceEventHistory.
+     * @param {ServiceEventHistoryDeleteArgs} args - Arguments to delete one ServiceEventHistory.
+     * @example
+     * // Delete one ServiceEventHistory
+     * const ServiceEventHistory = await prisma.serviceEventHistory.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceEventHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceEventHistoryDeleteArgs>(args: SelectSubset<T, ServiceEventHistoryDeleteArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceEventHistory.
+     * @param {ServiceEventHistoryUpdateArgs} args - Arguments to update one ServiceEventHistory.
+     * @example
+     * // Update one ServiceEventHistory
+     * const serviceEventHistory = await prisma.serviceEventHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceEventHistoryUpdateArgs>(args: SelectSubset<T, ServiceEventHistoryUpdateArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceEventHistories.
+     * @param {ServiceEventHistoryDeleteManyArgs} args - Arguments to filter ServiceEventHistories to delete.
+     * @example
+     * // Delete a few ServiceEventHistories
+     * const { count } = await prisma.serviceEventHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceEventHistoryDeleteManyArgs>(args?: SelectSubset<T, ServiceEventHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceEventHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceEventHistories
+     * const serviceEventHistory = await prisma.serviceEventHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceEventHistoryUpdateManyArgs>(args: SelectSubset<T, ServiceEventHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceEventHistories and returns the data updated in the database.
+     * @param {ServiceEventHistoryUpdateManyAndReturnArgs} args - Arguments to update many ServiceEventHistories.
+     * @example
+     * // Update many ServiceEventHistories
+     * const serviceEventHistory = await prisma.serviceEventHistory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServiceEventHistories and only return the `id`
+     * const serviceEventHistoryWithIdOnly = await prisma.serviceEventHistory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServiceEventHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, ServiceEventHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServiceEventHistory.
+     * @param {ServiceEventHistoryUpsertArgs} args - Arguments to update or create a ServiceEventHistory.
+     * @example
+     * // Update or create a ServiceEventHistory
+     * const serviceEventHistory = await prisma.serviceEventHistory.upsert({
+     *   create: {
+     *     // ... data to create a ServiceEventHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceEventHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceEventHistoryUpsertArgs>(args: SelectSubset<T, ServiceEventHistoryUpsertArgs<ExtArgs>>): Prisma__ServiceEventHistoryClient<$Result.GetResult<Prisma.$ServiceEventHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServiceEventHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryCountArgs} args - Arguments to filter ServiceEventHistories to count.
+     * @example
+     * // Count the number of ServiceEventHistories
+     * const count = await prisma.serviceEventHistory.count({
+     *   where: {
+     *     // ... the filter for the ServiceEventHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceEventHistoryCountArgs>(
+      args?: Subset<T, ServiceEventHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceEventHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceEventHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceEventHistoryAggregateArgs>(args: Subset<T, ServiceEventHistoryAggregateArgs>): Prisma.PrismaPromise<GetServiceEventHistoryAggregateType<T>>
+
+    /**
+     * Group by ServiceEventHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceEventHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceEventHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceEventHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceEventHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceEventHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceEventHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceEventHistory model
+   */
+  readonly fields: ServiceEventHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceEventHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceEventHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceEventHistory model
+   */
+  interface ServiceEventHistoryFieldRefs {
+    readonly id: FieldRef<"ServiceEventHistory", 'String'>
+    readonly service: FieldRef<"ServiceEventHistory", 'String'>
+    readonly status: FieldRef<"ServiceEventHistory", 'String'>
+    readonly cluster: FieldRef<"ServiceEventHistory", 'String'>
+    readonly message: FieldRef<"ServiceEventHistory", 'String'>
+    readonly eventType: FieldRef<"ServiceEventHistory", 'EventType'>
+    readonly recordedAt: FieldRef<"ServiceEventHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceEventHistory findUnique
+   */
+  export type ServiceEventHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceEventHistory to fetch.
+     */
+    where: ServiceEventHistoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceEventHistory findUniqueOrThrow
+   */
+  export type ServiceEventHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceEventHistory to fetch.
+     */
+    where: ServiceEventHistoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceEventHistory findFirst
+   */
+  export type ServiceEventHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceEventHistory to fetch.
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceEventHistories to fetch.
+     */
+    orderBy?: ServiceEventHistoryOrderByWithRelationInput | ServiceEventHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceEventHistories.
+     */
+    cursor?: ServiceEventHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceEventHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceEventHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceEventHistories.
+     */
+    distinct?: ServiceEventHistoryScalarFieldEnum | ServiceEventHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceEventHistory findFirstOrThrow
+   */
+  export type ServiceEventHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceEventHistory to fetch.
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceEventHistories to fetch.
+     */
+    orderBy?: ServiceEventHistoryOrderByWithRelationInput | ServiceEventHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceEventHistories.
+     */
+    cursor?: ServiceEventHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceEventHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceEventHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceEventHistories.
+     */
+    distinct?: ServiceEventHistoryScalarFieldEnum | ServiceEventHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceEventHistory findMany
+   */
+  export type ServiceEventHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceEventHistories to fetch.
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceEventHistories to fetch.
+     */
+    orderBy?: ServiceEventHistoryOrderByWithRelationInput | ServiceEventHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceEventHistories.
+     */
+    cursor?: ServiceEventHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceEventHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceEventHistories.
+     */
+    skip?: number
+    distinct?: ServiceEventHistoryScalarFieldEnum | ServiceEventHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceEventHistory create
+   */
+  export type ServiceEventHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceEventHistory.
+     */
+    data: XOR<ServiceEventHistoryCreateInput, ServiceEventHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceEventHistory createMany
+   */
+  export type ServiceEventHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceEventHistories.
+     */
+    data: ServiceEventHistoryCreateManyInput | ServiceEventHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceEventHistory createManyAndReturn
+   */
+  export type ServiceEventHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServiceEventHistories.
+     */
+    data: ServiceEventHistoryCreateManyInput | ServiceEventHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceEventHistory update
+   */
+  export type ServiceEventHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceEventHistory.
+     */
+    data: XOR<ServiceEventHistoryUpdateInput, ServiceEventHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceEventHistory to update.
+     */
+    where: ServiceEventHistoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceEventHistory updateMany
+   */
+  export type ServiceEventHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceEventHistories.
+     */
+    data: XOR<ServiceEventHistoryUpdateManyMutationInput, ServiceEventHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceEventHistories to update
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * Limit how many ServiceEventHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceEventHistory updateManyAndReturn
+   */
+  export type ServiceEventHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update ServiceEventHistories.
+     */
+    data: XOR<ServiceEventHistoryUpdateManyMutationInput, ServiceEventHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceEventHistories to update
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * Limit how many ServiceEventHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceEventHistory upsert
+   */
+  export type ServiceEventHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceEventHistory to update in case it exists.
+     */
+    where: ServiceEventHistoryWhereUniqueInput
+    /**
+     * In case the ServiceEventHistory found by the `where` argument doesn't exist, create a new ServiceEventHistory with this data.
+     */
+    create: XOR<ServiceEventHistoryCreateInput, ServiceEventHistoryUncheckedCreateInput>
+    /**
+     * In case the ServiceEventHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceEventHistoryUpdateInput, ServiceEventHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceEventHistory delete
+   */
+  export type ServiceEventHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
+    /**
+     * Filter which ServiceEventHistory to delete.
+     */
+    where: ServiceEventHistoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceEventHistory deleteMany
+   */
+  export type ServiceEventHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceEventHistories to delete
+     */
+    where?: ServiceEventHistoryWhereInput
+    /**
+     * Limit how many ServiceEventHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceEventHistory without action
+   */
+  export type ServiceEventHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceEventHistory
+     */
+    select?: ServiceEventHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceEventHistory
+     */
+    omit?: ServiceEventHistoryOmit<ExtArgs> | null
   }
 
 
@@ -5592,6 +7817,19 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    title: 'title',
+    message: 'message',
+    service: 'service',
+    cluster: 'cluster',
+    createdAt: 'createdAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
   export const ServiceEventScalarFieldEnum: {
     id: 'id',
     service: 'service',
@@ -5603,6 +7841,19 @@ export namespace Prisma {
   };
 
   export type ServiceEventScalarFieldEnum = (typeof ServiceEventScalarFieldEnum)[keyof typeof ServiceEventScalarFieldEnum]
+
+
+  export const ServiceEventHistoryScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    status: 'status',
+    cluster: 'cluster',
+    message: 'message',
+    eventType: 'eventType',
+    recordedAt: 'recordedAt'
+  };
+
+  export type ServiceEventHistoryScalarFieldEnum = (typeof ServiceEventHistoryScalarFieldEnum)[keyof typeof ServiceEventHistoryScalarFieldEnum]
 
 
   export const ServiceScalarFieldEnum: {
@@ -5705,20 +7956,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'EventType'
-   */
-  export type EnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType'>
-    
-
-
-  /**
-   * Reference to a field of type 'EventType[]'
-   */
-  export type ListEnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -5729,6 +7966,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'EventType'
+   */
+  export type EnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType'>
+    
+
+
+  /**
+   * Reference to a field of type 'EventType[]'
+   */
+  export type ListEnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventType[]'>
     
 
 
@@ -5777,6 +8028,68 @@ export namespace Prisma {
    */
 
 
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    service?: StringFilter<"Notification"> | string
+    cluster?: StringNullableFilter<"Notification"> | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    service?: SortOrder
+    cluster?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    service?: StringFilter<"Notification"> | string
+    cluster?: StringNullableFilter<"Notification"> | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    service?: SortOrder
+    cluster?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Notification"> | string
+    type?: StringWithAggregatesFilter<"Notification"> | string
+    title?: StringWithAggregatesFilter<"Notification"> | string
+    message?: StringWithAggregatesFilter<"Notification"> | string
+    service?: StringWithAggregatesFilter<"Notification"> | string
+    cluster?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+  }
+
   export type ServiceEventWhereInput = {
     AND?: ServiceEventWhereInput | ServiceEventWhereInput[]
     OR?: ServiceEventWhereInput[]
@@ -5802,16 +8115,16 @@ export namespace Prisma {
 
   export type ServiceEventWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    service?: string
     AND?: ServiceEventWhereInput | ServiceEventWhereInput[]
     OR?: ServiceEventWhereInput[]
     NOT?: ServiceEventWhereInput | ServiceEventWhereInput[]
-    service?: StringFilter<"ServiceEvent"> | string
     status?: StringFilter<"ServiceEvent"> | string
     cluster?: StringNullableFilter<"ServiceEvent"> | string | null
     message?: StringNullableFilter<"ServiceEvent"> | string | null
     eventType?: EnumEventTypeFilter<"ServiceEvent"> | $Enums.EventType
     createdAt?: DateTimeFilter<"ServiceEvent"> | Date | string
-  }, "id">
+  }, "id" | "service">
 
   export type ServiceEventOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5837,6 +8150,68 @@ export namespace Prisma {
     message?: StringNullableWithAggregatesFilter<"ServiceEvent"> | string | null
     eventType?: EnumEventTypeWithAggregatesFilter<"ServiceEvent"> | $Enums.EventType
     createdAt?: DateTimeWithAggregatesFilter<"ServiceEvent"> | Date | string
+  }
+
+  export type ServiceEventHistoryWhereInput = {
+    AND?: ServiceEventHistoryWhereInput | ServiceEventHistoryWhereInput[]
+    OR?: ServiceEventHistoryWhereInput[]
+    NOT?: ServiceEventHistoryWhereInput | ServiceEventHistoryWhereInput[]
+    id?: StringFilter<"ServiceEventHistory"> | string
+    service?: StringFilter<"ServiceEventHistory"> | string
+    status?: StringFilter<"ServiceEventHistory"> | string
+    cluster?: StringNullableFilter<"ServiceEventHistory"> | string | null
+    message?: StringNullableFilter<"ServiceEventHistory"> | string | null
+    eventType?: EnumEventTypeFilter<"ServiceEventHistory"> | $Enums.EventType
+    recordedAt?: DateTimeFilter<"ServiceEventHistory"> | Date | string
+  }
+
+  export type ServiceEventHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrderInput | SortOrder
+    message?: SortOrderInput | SortOrder
+    eventType?: SortOrder
+    recordedAt?: SortOrder
+  }
+
+  export type ServiceEventHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ServiceEventHistoryWhereInput | ServiceEventHistoryWhereInput[]
+    OR?: ServiceEventHistoryWhereInput[]
+    NOT?: ServiceEventHistoryWhereInput | ServiceEventHistoryWhereInput[]
+    service?: StringFilter<"ServiceEventHistory"> | string
+    status?: StringFilter<"ServiceEventHistory"> | string
+    cluster?: StringNullableFilter<"ServiceEventHistory"> | string | null
+    message?: StringNullableFilter<"ServiceEventHistory"> | string | null
+    eventType?: EnumEventTypeFilter<"ServiceEventHistory"> | $Enums.EventType
+    recordedAt?: DateTimeFilter<"ServiceEventHistory"> | Date | string
+  }, "id">
+
+  export type ServiceEventHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrderInput | SortOrder
+    message?: SortOrderInput | SortOrder
+    eventType?: SortOrder
+    recordedAt?: SortOrder
+    _count?: ServiceEventHistoryCountOrderByAggregateInput
+    _max?: ServiceEventHistoryMaxOrderByAggregateInput
+    _min?: ServiceEventHistoryMinOrderByAggregateInput
+  }
+
+  export type ServiceEventHistoryScalarWhereWithAggregatesInput = {
+    AND?: ServiceEventHistoryScalarWhereWithAggregatesInput | ServiceEventHistoryScalarWhereWithAggregatesInput[]
+    OR?: ServiceEventHistoryScalarWhereWithAggregatesInput[]
+    NOT?: ServiceEventHistoryScalarWhereWithAggregatesInput | ServiceEventHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServiceEventHistory"> | string
+    service?: StringWithAggregatesFilter<"ServiceEventHistory"> | string
+    status?: StringWithAggregatesFilter<"ServiceEventHistory"> | string
+    cluster?: StringNullableWithAggregatesFilter<"ServiceEventHistory"> | string | null
+    message?: StringNullableWithAggregatesFilter<"ServiceEventHistory"> | string | null
+    eventType?: EnumEventTypeWithAggregatesFilter<"ServiceEventHistory"> | $Enums.EventType
+    recordedAt?: DateTimeWithAggregatesFilter<"ServiceEventHistory"> | Date | string
   }
 
   export type ServiceWhereInput = {
@@ -6052,6 +8427,76 @@ export namespace Prisma {
     lastRefreshedAt?: DateTimeWithAggregatesFilter<"ServiceAI"> | Date | string
   }
 
+  export type NotificationCreateInput = {
+    id?: string
+    type: string
+    title: string
+    message: string
+    service: string
+    cluster?: string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: string
+    type: string
+    title: string
+    message: string
+    service: string
+    cluster?: string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: string
+    type: string
+    title: string
+    message: string
+    service: string
+    cluster?: string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ServiceEventCreateInput = {
     id?: string
     service: string
@@ -6120,6 +8565,76 @@ export namespace Prisma {
     message?: NullableStringFieldUpdateOperationsInput | string | null
     eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceEventHistoryCreateInput = {
+    id?: string
+    service: string
+    status: string
+    cluster?: string | null
+    message?: string | null
+    eventType: $Enums.EventType
+    recordedAt?: Date | string
+  }
+
+  export type ServiceEventHistoryUncheckedCreateInput = {
+    id?: string
+    service: string
+    status: string
+    cluster?: string | null
+    message?: string | null
+    eventType: $Enums.EventType
+    recordedAt?: Date | string
+  }
+
+  export type ServiceEventHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceEventHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceEventHistoryCreateManyInput = {
+    id?: string
+    service: string
+    status: string
+    cluster?: string | null
+    message?: string | null
+    eventType: $Enums.EventType
+    recordedAt?: Date | string
+  }
+
+  export type ServiceEventHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceEventHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    cluster?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    eventType?: EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceCreateInput = {
@@ -6378,13 +8893,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type EnumEventTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEventTypeFilter<$PrismaModel> | $Enums.EventType
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6401,33 +8909,33 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type ServiceEventCountOrderByAggregateInput = {
+  export type NotificationCountOrderByAggregateInput = {
     id?: SortOrder
-    service?: SortOrder
-    status?: SortOrder
-    cluster?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
     message?: SortOrder
-    eventType?: SortOrder
+    service?: SortOrder
+    cluster?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type ServiceEventMaxOrderByAggregateInput = {
+  export type NotificationMaxOrderByAggregateInput = {
     id?: SortOrder
-    service?: SortOrder
-    status?: SortOrder
-    cluster?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
     message?: SortOrder
-    eventType?: SortOrder
+    service?: SortOrder
+    cluster?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type ServiceEventMinOrderByAggregateInput = {
+  export type NotificationMinOrderByAggregateInput = {
     id?: SortOrder
-    service?: SortOrder
-    status?: SortOrder
-    cluster?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
     message?: SortOrder
-    eventType?: SortOrder
+    service?: SortOrder
+    cluster?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -6467,16 +8975,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type EnumEventTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.EventType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEventTypeFilter<$PrismaModel>
-    _max?: NestedEnumEventTypeFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6489,6 +8987,83 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type EnumEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeFilter<$PrismaModel> | $Enums.EventType
+  }
+
+  export type ServiceEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrder
+    message?: SortOrder
+    eventType?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrder
+    message?: SortOrder
+    eventType?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrder
+    message?: SortOrder
+    eventType?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.EventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumEventTypeFilter<$PrismaModel>
+  }
+
+  export type ServiceEventHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrder
+    message?: SortOrder
+    eventType?: SortOrder
+    recordedAt?: SortOrder
+  }
+
+  export type ServiceEventHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrder
+    message?: SortOrder
+    eventType?: SortOrder
+    recordedAt?: SortOrder
+  }
+
+  export type ServiceEventHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    cluster?: SortOrder
+    message?: SortOrder
+    eventType?: SortOrder
+    recordedAt?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -6729,12 +9304,12 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type EnumEventTypeFieldUpdateOperationsInput = {
-    set?: $Enums.EventType
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type EnumEventTypeFieldUpdateOperationsInput = {
+    set?: $Enums.EventType
   }
 
   export type ServiceDependencyCreateNestedManyWithoutFromServiceInput = {
@@ -6935,13 +9510,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedEnumEventTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEventTypeFilter<$PrismaModel> | $Enums.EventType
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -7009,16 +9577,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumEventTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.EventType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEventTypeFilter<$PrismaModel>
-    _max?: NestedEnumEventTypeFilter<$PrismaModel>
-  }
-
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -7031,6 +9589,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeFilter<$PrismaModel> | $Enums.EventType
+  }
+
+  export type NestedEnumEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventType | EnumEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventType[] | ListEnumEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.EventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumEventTypeFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {

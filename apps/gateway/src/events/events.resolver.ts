@@ -10,7 +10,7 @@ import {
 } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { EventsService } from './events.service';
-import { PUB_SUB } from './pubsub.provider';
+import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { withFilter } from 'graphql-subscriptions';
 @ObjectType()

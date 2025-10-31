@@ -120,6 +120,16 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  service: 'service',
+  cluster: 'cluster',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.ServiceEventScalarFieldEnum = {
   id: 'id',
   service: 'service',
@@ -128,6 +138,16 @@ exports.Prisma.ServiceEventScalarFieldEnum = {
   message: 'message',
   eventType: 'eventType',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceEventHistoryScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  status: 'status',
+  cluster: 'cluster',
+  message: 'message',
+  eventType: 'eventType',
+  recordedAt: 'recordedAt'
 };
 
 exports.Prisma.ServiceScalarFieldEnum = {
@@ -189,11 +209,14 @@ exports.EventType = exports.$Enums.EventType = {
   INITIAL: 'INITIAL',
   STATUS_CHANGE: 'STATUS_CHANGE',
   RECOVERY: 'RECOVERY',
-  FAILURE: 'FAILURE'
+  FAILURE: 'FAILURE',
+  CRASH_LOOP: 'CRASH_LOOP'
 };
 
 exports.Prisma.ModelName = {
+  Notification: 'Notification',
   ServiceEvent: 'ServiceEvent',
+  ServiceEventHistory: 'ServiceEventHistory',
   Service: 'Service',
   ServiceDependency: 'ServiceDependency',
   ServiceAI: 'ServiceAI'

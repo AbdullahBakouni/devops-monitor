@@ -13,11 +13,22 @@ enum EventType {
   STATUS_CHANGE
   RECOVERY
   FAILURE
+  CRASH_LOOP
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String // e.g. FAILURE, RECOVERY, ...
+  title     String
+  message   String
+  service   String
+  cluster   String?
+  createdAt DateTime @default(now())
 }
 
 model ServiceEvent {
   id        String    @id @default(cuid())
-  service   String
+  service   String    @unique
   status    String
   cluster   String?
   message   String?
@@ -25,6 +36,16 @@ model ServiceEvent {
   createdAt DateTime  @default(now())
 
   @@index([service, createdAt])
+}
+
+model ServiceEventHistory {
+  id         String    @id @default(cuid())
+  service    String
+  status     String
+  cluster    String?
+  message    String?
+  eventType  EventType
+  recordedAt DateTime  @default(now())
 }
 
 model Service {

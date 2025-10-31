@@ -15,12 +15,14 @@
     "start:api": "nest start gateway --watch",
     "start:metrics": "nest start metrics-service --watch",
     "start:monitor": "nest start monitor-service --watch",
+    "start:event-processor": "nest start event-processor-service --watch",
     "start:notification": "nest start notification-service --watch",
     "start:prod:api": "node dist/apps/gateway/main",
     "start:prod:metrics": "node dist/apps/metrics-service/main",
     "start:prod:monitor": "node dist/apps/monitor-service/main",
+    "start:prod:event-processor": "node dist/apps/event-processor-service/main",
     "start:prod:notification": "node dist/apps/notification-service/main",
-    "start:all": "concurrently \"npm run start:api\" \"npm run start:metrics\" \"npm run start:monitor\" \"npm run start:notification\"",
+    "start:all": "concurrently \"npm run start:api\" \"npm run start:metrics\" \"npm run start:monitor\" \"npm run start:notification\" \"npm run start:event-processor\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -76,6 +78,7 @@
     "@types/node": "^22.10.7",
     "@types/readline-sync": "^1.4.8",
     "@types/supertest": "^6.0.2",
+    "@types/ws": "^8.18.1",
     "concurrently": "^9.2.1",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
@@ -113,6 +116,7 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
+      "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1",
       "^@app/database(|/.*)$": "<rootDir>/libs/database/src/$1"
     }
   }

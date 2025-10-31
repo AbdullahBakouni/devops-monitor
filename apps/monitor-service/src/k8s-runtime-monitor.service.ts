@@ -10,7 +10,7 @@ import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { DatabaseService } from '@app/database';
 import * as fs from 'fs';
 import * as path from 'path';
-import { PUB_SUB } from './pubsub.provider';
+import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
 @Injectable()
 export class K8sRuntimeMonitorService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(K8sRuntimeMonitorService.name);

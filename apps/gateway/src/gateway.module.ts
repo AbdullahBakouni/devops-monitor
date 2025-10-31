@@ -14,15 +14,21 @@ import { ConfigModule } from '@nestjs/config';
 import { EventsModule } from './events/events.module';
 import { DatabaseModule } from '@app/database';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { PubSubModule } from '@app/common';
+import { EventProcessorServiceModule } from 'apps/event-processor-service/src/event-processor-service.module';
+import { NotificationGatewayModule } from './notifications/notification.module';
 @Module({
   imports: [
     AppLoggerModule,
     MetricsServiceModule,
     MonitorServiceModule,
     NotificationServiceModule,
+    EventProcessorServiceModule,
     ConfigModule,
     EventsModule,
+    NotificationGatewayModule,
     DatabaseModule,
+    PubSubModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'apps/gateway/schema.gql'),
