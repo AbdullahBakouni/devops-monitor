@@ -21,7 +21,7 @@ It integrates with **Kubernetes**, **Kafka**, and **GraphQL** to stream service 
 
 | Layer | Technology |
 |-------|-------------|
-| Backend | Node.js, TypeScript, GraphQL |
+| Backend | Nest.js, TypeScript, GraphQL |
 | Messaging | Apache Kafka |
 | Database | PostgreSQL (via Prisma) |
 | Infrastructure | Docker, Kubernetes, Helm, CI/CD |
@@ -184,4 +184,4 @@ git push origin feature/amazing-feature
 ```
 # 📜 License
 
-Licensed under the MIT License © 2025 https://github.com/AbdullahBakouni
+Licensed under the MIT License © 2025 [Abdullah Bakouni](https://github.com/AbdullahBakouni)
