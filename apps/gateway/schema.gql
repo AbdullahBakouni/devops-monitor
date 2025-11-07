@@ -2,6 +2,32 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type MetricsAlertDTO {
+  anomalyConfidence: Float!
+  cluster: String!
+  createdAt: String!
+  expected: Float!
+  message: String!
+  metric: String!
+  metricDisplayName: String!
+  service: String!
+  threshold: Float!
+  title: String!
+  type: String!
+  value: Float!
+}
+
+type MetricsDTO {
+  cpuUsage: Float!
+  memoryUsage: Float!
+  networkRx: Float!
+  networkTx: Float!
+  service: String!
+  source: String!
+  status: String!
+  timestamp: String!
+}
+
 type Mutation {
   createServiceEvent(cluster: String!, eventType: String!, message: String, service: String!, status: String!): ServiceEvent!
 }
@@ -32,6 +58,8 @@ type ServiceEvent {
 }
 
 type Subscription {
+  metricsAlert: MetricsAlertDTO!
+  metricsUpdated: MetricsDTO!
   notificationCreated: NotificationDTO!
   serviceEventCreated(service: String, status: String): ServiceEvent!
 }

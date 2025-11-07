@@ -37,15 +37,17 @@ model ServiceEvent {
 
   @@index([service, createdAt])
 }
+
 model ServiceEventHistory {
-  id          String   @id @default(cuid())
-  service     String
-  status      String
-  cluster     String?
-  message     String?
-  eventType   EventType
-  recordedAt  DateTime @default(now())
+  id         String    @id @default(cuid())
+  service    String
+  status     String
+  cluster    String?
+  message    String?
+  eventType  EventType
+  recordedAt DateTime  @default(now())
 }
+
 model Service {
   id          String   @id @default(uuid())
   name        String
@@ -58,10 +60,10 @@ model Service {
 
   dependenciesFrom ServiceDependency[] @relation("FromService")
   dependenciesTo   ServiceDependency[] @relation("ToService")
-  ServiceAI        ServiceAI?
-  runtimeStatus    String? // "UP" | "DOWN" | "RESTARTING" | ...
-  lastReason       String? // "OOMKilled", "Exited code 137", ...
-  lastSeenAt       DateTime?
+
+  runtimeStatus String? // "UP" | "DOWN" | "RESTARTING" | ...
+  lastReason    String? // "OOMKilled", "Exited code 137", ...
+  lastSeenAt    DateTime?
 
   @@unique([name, cluster])
 }
@@ -78,13 +80,16 @@ model ServiceDependency {
   @@unique([fromServiceId, toServiceId], name: "unique_service_relation")
 }
 
-model ServiceAI {
-  id              String   @id @default(uuid())
-  serviceId       String   @unique
-  aiData          Json
-  failCount       Int      @default(0)
-  lastUpdated     DateTime @default(now())
-  lastRefreshedAt DateTime @default(now())
+model Metrics {
+  id        String   @id @default(uuid())
+  service   String
+  cpu       Float
+  memory    Float
+  networkRx Int
+  networkTx Int
+  status    String
+  source    String
+  createdAt DateTime @default(now())
 
-  service Service @relation(fields: [serviceId], references: [id])
+  @@unique([service, source])
 }

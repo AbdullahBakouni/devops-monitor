@@ -39,10 +39,10 @@ export type Service = $Result.DefaultSelection<Prisma.$ServicePayload>
  */
 export type ServiceDependency = $Result.DefaultSelection<Prisma.$ServiceDependencyPayload>
 /**
- * Model ServiceAI
+ * Model Metrics
  * 
  */
-export type ServiceAI = $Result.DefaultSelection<Prisma.$ServiceAIPayload>
+export type Metrics = $Result.DefaultSelection<Prisma.$MetricsPayload>
 
 /**
  * Enums
@@ -233,14 +233,14 @@ export class PrismaClient<
   get serviceDependency(): Prisma.ServiceDependencyDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.serviceAI`: Exposes CRUD operations for the **ServiceAI** model.
+   * `prisma.metrics`: Exposes CRUD operations for the **Metrics** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more ServiceAIS
-    * const serviceAIS = await prisma.serviceAI.findMany()
+    * // Fetch zero or more Metrics
+    * const metrics = await prisma.metrics.findMany()
     * ```
     */
-  get serviceAI(): Prisma.ServiceAIDelegate<ExtArgs, ClientOptions>;
+  get metrics(): Prisma.MetricsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -686,7 +686,7 @@ export namespace Prisma {
     ServiceEventHistory: 'ServiceEventHistory',
     Service: 'Service',
     ServiceDependency: 'ServiceDependency',
-    ServiceAI: 'ServiceAI'
+    Metrics: 'Metrics'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -705,7 +705,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "serviceAI"
+      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "metrics"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1079,77 +1079,77 @@ export namespace Prisma {
           }
         }
       }
-      ServiceAI: {
-        payload: Prisma.$ServiceAIPayload<ExtArgs>
-        fields: Prisma.ServiceAIFieldRefs
+      Metrics: {
+        payload: Prisma.$MetricsPayload<ExtArgs>
+        fields: Prisma.MetricsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ServiceAIFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload> | null
+            args: Prisma.MetricsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ServiceAIFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>
+            args: Prisma.MetricsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>
           }
           findFirst: {
-            args: Prisma.ServiceAIFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload> | null
+            args: Prisma.MetricsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ServiceAIFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>
+            args: Prisma.MetricsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>
           }
           findMany: {
-            args: Prisma.ServiceAIFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>[]
+            args: Prisma.MetricsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>[]
           }
           create: {
-            args: Prisma.ServiceAICreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>
+            args: Prisma.MetricsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>
           }
           createMany: {
-            args: Prisma.ServiceAICreateManyArgs<ExtArgs>
+            args: Prisma.MetricsCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ServiceAICreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>[]
+            args: Prisma.MetricsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>[]
           }
           delete: {
-            args: Prisma.ServiceAIDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>
+            args: Prisma.MetricsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>
           }
           update: {
-            args: Prisma.ServiceAIUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>
+            args: Prisma.MetricsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>
           }
           deleteMany: {
-            args: Prisma.ServiceAIDeleteManyArgs<ExtArgs>
+            args: Prisma.MetricsDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ServiceAIUpdateManyArgs<ExtArgs>
+            args: Prisma.MetricsUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.ServiceAIUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>[]
+            args: Prisma.MetricsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>[]
           }
           upsert: {
-            args: Prisma.ServiceAIUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ServiceAIPayload>
+            args: Prisma.MetricsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MetricsPayload>
           }
           aggregate: {
-            args: Prisma.ServiceAIAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateServiceAI>
+            args: Prisma.MetricsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMetrics>
           }
           groupBy: {
-            args: Prisma.ServiceAIGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ServiceAIGroupByOutputType>[]
+            args: Prisma.MetricsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MetricsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ServiceAICountArgs<ExtArgs>
-            result: $Utils.Optional<ServiceAICountAggregateOutputType> | number
+            args: Prisma.MetricsCountArgs<ExtArgs>
+            result: $Utils.Optional<MetricsCountAggregateOutputType> | number
           }
         }
       }
@@ -1254,7 +1254,7 @@ export namespace Prisma {
     serviceEventHistory?: ServiceEventHistoryOmit
     service?: ServiceOmit
     serviceDependency?: ServiceDependencyOmit
-    serviceAI?: ServiceAIOmit
+    metrics?: MetricsOmit
   }
 
   /* Types for Logging */
@@ -4651,7 +4651,6 @@ export namespace Prisma {
     lastSeenAt?: boolean
     dependenciesFrom?: boolean | Service$dependenciesFromArgs<ExtArgs>
     dependenciesTo?: boolean | Service$dependenciesToArgs<ExtArgs>
-    ServiceAI?: boolean | Service$ServiceAIArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["service"]>
 
@@ -4701,7 +4700,6 @@ export namespace Prisma {
   export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dependenciesFrom?: boolean | Service$dependenciesFromArgs<ExtArgs>
     dependenciesTo?: boolean | Service$dependenciesToArgs<ExtArgs>
-    ServiceAI?: boolean | Service$ServiceAIArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ServiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4712,7 +4710,6 @@ export namespace Prisma {
     objects: {
       dependenciesFrom: Prisma.$ServiceDependencyPayload<ExtArgs>[]
       dependenciesTo: Prisma.$ServiceDependencyPayload<ExtArgs>[]
-      ServiceAI: Prisma.$ServiceAIPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5122,7 +5119,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     dependenciesFrom<T extends Service$dependenciesFromArgs<ExtArgs> = {}>(args?: Subset<T, Service$dependenciesFromArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceDependencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dependenciesTo<T extends Service$dependenciesToArgs<ExtArgs> = {}>(args?: Subset<T, Service$dependenciesToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceDependencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ServiceAI<T extends Service$ServiceAIArgs<ExtArgs> = {}>(args?: Subset<T, Service$ServiceAIArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5596,25 +5592,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ServiceDependencyScalarFieldEnum | ServiceDependencyScalarFieldEnum[]
-  }
-
-  /**
-   * Service.ServiceAI
-   */
-  export type Service$ServiceAIArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceAI
-     */
-    select?: ServiceAISelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ServiceAI
-     */
-    omit?: ServiceAIOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceAIInclude<ExtArgs> | null
-    where?: ServiceAIWhereInput
   }
 
   /**
@@ -6703,392 +6680,430 @@ export namespace Prisma {
 
 
   /**
-   * Model ServiceAI
+   * Model Metrics
    */
 
-  export type AggregateServiceAI = {
-    _count: ServiceAICountAggregateOutputType | null
-    _avg: ServiceAIAvgAggregateOutputType | null
-    _sum: ServiceAISumAggregateOutputType | null
-    _min: ServiceAIMinAggregateOutputType | null
-    _max: ServiceAIMaxAggregateOutputType | null
+  export type AggregateMetrics = {
+    _count: MetricsCountAggregateOutputType | null
+    _avg: MetricsAvgAggregateOutputType | null
+    _sum: MetricsSumAggregateOutputType | null
+    _min: MetricsMinAggregateOutputType | null
+    _max: MetricsMaxAggregateOutputType | null
   }
 
-  export type ServiceAIAvgAggregateOutputType = {
-    failCount: number | null
+  export type MetricsAvgAggregateOutputType = {
+    cpu: number | null
+    memory: number | null
+    networkRx: number | null
+    networkTx: number | null
   }
 
-  export type ServiceAISumAggregateOutputType = {
-    failCount: number | null
+  export type MetricsSumAggregateOutputType = {
+    cpu: number | null
+    memory: number | null
+    networkRx: number | null
+    networkTx: number | null
   }
 
-  export type ServiceAIMinAggregateOutputType = {
+  export type MetricsMinAggregateOutputType = {
     id: string | null
-    serviceId: string | null
-    failCount: number | null
-    lastUpdated: Date | null
-    lastRefreshedAt: Date | null
+    service: string | null
+    cpu: number | null
+    memory: number | null
+    networkRx: number | null
+    networkTx: number | null
+    status: string | null
+    source: string | null
+    createdAt: Date | null
   }
 
-  export type ServiceAIMaxAggregateOutputType = {
+  export type MetricsMaxAggregateOutputType = {
     id: string | null
-    serviceId: string | null
-    failCount: number | null
-    lastUpdated: Date | null
-    lastRefreshedAt: Date | null
+    service: string | null
+    cpu: number | null
+    memory: number | null
+    networkRx: number | null
+    networkTx: number | null
+    status: string | null
+    source: string | null
+    createdAt: Date | null
   }
 
-  export type ServiceAICountAggregateOutputType = {
+  export type MetricsCountAggregateOutputType = {
     id: number
-    serviceId: number
-    aiData: number
-    failCount: number
-    lastUpdated: number
-    lastRefreshedAt: number
+    service: number
+    cpu: number
+    memory: number
+    networkRx: number
+    networkTx: number
+    status: number
+    source: number
+    createdAt: number
     _all: number
   }
 
 
-  export type ServiceAIAvgAggregateInputType = {
-    failCount?: true
+  export type MetricsAvgAggregateInputType = {
+    cpu?: true
+    memory?: true
+    networkRx?: true
+    networkTx?: true
   }
 
-  export type ServiceAISumAggregateInputType = {
-    failCount?: true
+  export type MetricsSumAggregateInputType = {
+    cpu?: true
+    memory?: true
+    networkRx?: true
+    networkTx?: true
   }
 
-  export type ServiceAIMinAggregateInputType = {
+  export type MetricsMinAggregateInputType = {
     id?: true
-    serviceId?: true
-    failCount?: true
-    lastUpdated?: true
-    lastRefreshedAt?: true
+    service?: true
+    cpu?: true
+    memory?: true
+    networkRx?: true
+    networkTx?: true
+    status?: true
+    source?: true
+    createdAt?: true
   }
 
-  export type ServiceAIMaxAggregateInputType = {
+  export type MetricsMaxAggregateInputType = {
     id?: true
-    serviceId?: true
-    failCount?: true
-    lastUpdated?: true
-    lastRefreshedAt?: true
+    service?: true
+    cpu?: true
+    memory?: true
+    networkRx?: true
+    networkTx?: true
+    status?: true
+    source?: true
+    createdAt?: true
   }
 
-  export type ServiceAICountAggregateInputType = {
+  export type MetricsCountAggregateInputType = {
     id?: true
-    serviceId?: true
-    aiData?: true
-    failCount?: true
-    lastUpdated?: true
-    lastRefreshedAt?: true
+    service?: true
+    cpu?: true
+    memory?: true
+    networkRx?: true
+    networkTx?: true
+    status?: true
+    source?: true
+    createdAt?: true
     _all?: true
   }
 
-  export type ServiceAIAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ServiceAI to aggregate.
+     * Filter which Metrics to aggregate.
      */
-    where?: ServiceAIWhereInput
+    where?: MetricsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ServiceAIS to fetch.
+     * Determine the order of Metrics to fetch.
      */
-    orderBy?: ServiceAIOrderByWithRelationInput | ServiceAIOrderByWithRelationInput[]
+    orderBy?: MetricsOrderByWithRelationInput | MetricsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ServiceAIWhereUniqueInput
+    cursor?: MetricsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ServiceAIS from the position of the cursor.
+     * Take `±n` Metrics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ServiceAIS.
+     * Skip the first `n` Metrics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned ServiceAIS
+     * Count returned Metrics
     **/
-    _count?: true | ServiceAICountAggregateInputType
+    _count?: true | MetricsCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ServiceAIAvgAggregateInputType
+    _avg?: MetricsAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ServiceAISumAggregateInputType
+    _sum?: MetricsSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ServiceAIMinAggregateInputType
+    _min?: MetricsMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ServiceAIMaxAggregateInputType
+    _max?: MetricsMaxAggregateInputType
   }
 
-  export type GetServiceAIAggregateType<T extends ServiceAIAggregateArgs> = {
-        [P in keyof T & keyof AggregateServiceAI]: P extends '_count' | 'count'
+  export type GetMetricsAggregateType<T extends MetricsAggregateArgs> = {
+        [P in keyof T & keyof AggregateMetrics]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateServiceAI[P]>
-      : GetScalarType<T[P], AggregateServiceAI[P]>
+        : GetScalarType<T[P], AggregateMetrics[P]>
+      : GetScalarType<T[P], AggregateMetrics[P]>
   }
 
 
 
 
-  export type ServiceAIGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ServiceAIWhereInput
-    orderBy?: ServiceAIOrderByWithAggregationInput | ServiceAIOrderByWithAggregationInput[]
-    by: ServiceAIScalarFieldEnum[] | ServiceAIScalarFieldEnum
-    having?: ServiceAIScalarWhereWithAggregatesInput
+  export type MetricsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MetricsWhereInput
+    orderBy?: MetricsOrderByWithAggregationInput | MetricsOrderByWithAggregationInput[]
+    by: MetricsScalarFieldEnum[] | MetricsScalarFieldEnum
+    having?: MetricsScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ServiceAICountAggregateInputType | true
-    _avg?: ServiceAIAvgAggregateInputType
-    _sum?: ServiceAISumAggregateInputType
-    _min?: ServiceAIMinAggregateInputType
-    _max?: ServiceAIMaxAggregateInputType
+    _count?: MetricsCountAggregateInputType | true
+    _avg?: MetricsAvgAggregateInputType
+    _sum?: MetricsSumAggregateInputType
+    _min?: MetricsMinAggregateInputType
+    _max?: MetricsMaxAggregateInputType
   }
 
-  export type ServiceAIGroupByOutputType = {
+  export type MetricsGroupByOutputType = {
     id: string
-    serviceId: string
-    aiData: JsonValue
-    failCount: number
-    lastUpdated: Date
-    lastRefreshedAt: Date
-    _count: ServiceAICountAggregateOutputType | null
-    _avg: ServiceAIAvgAggregateOutputType | null
-    _sum: ServiceAISumAggregateOutputType | null
-    _min: ServiceAIMinAggregateOutputType | null
-    _max: ServiceAIMaxAggregateOutputType | null
+    service: string
+    cpu: number
+    memory: number
+    networkRx: number
+    networkTx: number
+    status: string
+    source: string
+    createdAt: Date
+    _count: MetricsCountAggregateOutputType | null
+    _avg: MetricsAvgAggregateOutputType | null
+    _sum: MetricsSumAggregateOutputType | null
+    _min: MetricsMinAggregateOutputType | null
+    _max: MetricsMaxAggregateOutputType | null
   }
 
-  type GetServiceAIGroupByPayload<T extends ServiceAIGroupByArgs> = Prisma.PrismaPromise<
+  type GetMetricsGroupByPayload<T extends MetricsGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ServiceAIGroupByOutputType, T['by']> &
+      PickEnumerable<MetricsGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ServiceAIGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof MetricsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ServiceAIGroupByOutputType[P]>
-            : GetScalarType<T[P], ServiceAIGroupByOutputType[P]>
+              : GetScalarType<T[P], MetricsGroupByOutputType[P]>
+            : GetScalarType<T[P], MetricsGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ServiceAISelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MetricsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serviceId?: boolean
-    aiData?: boolean
-    failCount?: boolean
-    lastUpdated?: boolean
-    lastRefreshedAt?: boolean
-    service?: boolean | ServiceDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceAI"]>
+    service?: boolean
+    cpu?: boolean
+    memory?: boolean
+    networkRx?: boolean
+    networkTx?: boolean
+    status?: boolean
+    source?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["metrics"]>
 
-  export type ServiceAISelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MetricsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serviceId?: boolean
-    aiData?: boolean
-    failCount?: boolean
-    lastUpdated?: boolean
-    lastRefreshedAt?: boolean
-    service?: boolean | ServiceDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceAI"]>
+    service?: boolean
+    cpu?: boolean
+    memory?: boolean
+    networkRx?: boolean
+    networkTx?: boolean
+    status?: boolean
+    source?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["metrics"]>
 
-  export type ServiceAISelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MetricsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serviceId?: boolean
-    aiData?: boolean
-    failCount?: boolean
-    lastUpdated?: boolean
-    lastRefreshedAt?: boolean
-    service?: boolean | ServiceDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceAI"]>
+    service?: boolean
+    cpu?: boolean
+    memory?: boolean
+    networkRx?: boolean
+    networkTx?: boolean
+    status?: boolean
+    source?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["metrics"]>
 
-  export type ServiceAISelectScalar = {
+  export type MetricsSelectScalar = {
     id?: boolean
-    serviceId?: boolean
-    aiData?: boolean
-    failCount?: boolean
-    lastUpdated?: boolean
-    lastRefreshedAt?: boolean
+    service?: boolean
+    cpu?: boolean
+    memory?: boolean
+    networkRx?: boolean
+    networkTx?: boolean
+    status?: boolean
+    source?: boolean
+    createdAt?: boolean
   }
 
-  export type ServiceAIOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "serviceId" | "aiData" | "failCount" | "lastUpdated" | "lastRefreshedAt", ExtArgs["result"]["serviceAI"]>
-  export type ServiceAIInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    service?: boolean | ServiceDefaultArgs<ExtArgs>
-  }
-  export type ServiceAIIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    service?: boolean | ServiceDefaultArgs<ExtArgs>
-  }
-  export type ServiceAIIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    service?: boolean | ServiceDefaultArgs<ExtArgs>
-  }
+  export type MetricsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "cpu" | "memory" | "networkRx" | "networkTx" | "status" | "source" | "createdAt", ExtArgs["result"]["metrics"]>
 
-  export type $ServiceAIPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ServiceAI"
-    objects: {
-      service: Prisma.$ServicePayload<ExtArgs>
-    }
+  export type $MetricsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Metrics"
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      serviceId: string
-      aiData: Prisma.JsonValue
-      failCount: number
-      lastUpdated: Date
-      lastRefreshedAt: Date
-    }, ExtArgs["result"]["serviceAI"]>
+      service: string
+      cpu: number
+      memory: number
+      networkRx: number
+      networkTx: number
+      status: string
+      source: string
+      createdAt: Date
+    }, ExtArgs["result"]["metrics"]>
     composites: {}
   }
 
-  type ServiceAIGetPayload<S extends boolean | null | undefined | ServiceAIDefaultArgs> = $Result.GetResult<Prisma.$ServiceAIPayload, S>
+  type MetricsGetPayload<S extends boolean | null | undefined | MetricsDefaultArgs> = $Result.GetResult<Prisma.$MetricsPayload, S>
 
-  type ServiceAICountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ServiceAIFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ServiceAICountAggregateInputType | true
+  type MetricsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MetricsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MetricsCountAggregateInputType | true
     }
 
-  export interface ServiceAIDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceAI'], meta: { name: 'ServiceAI' } }
+  export interface MetricsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Metrics'], meta: { name: 'Metrics' } }
     /**
-     * Find zero or one ServiceAI that matches the filter.
-     * @param {ServiceAIFindUniqueArgs} args - Arguments to find a ServiceAI
+     * Find zero or one Metrics that matches the filter.
+     * @param {MetricsFindUniqueArgs} args - Arguments to find a Metrics
      * @example
-     * // Get one ServiceAI
-     * const serviceAI = await prisma.serviceAI.findUnique({
+     * // Get one Metrics
+     * const metrics = await prisma.metrics.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ServiceAIFindUniqueArgs>(args: SelectSubset<T, ServiceAIFindUniqueArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends MetricsFindUniqueArgs>(args: SelectSubset<T, MetricsFindUniqueArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one ServiceAI that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Metrics that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ServiceAIFindUniqueOrThrowArgs} args - Arguments to find a ServiceAI
+     * @param {MetricsFindUniqueOrThrowArgs} args - Arguments to find a Metrics
      * @example
-     * // Get one ServiceAI
-     * const serviceAI = await prisma.serviceAI.findUniqueOrThrow({
+     * // Get one Metrics
+     * const metrics = await prisma.metrics.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ServiceAIFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceAIFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends MetricsFindUniqueOrThrowArgs>(args: SelectSubset<T, MetricsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first ServiceAI that matches the filter.
+     * Find the first Metrics that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAIFindFirstArgs} args - Arguments to find a ServiceAI
+     * @param {MetricsFindFirstArgs} args - Arguments to find a Metrics
      * @example
-     * // Get one ServiceAI
-     * const serviceAI = await prisma.serviceAI.findFirst({
+     * // Get one Metrics
+     * const metrics = await prisma.metrics.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ServiceAIFindFirstArgs>(args?: SelectSubset<T, ServiceAIFindFirstArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends MetricsFindFirstArgs>(args?: SelectSubset<T, MetricsFindFirstArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first ServiceAI that matches the filter or
+     * Find the first Metrics that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAIFindFirstOrThrowArgs} args - Arguments to find a ServiceAI
+     * @param {MetricsFindFirstOrThrowArgs} args - Arguments to find a Metrics
      * @example
-     * // Get one ServiceAI
-     * const serviceAI = await prisma.serviceAI.findFirstOrThrow({
+     * // Get one Metrics
+     * const metrics = await prisma.metrics.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ServiceAIFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceAIFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends MetricsFindFirstOrThrowArgs>(args?: SelectSubset<T, MetricsFindFirstOrThrowArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more ServiceAIS that matches the filter.
+     * Find zero or more Metrics that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAIFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {MetricsFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all ServiceAIS
-     * const serviceAIS = await prisma.serviceAI.findMany()
+     * // Get all Metrics
+     * const metrics = await prisma.metrics.findMany()
      * 
-     * // Get first 10 ServiceAIS
-     * const serviceAIS = await prisma.serviceAI.findMany({ take: 10 })
+     * // Get first 10 Metrics
+     * const metrics = await prisma.metrics.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const serviceAIWithIdOnly = await prisma.serviceAI.findMany({ select: { id: true } })
+     * const metricsWithIdOnly = await prisma.metrics.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends ServiceAIFindManyArgs>(args?: SelectSubset<T, ServiceAIFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends MetricsFindManyArgs>(args?: SelectSubset<T, MetricsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a ServiceAI.
-     * @param {ServiceAICreateArgs} args - Arguments to create a ServiceAI.
+     * Create a Metrics.
+     * @param {MetricsCreateArgs} args - Arguments to create a Metrics.
      * @example
-     * // Create one ServiceAI
-     * const ServiceAI = await prisma.serviceAI.create({
+     * // Create one Metrics
+     * const Metrics = await prisma.metrics.create({
      *   data: {
-     *     // ... data to create a ServiceAI
+     *     // ... data to create a Metrics
      *   }
      * })
      * 
      */
-    create<T extends ServiceAICreateArgs>(args: SelectSubset<T, ServiceAICreateArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends MetricsCreateArgs>(args: SelectSubset<T, MetricsCreateArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many ServiceAIS.
-     * @param {ServiceAICreateManyArgs} args - Arguments to create many ServiceAIS.
+     * Create many Metrics.
+     * @param {MetricsCreateManyArgs} args - Arguments to create many Metrics.
      * @example
-     * // Create many ServiceAIS
-     * const serviceAI = await prisma.serviceAI.createMany({
+     * // Create many Metrics
+     * const metrics = await prisma.metrics.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends ServiceAICreateManyArgs>(args?: SelectSubset<T, ServiceAICreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends MetricsCreateManyArgs>(args?: SelectSubset<T, MetricsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many ServiceAIS and returns the data saved in the database.
-     * @param {ServiceAICreateManyAndReturnArgs} args - Arguments to create many ServiceAIS.
+     * Create many Metrics and returns the data saved in the database.
+     * @param {MetricsCreateManyAndReturnArgs} args - Arguments to create many Metrics.
      * @example
-     * // Create many ServiceAIS
-     * const serviceAI = await prisma.serviceAI.createManyAndReturn({
+     * // Create many Metrics
+     * const metrics = await prisma.metrics.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many ServiceAIS and only return the `id`
-     * const serviceAIWithIdOnly = await prisma.serviceAI.createManyAndReturn({
+     * // Create many Metrics and only return the `id`
+     * const metricsWithIdOnly = await prisma.metrics.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -7098,28 +7113,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends ServiceAICreateManyAndReturnArgs>(args?: SelectSubset<T, ServiceAICreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends MetricsCreateManyAndReturnArgs>(args?: SelectSubset<T, MetricsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a ServiceAI.
-     * @param {ServiceAIDeleteArgs} args - Arguments to delete one ServiceAI.
+     * Delete a Metrics.
+     * @param {MetricsDeleteArgs} args - Arguments to delete one Metrics.
      * @example
-     * // Delete one ServiceAI
-     * const ServiceAI = await prisma.serviceAI.delete({
+     * // Delete one Metrics
+     * const Metrics = await prisma.metrics.delete({
      *   where: {
-     *     // ... filter to delete one ServiceAI
+     *     // ... filter to delete one Metrics
      *   }
      * })
      * 
      */
-    delete<T extends ServiceAIDeleteArgs>(args: SelectSubset<T, ServiceAIDeleteArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends MetricsDeleteArgs>(args: SelectSubset<T, MetricsDeleteArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one ServiceAI.
-     * @param {ServiceAIUpdateArgs} args - Arguments to update one ServiceAI.
+     * Update one Metrics.
+     * @param {MetricsUpdateArgs} args - Arguments to update one Metrics.
      * @example
-     * // Update one ServiceAI
-     * const serviceAI = await prisma.serviceAI.update({
+     * // Update one Metrics
+     * const metrics = await prisma.metrics.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7129,30 +7144,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ServiceAIUpdateArgs>(args: SelectSubset<T, ServiceAIUpdateArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends MetricsUpdateArgs>(args: SelectSubset<T, MetricsUpdateArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more ServiceAIS.
-     * @param {ServiceAIDeleteManyArgs} args - Arguments to filter ServiceAIS to delete.
+     * Delete zero or more Metrics.
+     * @param {MetricsDeleteManyArgs} args - Arguments to filter Metrics to delete.
      * @example
-     * // Delete a few ServiceAIS
-     * const { count } = await prisma.serviceAI.deleteMany({
+     * // Delete a few Metrics
+     * const { count } = await prisma.metrics.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends ServiceAIDeleteManyArgs>(args?: SelectSubset<T, ServiceAIDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends MetricsDeleteManyArgs>(args?: SelectSubset<T, MetricsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more ServiceAIS.
+     * Update zero or more Metrics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAIUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {MetricsUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many ServiceAIS
-     * const serviceAI = await prisma.serviceAI.updateMany({
+     * // Update many Metrics
+     * const metrics = await prisma.metrics.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7162,14 +7177,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ServiceAIUpdateManyArgs>(args: SelectSubset<T, ServiceAIUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends MetricsUpdateManyArgs>(args: SelectSubset<T, MetricsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more ServiceAIS and returns the data updated in the database.
-     * @param {ServiceAIUpdateManyAndReturnArgs} args - Arguments to update many ServiceAIS.
+     * Update zero or more Metrics and returns the data updated in the database.
+     * @param {MetricsUpdateManyAndReturnArgs} args - Arguments to update many Metrics.
      * @example
-     * // Update many ServiceAIS
-     * const serviceAI = await prisma.serviceAI.updateManyAndReturn({
+     * // Update many Metrics
+     * const metrics = await prisma.metrics.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7178,8 +7193,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more ServiceAIS and only return the `id`
-     * const serviceAIWithIdOnly = await prisma.serviceAI.updateManyAndReturn({
+     * // Update zero or more Metrics and only return the `id`
+     * const metricsWithIdOnly = await prisma.metrics.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -7192,56 +7207,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends ServiceAIUpdateManyAndReturnArgs>(args: SelectSubset<T, ServiceAIUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends MetricsUpdateManyAndReturnArgs>(args: SelectSubset<T, MetricsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one ServiceAI.
-     * @param {ServiceAIUpsertArgs} args - Arguments to update or create a ServiceAI.
+     * Create or update one Metrics.
+     * @param {MetricsUpsertArgs} args - Arguments to update or create a Metrics.
      * @example
-     * // Update or create a ServiceAI
-     * const serviceAI = await prisma.serviceAI.upsert({
+     * // Update or create a Metrics
+     * const metrics = await prisma.metrics.upsert({
      *   create: {
-     *     // ... data to create a ServiceAI
+     *     // ... data to create a Metrics
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the ServiceAI we want to update
+     *     // ... the filter for the Metrics we want to update
      *   }
      * })
      */
-    upsert<T extends ServiceAIUpsertArgs>(args: SelectSubset<T, ServiceAIUpsertArgs<ExtArgs>>): Prisma__ServiceAIClient<$Result.GetResult<Prisma.$ServiceAIPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends MetricsUpsertArgs>(args: SelectSubset<T, MetricsUpsertArgs<ExtArgs>>): Prisma__MetricsClient<$Result.GetResult<Prisma.$MetricsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of ServiceAIS.
+     * Count the number of Metrics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAICountArgs} args - Arguments to filter ServiceAIS to count.
+     * @param {MetricsCountArgs} args - Arguments to filter Metrics to count.
      * @example
-     * // Count the number of ServiceAIS
-     * const count = await prisma.serviceAI.count({
+     * // Count the number of Metrics
+     * const count = await prisma.metrics.count({
      *   where: {
-     *     // ... the filter for the ServiceAIS we want to count
+     *     // ... the filter for the Metrics we want to count
      *   }
      * })
     **/
-    count<T extends ServiceAICountArgs>(
-      args?: Subset<T, ServiceAICountArgs>,
+    count<T extends MetricsCountArgs>(
+      args?: Subset<T, MetricsCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ServiceAICountAggregateOutputType>
+          : GetScalarType<T['select'], MetricsCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a ServiceAI.
+     * Allows you to perform aggregations operations on a Metrics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAIAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {MetricsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -7261,13 +7276,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ServiceAIAggregateArgs>(args: Subset<T, ServiceAIAggregateArgs>): Prisma.PrismaPromise<GetServiceAIAggregateType<T>>
+    aggregate<T extends MetricsAggregateArgs>(args: Subset<T, MetricsAggregateArgs>): Prisma.PrismaPromise<GetMetricsAggregateType<T>>
 
     /**
-     * Group by ServiceAI.
+     * Group by Metrics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceAIGroupByArgs} args - Group by arguments.
+     * @param {MetricsGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -7282,14 +7297,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ServiceAIGroupByArgs,
+      T extends MetricsGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceAIGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceAIGroupByArgs['orderBy'] },
+        ? { orderBy: MetricsGroupByArgs['orderBy'] }
+        : { orderBy?: MetricsGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -7338,22 +7353,21 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ServiceAIGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceAIGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, MetricsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMetricsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the ServiceAI model
+   * Fields of the Metrics model
    */
-  readonly fields: ServiceAIFieldRefs;
+  readonly fields: MetricsFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ServiceAI.
+   * The delegate class that acts as a "Promise-like" for Metrics.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ServiceAIClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__MetricsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    service<T extends ServiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceDefaultArgs<ExtArgs>>): Prisma__ServiceClient<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7380,426 +7394,381 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the ServiceAI model
+   * Fields of the Metrics model
    */
-  interface ServiceAIFieldRefs {
-    readonly id: FieldRef<"ServiceAI", 'String'>
-    readonly serviceId: FieldRef<"ServiceAI", 'String'>
-    readonly aiData: FieldRef<"ServiceAI", 'Json'>
-    readonly failCount: FieldRef<"ServiceAI", 'Int'>
-    readonly lastUpdated: FieldRef<"ServiceAI", 'DateTime'>
-    readonly lastRefreshedAt: FieldRef<"ServiceAI", 'DateTime'>
+  interface MetricsFieldRefs {
+    readonly id: FieldRef<"Metrics", 'String'>
+    readonly service: FieldRef<"Metrics", 'String'>
+    readonly cpu: FieldRef<"Metrics", 'Float'>
+    readonly memory: FieldRef<"Metrics", 'Float'>
+    readonly networkRx: FieldRef<"Metrics", 'Int'>
+    readonly networkTx: FieldRef<"Metrics", 'Int'>
+    readonly status: FieldRef<"Metrics", 'String'>
+    readonly source: FieldRef<"Metrics", 'String'>
+    readonly createdAt: FieldRef<"Metrics", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * ServiceAI findUnique
+   * Metrics findUnique
    */
-  export type ServiceAIFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which Metrics to fetch.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceAI to fetch.
-     */
-    where: ServiceAIWhereUniqueInput
+    where: MetricsWhereUniqueInput
   }
 
   /**
-   * ServiceAI findUniqueOrThrow
+   * Metrics findUniqueOrThrow
    */
-  export type ServiceAIFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which Metrics to fetch.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceAI to fetch.
-     */
-    where: ServiceAIWhereUniqueInput
+    where: MetricsWhereUniqueInput
   }
 
   /**
-   * ServiceAI findFirst
+   * Metrics findFirst
    */
-  export type ServiceAIFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which Metrics to fetch.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceAI to fetch.
-     */
-    where?: ServiceAIWhereInput
+    where?: MetricsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ServiceAIS to fetch.
+     * Determine the order of Metrics to fetch.
      */
-    orderBy?: ServiceAIOrderByWithRelationInput | ServiceAIOrderByWithRelationInput[]
+    orderBy?: MetricsOrderByWithRelationInput | MetricsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ServiceAIS.
+     * Sets the position for searching for Metrics.
      */
-    cursor?: ServiceAIWhereUniqueInput
+    cursor?: MetricsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ServiceAIS from the position of the cursor.
+     * Take `±n` Metrics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ServiceAIS.
+     * Skip the first `n` Metrics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ServiceAIS.
+     * Filter by unique combinations of Metrics.
      */
-    distinct?: ServiceAIScalarFieldEnum | ServiceAIScalarFieldEnum[]
+    distinct?: MetricsScalarFieldEnum | MetricsScalarFieldEnum[]
   }
 
   /**
-   * ServiceAI findFirstOrThrow
+   * Metrics findFirstOrThrow
    */
-  export type ServiceAIFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which Metrics to fetch.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceAI to fetch.
-     */
-    where?: ServiceAIWhereInput
+    where?: MetricsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ServiceAIS to fetch.
+     * Determine the order of Metrics to fetch.
      */
-    orderBy?: ServiceAIOrderByWithRelationInput | ServiceAIOrderByWithRelationInput[]
+    orderBy?: MetricsOrderByWithRelationInput | MetricsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ServiceAIS.
+     * Sets the position for searching for Metrics.
      */
-    cursor?: ServiceAIWhereUniqueInput
+    cursor?: MetricsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ServiceAIS from the position of the cursor.
+     * Take `±n` Metrics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ServiceAIS.
+     * Skip the first `n` Metrics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ServiceAIS.
+     * Filter by unique combinations of Metrics.
      */
-    distinct?: ServiceAIScalarFieldEnum | ServiceAIScalarFieldEnum[]
+    distinct?: MetricsScalarFieldEnum | MetricsScalarFieldEnum[]
   }
 
   /**
-   * ServiceAI findMany
+   * Metrics findMany
    */
-  export type ServiceAIFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Filter, which Metrics to fetch.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceAIS to fetch.
-     */
-    where?: ServiceAIWhereInput
+    where?: MetricsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ServiceAIS to fetch.
+     * Determine the order of Metrics to fetch.
      */
-    orderBy?: ServiceAIOrderByWithRelationInput | ServiceAIOrderByWithRelationInput[]
+    orderBy?: MetricsOrderByWithRelationInput | MetricsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing ServiceAIS.
+     * Sets the position for listing Metrics.
      */
-    cursor?: ServiceAIWhereUniqueInput
+    cursor?: MetricsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ServiceAIS from the position of the cursor.
+     * Take `±n` Metrics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ServiceAIS.
+     * Skip the first `n` Metrics.
      */
     skip?: number
-    distinct?: ServiceAIScalarFieldEnum | ServiceAIScalarFieldEnum[]
+    distinct?: MetricsScalarFieldEnum | MetricsScalarFieldEnum[]
   }
 
   /**
-   * ServiceAI create
+   * Metrics create
    */
-  export type ServiceAICreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * The data needed to create a Metrics.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ServiceAI.
-     */
-    data: XOR<ServiceAICreateInput, ServiceAIUncheckedCreateInput>
+    data: XOR<MetricsCreateInput, MetricsUncheckedCreateInput>
   }
 
   /**
-   * ServiceAI createMany
+   * Metrics createMany
    */
-  export type ServiceAICreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many ServiceAIS.
+     * The data used to create many Metrics.
      */
-    data: ServiceAICreateManyInput | ServiceAICreateManyInput[]
+    data: MetricsCreateManyInput | MetricsCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * ServiceAI createManyAndReturn
+   * Metrics createManyAndReturn
    */
-  export type ServiceAICreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelectCreateManyAndReturn<ExtArgs> | null
+    select?: MetricsSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * The data used to create many ServiceAIS.
+     * The data used to create many Metrics.
      */
-    data: ServiceAICreateManyInput | ServiceAICreateManyInput[]
+    data: MetricsCreateManyInput | MetricsCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceAIIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * ServiceAI update
+   * Metrics update
    */
-  export type ServiceAIUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * The data needed to update a Metrics.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
+    data: XOR<MetricsUpdateInput, MetricsUncheckedUpdateInput>
     /**
-     * The data needed to update a ServiceAI.
+     * Choose, which Metrics to update.
      */
-    data: XOR<ServiceAIUpdateInput, ServiceAIUncheckedUpdateInput>
-    /**
-     * Choose, which ServiceAI to update.
-     */
-    where: ServiceAIWhereUniqueInput
+    where: MetricsWhereUniqueInput
   }
 
   /**
-   * ServiceAI updateMany
+   * Metrics updateMany
    */
-  export type ServiceAIUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update ServiceAIS.
+     * The data used to update Metrics.
      */
-    data: XOR<ServiceAIUpdateManyMutationInput, ServiceAIUncheckedUpdateManyInput>
+    data: XOR<MetricsUpdateManyMutationInput, MetricsUncheckedUpdateManyInput>
     /**
-     * Filter which ServiceAIS to update
+     * Filter which Metrics to update
      */
-    where?: ServiceAIWhereInput
+    where?: MetricsWhereInput
     /**
-     * Limit how many ServiceAIS to update.
+     * Limit how many Metrics to update.
      */
     limit?: number
   }
 
   /**
-   * ServiceAI updateManyAndReturn
+   * Metrics updateManyAndReturn
    */
-  export type ServiceAIUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelectUpdateManyAndReturn<ExtArgs> | null
+    select?: MetricsSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * The data used to update ServiceAIS.
+     * The data used to update Metrics.
      */
-    data: XOR<ServiceAIUpdateManyMutationInput, ServiceAIUncheckedUpdateManyInput>
+    data: XOR<MetricsUpdateManyMutationInput, MetricsUncheckedUpdateManyInput>
     /**
-     * Filter which ServiceAIS to update
+     * Filter which Metrics to update
      */
-    where?: ServiceAIWhereInput
+    where?: MetricsWhereInput
     /**
-     * Limit how many ServiceAIS to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceAIIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ServiceAI upsert
-   */
-  export type ServiceAIUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceAI
-     */
-    select?: ServiceAISelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ServiceAI
-     */
-    omit?: ServiceAIOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ServiceAI to update in case it exists.
-     */
-    where: ServiceAIWhereUniqueInput
-    /**
-     * In case the ServiceAI found by the `where` argument doesn't exist, create a new ServiceAI with this data.
-     */
-    create: XOR<ServiceAICreateInput, ServiceAIUncheckedCreateInput>
-    /**
-     * In case the ServiceAI was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ServiceAIUpdateInput, ServiceAIUncheckedUpdateInput>
-  }
-
-  /**
-   * ServiceAI delete
-   */
-  export type ServiceAIDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceAI
-     */
-    select?: ServiceAISelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ServiceAI
-     */
-    omit?: ServiceAIOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceAIInclude<ExtArgs> | null
-    /**
-     * Filter which ServiceAI to delete.
-     */
-    where: ServiceAIWhereUniqueInput
-  }
-
-  /**
-   * ServiceAI deleteMany
-   */
-  export type ServiceAIDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceAIS to delete
-     */
-    where?: ServiceAIWhereInput
-    /**
-     * Limit how many ServiceAIS to delete.
+     * Limit how many Metrics to update.
      */
     limit?: number
   }
 
   /**
-   * ServiceAI without action
+   * Metrics upsert
    */
-  export type ServiceAIDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MetricsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ServiceAI
+     * Select specific fields to fetch from the Metrics
      */
-    select?: ServiceAISelect<ExtArgs> | null
+    select?: MetricsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ServiceAI
+     * Omit specific fields from the Metrics
      */
-    omit?: ServiceAIOmit<ExtArgs> | null
+    omit?: MetricsOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * The filter to search for the Metrics to update in case it exists.
      */
-    include?: ServiceAIInclude<ExtArgs> | null
+    where: MetricsWhereUniqueInput
+    /**
+     * In case the Metrics found by the `where` argument doesn't exist, create a new Metrics with this data.
+     */
+    create: XOR<MetricsCreateInput, MetricsUncheckedCreateInput>
+    /**
+     * In case the Metrics was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MetricsUpdateInput, MetricsUncheckedUpdateInput>
+  }
+
+  /**
+   * Metrics delete
+   */
+  export type MetricsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Metrics
+     */
+    select?: MetricsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Metrics
+     */
+    omit?: MetricsOmit<ExtArgs> | null
+    /**
+     * Filter which Metrics to delete.
+     */
+    where: MetricsWhereUniqueInput
+  }
+
+  /**
+   * Metrics deleteMany
+   */
+  export type MetricsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Metrics to delete
+     */
+    where?: MetricsWhereInput
+    /**
+     * Limit how many Metrics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Metrics without action
+   */
+  export type MetricsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Metrics
+     */
+    select?: MetricsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Metrics
+     */
+    omit?: MetricsOmit<ExtArgs> | null
   }
 
 
@@ -7884,16 +7853,19 @@ export namespace Prisma {
   export type ServiceDependencyScalarFieldEnum = (typeof ServiceDependencyScalarFieldEnum)[keyof typeof ServiceDependencyScalarFieldEnum]
 
 
-  export const ServiceAIScalarFieldEnum: {
+  export const MetricsScalarFieldEnum: {
     id: 'id',
-    serviceId: 'serviceId',
-    aiData: 'aiData',
-    failCount: 'failCount',
-    lastUpdated: 'lastUpdated',
-    lastRefreshedAt: 'lastRefreshedAt'
+    service: 'service',
+    cpu: 'cpu',
+    memory: 'memory',
+    networkRx: 'networkRx',
+    networkTx: 'networkTx',
+    status: 'status',
+    source: 'source',
+    createdAt: 'createdAt'
   };
 
-  export type ServiceAIScalarFieldEnum = (typeof ServiceAIScalarFieldEnum)[keyof typeof ServiceAIScalarFieldEnum]
+  export type MetricsScalarFieldEnum = (typeof MetricsScalarFieldEnum)[keyof typeof MetricsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7902,13 +7874,6 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-  export const JsonNullValueInput: {
-    JsonNull: typeof JsonNull
-  };
-
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -7925,15 +7890,6 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -7984,16 +7940,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
+   * Reference to a field of type 'Float'
    */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'QueryMode'
+   * Reference to a field of type 'Float[]'
    */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -8008,20 +7964,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -8231,7 +8173,6 @@ export namespace Prisma {
     lastSeenAt?: DateTimeNullableFilter<"Service"> | Date | string | null
     dependenciesFrom?: ServiceDependencyListRelationFilter
     dependenciesTo?: ServiceDependencyListRelationFilter
-    ServiceAI?: XOR<ServiceAINullableScalarRelationFilter, ServiceAIWhereInput> | null
   }
 
   export type ServiceOrderByWithRelationInput = {
@@ -8248,7 +8189,6 @@ export namespace Prisma {
     lastSeenAt?: SortOrderInput | SortOrder
     dependenciesFrom?: ServiceDependencyOrderByRelationAggregateInput
     dependenciesTo?: ServiceDependencyOrderByRelationAggregateInput
-    ServiceAI?: ServiceAIOrderByWithRelationInput
   }
 
   export type ServiceWhereUniqueInput = Prisma.AtLeast<{
@@ -8269,7 +8209,6 @@ export namespace Prisma {
     lastSeenAt?: DateTimeNullableFilter<"Service"> | Date | string | null
     dependenciesFrom?: ServiceDependencyListRelationFilter
     dependenciesTo?: ServiceDependencyListRelationFilter
-    ServiceAI?: XOR<ServiceAINullableScalarRelationFilter, ServiceAIWhereInput> | null
   }, "id" | "name_cluster">
 
   export type ServiceOrderByWithAggregationInput = {
@@ -8365,66 +8304,79 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"ServiceDependency"> | Date | string
   }
 
-  export type ServiceAIWhereInput = {
-    AND?: ServiceAIWhereInput | ServiceAIWhereInput[]
-    OR?: ServiceAIWhereInput[]
-    NOT?: ServiceAIWhereInput | ServiceAIWhereInput[]
-    id?: StringFilter<"ServiceAI"> | string
-    serviceId?: StringFilter<"ServiceAI"> | string
-    aiData?: JsonFilter<"ServiceAI">
-    failCount?: IntFilter<"ServiceAI"> | number
-    lastUpdated?: DateTimeFilter<"ServiceAI"> | Date | string
-    lastRefreshedAt?: DateTimeFilter<"ServiceAI"> | Date | string
-    service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
+  export type MetricsWhereInput = {
+    AND?: MetricsWhereInput | MetricsWhereInput[]
+    OR?: MetricsWhereInput[]
+    NOT?: MetricsWhereInput | MetricsWhereInput[]
+    id?: StringFilter<"Metrics"> | string
+    service?: StringFilter<"Metrics"> | string
+    cpu?: FloatFilter<"Metrics"> | number
+    memory?: FloatFilter<"Metrics"> | number
+    networkRx?: IntFilter<"Metrics"> | number
+    networkTx?: IntFilter<"Metrics"> | number
+    status?: StringFilter<"Metrics"> | string
+    source?: StringFilter<"Metrics"> | string
+    createdAt?: DateTimeFilter<"Metrics"> | Date | string
   }
 
-  export type ServiceAIOrderByWithRelationInput = {
+  export type MetricsOrderByWithRelationInput = {
     id?: SortOrder
-    serviceId?: SortOrder
-    aiData?: SortOrder
-    failCount?: SortOrder
-    lastUpdated?: SortOrder
-    lastRefreshedAt?: SortOrder
-    service?: ServiceOrderByWithRelationInput
+    service?: SortOrder
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
+    status?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
   }
 
-  export type ServiceAIWhereUniqueInput = Prisma.AtLeast<{
+  export type MetricsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    serviceId?: string
-    AND?: ServiceAIWhereInput | ServiceAIWhereInput[]
-    OR?: ServiceAIWhereInput[]
-    NOT?: ServiceAIWhereInput | ServiceAIWhereInput[]
-    aiData?: JsonFilter<"ServiceAI">
-    failCount?: IntFilter<"ServiceAI"> | number
-    lastUpdated?: DateTimeFilter<"ServiceAI"> | Date | string
-    lastRefreshedAt?: DateTimeFilter<"ServiceAI"> | Date | string
-    service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
-  }, "id" | "serviceId">
+    service_source?: MetricsServiceSourceCompoundUniqueInput
+    AND?: MetricsWhereInput | MetricsWhereInput[]
+    OR?: MetricsWhereInput[]
+    NOT?: MetricsWhereInput | MetricsWhereInput[]
+    service?: StringFilter<"Metrics"> | string
+    cpu?: FloatFilter<"Metrics"> | number
+    memory?: FloatFilter<"Metrics"> | number
+    networkRx?: IntFilter<"Metrics"> | number
+    networkTx?: IntFilter<"Metrics"> | number
+    status?: StringFilter<"Metrics"> | string
+    source?: StringFilter<"Metrics"> | string
+    createdAt?: DateTimeFilter<"Metrics"> | Date | string
+  }, "id" | "service_source">
 
-  export type ServiceAIOrderByWithAggregationInput = {
+  export type MetricsOrderByWithAggregationInput = {
     id?: SortOrder
-    serviceId?: SortOrder
-    aiData?: SortOrder
-    failCount?: SortOrder
-    lastUpdated?: SortOrder
-    lastRefreshedAt?: SortOrder
-    _count?: ServiceAICountOrderByAggregateInput
-    _avg?: ServiceAIAvgOrderByAggregateInput
-    _max?: ServiceAIMaxOrderByAggregateInput
-    _min?: ServiceAIMinOrderByAggregateInput
-    _sum?: ServiceAISumOrderByAggregateInput
+    service?: SortOrder
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
+    status?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    _count?: MetricsCountOrderByAggregateInput
+    _avg?: MetricsAvgOrderByAggregateInput
+    _max?: MetricsMaxOrderByAggregateInput
+    _min?: MetricsMinOrderByAggregateInput
+    _sum?: MetricsSumOrderByAggregateInput
   }
 
-  export type ServiceAIScalarWhereWithAggregatesInput = {
-    AND?: ServiceAIScalarWhereWithAggregatesInput | ServiceAIScalarWhereWithAggregatesInput[]
-    OR?: ServiceAIScalarWhereWithAggregatesInput[]
-    NOT?: ServiceAIScalarWhereWithAggregatesInput | ServiceAIScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ServiceAI"> | string
-    serviceId?: StringWithAggregatesFilter<"ServiceAI"> | string
-    aiData?: JsonWithAggregatesFilter<"ServiceAI">
-    failCount?: IntWithAggregatesFilter<"ServiceAI"> | number
-    lastUpdated?: DateTimeWithAggregatesFilter<"ServiceAI"> | Date | string
-    lastRefreshedAt?: DateTimeWithAggregatesFilter<"ServiceAI"> | Date | string
+  export type MetricsScalarWhereWithAggregatesInput = {
+    AND?: MetricsScalarWhereWithAggregatesInput | MetricsScalarWhereWithAggregatesInput[]
+    OR?: MetricsScalarWhereWithAggregatesInput[]
+    NOT?: MetricsScalarWhereWithAggregatesInput | MetricsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Metrics"> | string
+    service?: StringWithAggregatesFilter<"Metrics"> | string
+    cpu?: FloatWithAggregatesFilter<"Metrics"> | number
+    memory?: FloatWithAggregatesFilter<"Metrics"> | number
+    networkRx?: IntWithAggregatesFilter<"Metrics"> | number
+    networkTx?: IntWithAggregatesFilter<"Metrics"> | number
+    status?: StringWithAggregatesFilter<"Metrics"> | string
+    source?: StringWithAggregatesFilter<"Metrics"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Metrics"> | Date | string
   }
 
   export type NotificationCreateInput = {
@@ -8651,7 +8603,6 @@ export namespace Prisma {
     lastSeenAt?: Date | string | null
     dependenciesFrom?: ServiceDependencyCreateNestedManyWithoutFromServiceInput
     dependenciesTo?: ServiceDependencyCreateNestedManyWithoutToServiceInput
-    ServiceAI?: ServiceAICreateNestedOneWithoutServiceInput
   }
 
   export type ServiceUncheckedCreateInput = {
@@ -8668,7 +8619,6 @@ export namespace Prisma {
     lastSeenAt?: Date | string | null
     dependenciesFrom?: ServiceDependencyUncheckedCreateNestedManyWithoutFromServiceInput
     dependenciesTo?: ServiceDependencyUncheckedCreateNestedManyWithoutToServiceInput
-    ServiceAI?: ServiceAIUncheckedCreateNestedOneWithoutServiceInput
   }
 
   export type ServiceUpdateInput = {
@@ -8685,7 +8635,6 @@ export namespace Prisma {
     lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dependenciesFrom?: ServiceDependencyUpdateManyWithoutFromServiceNestedInput
     dependenciesTo?: ServiceDependencyUpdateManyWithoutToServiceNestedInput
-    ServiceAI?: ServiceAIUpdateOneWithoutServiceNestedInput
   }
 
   export type ServiceUncheckedUpdateInput = {
@@ -8702,7 +8651,6 @@ export namespace Prisma {
     lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dependenciesFrom?: ServiceDependencyUncheckedUpdateManyWithoutFromServiceNestedInput
     dependenciesTo?: ServiceDependencyUncheckedUpdateManyWithoutToServiceNestedInput
-    ServiceAI?: ServiceAIUncheckedUpdateOneWithoutServiceNestedInput
   }
 
   export type ServiceCreateManyInput = {
@@ -8801,66 +8749,88 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceAICreateInput = {
+  export type MetricsCreateInput = {
     id?: string
-    aiData: JsonNullValueInput | InputJsonValue
-    failCount?: number
-    lastUpdated?: Date | string
-    lastRefreshedAt?: Date | string
-    service: ServiceCreateNestedOneWithoutServiceAIInput
+    service: string
+    cpu: number
+    memory: number
+    networkRx: number
+    networkTx: number
+    status: string
+    source: string
+    createdAt?: Date | string
   }
 
-  export type ServiceAIUncheckedCreateInput = {
+  export type MetricsUncheckedCreateInput = {
     id?: string
-    serviceId: string
-    aiData: JsonNullValueInput | InputJsonValue
-    failCount?: number
-    lastUpdated?: Date | string
-    lastRefreshedAt?: Date | string
+    service: string
+    cpu: number
+    memory: number
+    networkRx: number
+    networkTx: number
+    status: string
+    source: string
+    createdAt?: Date | string
   }
 
-  export type ServiceAIUpdateInput = {
+  export type MetricsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    aiData?: JsonNullValueInput | InputJsonValue
-    failCount?: IntFieldUpdateOperationsInput | number
-    lastUpdated?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRefreshedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneRequiredWithoutServiceAINestedInput
+    service?: StringFieldUpdateOperationsInput | string
+    cpu?: FloatFieldUpdateOperationsInput | number
+    memory?: FloatFieldUpdateOperationsInput | number
+    networkRx?: IntFieldUpdateOperationsInput | number
+    networkTx?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceAIUncheckedUpdateInput = {
+  export type MetricsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serviceId?: StringFieldUpdateOperationsInput | string
-    aiData?: JsonNullValueInput | InputJsonValue
-    failCount?: IntFieldUpdateOperationsInput | number
-    lastUpdated?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRefreshedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    service?: StringFieldUpdateOperationsInput | string
+    cpu?: FloatFieldUpdateOperationsInput | number
+    memory?: FloatFieldUpdateOperationsInput | number
+    networkRx?: IntFieldUpdateOperationsInput | number
+    networkTx?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceAICreateManyInput = {
+  export type MetricsCreateManyInput = {
     id?: string
-    serviceId: string
-    aiData: JsonNullValueInput | InputJsonValue
-    failCount?: number
-    lastUpdated?: Date | string
-    lastRefreshedAt?: Date | string
+    service: string
+    cpu: number
+    memory: number
+    networkRx: number
+    networkTx: number
+    status: string
+    source: string
+    createdAt?: Date | string
   }
 
-  export type ServiceAIUpdateManyMutationInput = {
+  export type MetricsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    aiData?: JsonNullValueInput | InputJsonValue
-    failCount?: IntFieldUpdateOperationsInput | number
-    lastUpdated?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRefreshedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    service?: StringFieldUpdateOperationsInput | string
+    cpu?: FloatFieldUpdateOperationsInput | number
+    memory?: FloatFieldUpdateOperationsInput | number
+    networkRx?: IntFieldUpdateOperationsInput | number
+    networkTx?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceAIUncheckedUpdateManyInput = {
+  export type MetricsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serviceId?: StringFieldUpdateOperationsInput | string
-    aiData?: JsonNullValueInput | InputJsonValue
-    failCount?: IntFieldUpdateOperationsInput | number
-    lastUpdated?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRefreshedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    service?: StringFieldUpdateOperationsInput | string
+    cpu?: FloatFieldUpdateOperationsInput | number
+    memory?: FloatFieldUpdateOperationsInput | number
+    networkRx?: IntFieldUpdateOperationsInput | number
+    networkTx?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9083,11 +9053,6 @@ export namespace Prisma {
     none?: ServiceDependencyWhereInput
   }
 
-  export type ServiceAINullableScalarRelationFilter = {
-    is?: ServiceAIWhereInput | null
-    isNot?: ServiceAIWhereInput | null
-  }
-
   export type ServiceDependencyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -9186,28 +9151,16 @@ export namespace Prisma {
     reason?: SortOrder
     createdAt?: SortOrder
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -9221,63 +9174,75 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type ServiceAICountOrderByAggregateInput = {
+  export type MetricsServiceSourceCompoundUniqueInput = {
+    service: string
+    source: string
+  }
+
+  export type MetricsCountOrderByAggregateInput = {
     id?: SortOrder
-    serviceId?: SortOrder
-    aiData?: SortOrder
-    failCount?: SortOrder
-    lastUpdated?: SortOrder
-    lastRefreshedAt?: SortOrder
+    service?: SortOrder
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
+    status?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
   }
 
-  export type ServiceAIAvgOrderByAggregateInput = {
-    failCount?: SortOrder
+  export type MetricsAvgOrderByAggregateInput = {
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
   }
 
-  export type ServiceAIMaxOrderByAggregateInput = {
+  export type MetricsMaxOrderByAggregateInput = {
     id?: SortOrder
-    serviceId?: SortOrder
-    failCount?: SortOrder
-    lastUpdated?: SortOrder
-    lastRefreshedAt?: SortOrder
+    service?: SortOrder
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
+    status?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
   }
 
-  export type ServiceAIMinOrderByAggregateInput = {
+  export type MetricsMinOrderByAggregateInput = {
     id?: SortOrder
-    serviceId?: SortOrder
-    failCount?: SortOrder
-    lastUpdated?: SortOrder
-    lastRefreshedAt?: SortOrder
+    service?: SortOrder
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
+    status?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
   }
 
-  export type ServiceAISumOrderByAggregateInput = {
-    failCount?: SortOrder
+  export type MetricsSumOrderByAggregateInput = {
+    cpu?: SortOrder
+    memory?: SortOrder
+    networkRx?: SortOrder
+    networkTx?: SortOrder
   }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9326,12 +9291,6 @@ export namespace Prisma {
     connect?: ServiceDependencyWhereUniqueInput | ServiceDependencyWhereUniqueInput[]
   }
 
-  export type ServiceAICreateNestedOneWithoutServiceInput = {
-    create?: XOR<ServiceAICreateWithoutServiceInput, ServiceAIUncheckedCreateWithoutServiceInput>
-    connectOrCreate?: ServiceAICreateOrConnectWithoutServiceInput
-    connect?: ServiceAIWhereUniqueInput
-  }
-
   export type ServiceDependencyUncheckedCreateNestedManyWithoutFromServiceInput = {
     create?: XOR<ServiceDependencyCreateWithoutFromServiceInput, ServiceDependencyUncheckedCreateWithoutFromServiceInput> | ServiceDependencyCreateWithoutFromServiceInput[] | ServiceDependencyUncheckedCreateWithoutFromServiceInput[]
     connectOrCreate?: ServiceDependencyCreateOrConnectWithoutFromServiceInput | ServiceDependencyCreateOrConnectWithoutFromServiceInput[]
@@ -9344,12 +9303,6 @@ export namespace Prisma {
     connectOrCreate?: ServiceDependencyCreateOrConnectWithoutToServiceInput | ServiceDependencyCreateOrConnectWithoutToServiceInput[]
     createMany?: ServiceDependencyCreateManyToServiceInputEnvelope
     connect?: ServiceDependencyWhereUniqueInput | ServiceDependencyWhereUniqueInput[]
-  }
-
-  export type ServiceAIUncheckedCreateNestedOneWithoutServiceInput = {
-    create?: XOR<ServiceAICreateWithoutServiceInput, ServiceAIUncheckedCreateWithoutServiceInput>
-    connectOrCreate?: ServiceAICreateOrConnectWithoutServiceInput
-    connect?: ServiceAIWhereUniqueInput
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -9384,16 +9337,6 @@ export namespace Prisma {
     deleteMany?: ServiceDependencyScalarWhereInput | ServiceDependencyScalarWhereInput[]
   }
 
-  export type ServiceAIUpdateOneWithoutServiceNestedInput = {
-    create?: XOR<ServiceAICreateWithoutServiceInput, ServiceAIUncheckedCreateWithoutServiceInput>
-    connectOrCreate?: ServiceAICreateOrConnectWithoutServiceInput
-    upsert?: ServiceAIUpsertWithoutServiceInput
-    disconnect?: ServiceAIWhereInput | boolean
-    delete?: ServiceAIWhereInput | boolean
-    connect?: ServiceAIWhereUniqueInput
-    update?: XOR<XOR<ServiceAIUpdateToOneWithWhereWithoutServiceInput, ServiceAIUpdateWithoutServiceInput>, ServiceAIUncheckedUpdateWithoutServiceInput>
-  }
-
   export type ServiceDependencyUncheckedUpdateManyWithoutFromServiceNestedInput = {
     create?: XOR<ServiceDependencyCreateWithoutFromServiceInput, ServiceDependencyUncheckedCreateWithoutFromServiceInput> | ServiceDependencyCreateWithoutFromServiceInput[] | ServiceDependencyUncheckedCreateWithoutFromServiceInput[]
     connectOrCreate?: ServiceDependencyCreateOrConnectWithoutFromServiceInput | ServiceDependencyCreateOrConnectWithoutFromServiceInput[]
@@ -9420,16 +9363,6 @@ export namespace Prisma {
     update?: ServiceDependencyUpdateWithWhereUniqueWithoutToServiceInput | ServiceDependencyUpdateWithWhereUniqueWithoutToServiceInput[]
     updateMany?: ServiceDependencyUpdateManyWithWhereWithoutToServiceInput | ServiceDependencyUpdateManyWithWhereWithoutToServiceInput[]
     deleteMany?: ServiceDependencyScalarWhereInput | ServiceDependencyScalarWhereInput[]
-  }
-
-  export type ServiceAIUncheckedUpdateOneWithoutServiceNestedInput = {
-    create?: XOR<ServiceAICreateWithoutServiceInput, ServiceAIUncheckedCreateWithoutServiceInput>
-    connectOrCreate?: ServiceAICreateOrConnectWithoutServiceInput
-    upsert?: ServiceAIUpsertWithoutServiceInput
-    disconnect?: ServiceAIWhereInput | boolean
-    delete?: ServiceAIWhereInput | boolean
-    connect?: ServiceAIWhereUniqueInput
-    update?: XOR<XOR<ServiceAIUpdateToOneWithWhereWithoutServiceInput, ServiceAIUpdateWithoutServiceInput>, ServiceAIUncheckedUpdateWithoutServiceInput>
   }
 
   export type ServiceCreateNestedOneWithoutDependenciesFromInput = {
@@ -9460,10 +9393,12 @@ export namespace Prisma {
     update?: XOR<XOR<ServiceUpdateToOneWithWhereWithoutDependenciesToInput, ServiceUpdateWithoutDependenciesToInput>, ServiceUncheckedUpdateWithoutDependenciesToInput>
   }
 
-  export type ServiceCreateNestedOneWithoutServiceAIInput = {
-    create?: XOR<ServiceCreateWithoutServiceAIInput, ServiceUncheckedCreateWithoutServiceAIInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutServiceAIInput
-    connect?: ServiceWhereUniqueInput
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -9472,14 +9407,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type ServiceUpdateOneRequiredWithoutServiceAINestedInput = {
-    create?: XOR<ServiceCreateWithoutServiceAIInput, ServiceUncheckedCreateWithoutServiceAIInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutServiceAIInput
-    upsert?: ServiceUpsertWithoutServiceAIInput
-    connect?: ServiceWhereUniqueInput
-    update?: XOR<XOR<ServiceUpdateToOneWithWhereWithoutServiceAIInput, ServiceUpdateWithoutServiceAIInput>, ServiceUncheckedUpdateWithoutServiceAIInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9632,28 +9559,32 @@ export namespace Prisma {
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9670,17 +9601,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type ServiceDependencyCreateWithoutFromServiceInput = {
@@ -9731,27 +9651,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ServiceAICreateWithoutServiceInput = {
-    id?: string
-    aiData: JsonNullValueInput | InputJsonValue
-    failCount?: number
-    lastUpdated?: Date | string
-    lastRefreshedAt?: Date | string
-  }
-
-  export type ServiceAIUncheckedCreateWithoutServiceInput = {
-    id?: string
-    aiData: JsonNullValueInput | InputJsonValue
-    failCount?: number
-    lastUpdated?: Date | string
-    lastRefreshedAt?: Date | string
-  }
-
-  export type ServiceAICreateOrConnectWithoutServiceInput = {
-    where: ServiceAIWhereUniqueInput
-    create: XOR<ServiceAICreateWithoutServiceInput, ServiceAIUncheckedCreateWithoutServiceInput>
-  }
-
   export type ServiceDependencyUpsertWithWhereUniqueWithoutFromServiceInput = {
     where: ServiceDependencyWhereUniqueInput
     update: XOR<ServiceDependencyUpdateWithoutFromServiceInput, ServiceDependencyUncheckedUpdateWithoutFromServiceInput>
@@ -9795,33 +9694,6 @@ export namespace Prisma {
     data: XOR<ServiceDependencyUpdateManyMutationInput, ServiceDependencyUncheckedUpdateManyWithoutToServiceInput>
   }
 
-  export type ServiceAIUpsertWithoutServiceInput = {
-    update: XOR<ServiceAIUpdateWithoutServiceInput, ServiceAIUncheckedUpdateWithoutServiceInput>
-    create: XOR<ServiceAICreateWithoutServiceInput, ServiceAIUncheckedCreateWithoutServiceInput>
-    where?: ServiceAIWhereInput
-  }
-
-  export type ServiceAIUpdateToOneWithWhereWithoutServiceInput = {
-    where?: ServiceAIWhereInput
-    data: XOR<ServiceAIUpdateWithoutServiceInput, ServiceAIUncheckedUpdateWithoutServiceInput>
-  }
-
-  export type ServiceAIUpdateWithoutServiceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    aiData?: JsonNullValueInput | InputJsonValue
-    failCount?: IntFieldUpdateOperationsInput | number
-    lastUpdated?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRefreshedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceAIUncheckedUpdateWithoutServiceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    aiData?: JsonNullValueInput | InputJsonValue
-    failCount?: IntFieldUpdateOperationsInput | number
-    lastUpdated?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRefreshedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ServiceCreateWithoutDependenciesFromInput = {
     id?: string
     name: string
@@ -9835,7 +9707,6 @@ export namespace Prisma {
     lastReason?: string | null
     lastSeenAt?: Date | string | null
     dependenciesTo?: ServiceDependencyCreateNestedManyWithoutToServiceInput
-    ServiceAI?: ServiceAICreateNestedOneWithoutServiceInput
   }
 
   export type ServiceUncheckedCreateWithoutDependenciesFromInput = {
@@ -9851,7 +9722,6 @@ export namespace Prisma {
     lastReason?: string | null
     lastSeenAt?: Date | string | null
     dependenciesTo?: ServiceDependencyUncheckedCreateNestedManyWithoutToServiceInput
-    ServiceAI?: ServiceAIUncheckedCreateNestedOneWithoutServiceInput
   }
 
   export type ServiceCreateOrConnectWithoutDependenciesFromInput = {
@@ -9872,7 +9742,6 @@ export namespace Prisma {
     lastReason?: string | null
     lastSeenAt?: Date | string | null
     dependenciesFrom?: ServiceDependencyCreateNestedManyWithoutFromServiceInput
-    ServiceAI?: ServiceAICreateNestedOneWithoutServiceInput
   }
 
   export type ServiceUncheckedCreateWithoutDependenciesToInput = {
@@ -9888,7 +9757,6 @@ export namespace Prisma {
     lastReason?: string | null
     lastSeenAt?: Date | string | null
     dependenciesFrom?: ServiceDependencyUncheckedCreateNestedManyWithoutFromServiceInput
-    ServiceAI?: ServiceAIUncheckedCreateNestedOneWithoutServiceInput
   }
 
   export type ServiceCreateOrConnectWithoutDependenciesToInput = {
@@ -9920,7 +9788,6 @@ export namespace Prisma {
     lastReason?: NullableStringFieldUpdateOperationsInput | string | null
     lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dependenciesTo?: ServiceDependencyUpdateManyWithoutToServiceNestedInput
-    ServiceAI?: ServiceAIUpdateOneWithoutServiceNestedInput
   }
 
   export type ServiceUncheckedUpdateWithoutDependenciesFromInput = {
@@ -9936,7 +9803,6 @@ export namespace Prisma {
     lastReason?: NullableStringFieldUpdateOperationsInput | string | null
     lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dependenciesTo?: ServiceDependencyUncheckedUpdateManyWithoutToServiceNestedInput
-    ServiceAI?: ServiceAIUncheckedUpdateOneWithoutServiceNestedInput
   }
 
   export type ServiceUpsertWithoutDependenciesToInput = {
@@ -9963,7 +9829,6 @@ export namespace Prisma {
     lastReason?: NullableStringFieldUpdateOperationsInput | string | null
     lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dependenciesFrom?: ServiceDependencyUpdateManyWithoutFromServiceNestedInput
-    ServiceAI?: ServiceAIUpdateOneWithoutServiceNestedInput
   }
 
   export type ServiceUncheckedUpdateWithoutDependenciesToInput = {
@@ -9979,87 +9844,6 @@ export namespace Prisma {
     lastReason?: NullableStringFieldUpdateOperationsInput | string | null
     lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dependenciesFrom?: ServiceDependencyUncheckedUpdateManyWithoutFromServiceNestedInput
-    ServiceAI?: ServiceAIUncheckedUpdateOneWithoutServiceNestedInput
-  }
-
-  export type ServiceCreateWithoutServiceAIInput = {
-    id?: string
-    name: string
-    url: string
-    cluster: string
-    type: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    runtimeStatus?: string | null
-    lastReason?: string | null
-    lastSeenAt?: Date | string | null
-    dependenciesFrom?: ServiceDependencyCreateNestedManyWithoutFromServiceInput
-    dependenciesTo?: ServiceDependencyCreateNestedManyWithoutToServiceInput
-  }
-
-  export type ServiceUncheckedCreateWithoutServiceAIInput = {
-    id?: string
-    name: string
-    url: string
-    cluster: string
-    type: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    runtimeStatus?: string | null
-    lastReason?: string | null
-    lastSeenAt?: Date | string | null
-    dependenciesFrom?: ServiceDependencyUncheckedCreateNestedManyWithoutFromServiceInput
-    dependenciesTo?: ServiceDependencyUncheckedCreateNestedManyWithoutToServiceInput
-  }
-
-  export type ServiceCreateOrConnectWithoutServiceAIInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutServiceAIInput, ServiceUncheckedCreateWithoutServiceAIInput>
-  }
-
-  export type ServiceUpsertWithoutServiceAIInput = {
-    update: XOR<ServiceUpdateWithoutServiceAIInput, ServiceUncheckedUpdateWithoutServiceAIInput>
-    create: XOR<ServiceCreateWithoutServiceAIInput, ServiceUncheckedCreateWithoutServiceAIInput>
-    where?: ServiceWhereInput
-  }
-
-  export type ServiceUpdateToOneWithWhereWithoutServiceAIInput = {
-    where?: ServiceWhereInput
-    data: XOR<ServiceUpdateWithoutServiceAIInput, ServiceUncheckedUpdateWithoutServiceAIInput>
-  }
-
-  export type ServiceUpdateWithoutServiceAIInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    cluster?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    runtimeStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    lastReason?: NullableStringFieldUpdateOperationsInput | string | null
-    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dependenciesFrom?: ServiceDependencyUpdateManyWithoutFromServiceNestedInput
-    dependenciesTo?: ServiceDependencyUpdateManyWithoutToServiceNestedInput
-  }
-
-  export type ServiceUncheckedUpdateWithoutServiceAIInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    cluster?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    runtimeStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    lastReason?: NullableStringFieldUpdateOperationsInput | string | null
-    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dependenciesFrom?: ServiceDependencyUncheckedUpdateManyWithoutFromServiceNestedInput
-    dependenciesTo?: ServiceDependencyUncheckedUpdateManyWithoutToServiceNestedInput
   }
 
   export type ServiceDependencyCreateManyFromServiceInput = {

@@ -144,22 +144,21 @@ exports.Prisma.ServiceDependencyScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.ServiceAIScalarFieldEnum = {
+exports.Prisma.MetricsScalarFieldEnum = {
   id: 'id',
-  serviceId: 'serviceId',
-  aiData: 'aiData',
-  failCount: 'failCount',
-  lastUpdated: 'lastUpdated',
-  lastRefreshedAt: 'lastRefreshedAt'
+  service: 'service',
+  cpu: 'cpu',
+  memory: 'memory',
+  networkRx: 'networkRx',
+  networkTx: 'networkTx',
+  status: 'status',
+  source: 'source',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -170,12 +169,6 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 exports.EventType = exports.$Enums.EventType = {
   INITIAL: 'INITIAL',
@@ -191,7 +184,7 @@ exports.Prisma.ModelName = {
   ServiceEventHistory: 'ServiceEventHistory',
   Service: 'Service',
   ServiceDependency: 'ServiceDependency',
-  ServiceAI: 'ServiceAI'
+  Metrics: 'Metrics'
 };
 /**
  * Create the Client
@@ -240,13 +233,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../libs/database/src/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum EventType {\n  INITIAL\n  STATUS_CHANGE\n  RECOVERY\n  FAILURE\n  CRASH_LOOP\n}\n\nmodel Notification {\n  id        String   @id @default(cuid())\n  type      String // e.g. FAILURE, RECOVERY, ...\n  title     String\n  message   String\n  service   String\n  cluster   String?\n  createdAt DateTime @default(now())\n}\n\nmodel ServiceEvent {\n  id        String    @id @default(cuid())\n  service   String    @unique\n  status    String\n  cluster   String?\n  message   String?\n  eventType EventType @default(INITIAL)\n  createdAt DateTime  @default(now())\n\n  @@index([service, createdAt])\n}\n\nmodel ServiceEventHistory {\n  id         String    @id @default(cuid())\n  service    String\n  status     String\n  cluster    String?\n  message    String?\n  eventType  EventType\n  recordedAt DateTime  @default(now())\n}\n\nmodel Service {\n  id          String   @id @default(uuid())\n  name        String\n  url         String\n  cluster     String\n  type        String\n  description String?\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  dependenciesFrom ServiceDependency[] @relation(\"FromService\")\n  dependenciesTo   ServiceDependency[] @relation(\"ToService\")\n  ServiceAI        ServiceAI?\n  runtimeStatus    String? // \"UP\" | \"DOWN\" | \"RESTARTING\" | ...\n  lastReason       String? // \"OOMKilled\", \"Exited code 137\", ...\n  lastSeenAt       DateTime?\n\n  @@unique([name, cluster])\n}\n\nmodel ServiceDependency {\n  id            String   @id @default(cuid())\n  fromService   Service  @relation(\"FromService\", fields: [fromServiceId], references: [id])\n  fromServiceId String\n  toService     Service  @relation(\"ToService\", fields: [toServiceId], references: [id])\n  toServiceId   String\n  reason        String\n  createdAt     DateTime @default(now())\n\n  @@unique([fromServiceId, toServiceId], name: \"unique_service_relation\")\n}\n\nmodel ServiceAI {\n  id              String   @id @default(uuid())\n  serviceId       String   @unique\n  aiData          Json\n  failCount       Int      @default(0)\n  lastUpdated     DateTime @default(now())\n  lastRefreshedAt DateTime @default(now())\n\n  service Service @relation(fields: [serviceId], references: [id])\n}\n",
-  "inlineSchemaHash": "c4a1d9c4c46764a411a37c9602e946810dd114ea49d00cec056d7fe022f3b1da",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../libs/database/src/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum EventType {\n  INITIAL\n  STATUS_CHANGE\n  RECOVERY\n  FAILURE\n  CRASH_LOOP\n}\n\nmodel Notification {\n  id        String   @id @default(cuid())\n  type      String // e.g. FAILURE, RECOVERY, ...\n  title     String\n  message   String\n  service   String\n  cluster   String?\n  createdAt DateTime @default(now())\n}\n\nmodel ServiceEvent {\n  id        String    @id @default(cuid())\n  service   String    @unique\n  status    String\n  cluster   String?\n  message   String?\n  eventType EventType @default(INITIAL)\n  createdAt DateTime  @default(now())\n\n  @@index([service, createdAt])\n}\n\nmodel ServiceEventHistory {\n  id         String    @id @default(cuid())\n  service    String\n  status     String\n  cluster    String?\n  message    String?\n  eventType  EventType\n  recordedAt DateTime  @default(now())\n}\n\nmodel Service {\n  id          String   @id @default(uuid())\n  name        String\n  url         String\n  cluster     String\n  type        String\n  description String?\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  dependenciesFrom ServiceDependency[] @relation(\"FromService\")\n  dependenciesTo   ServiceDependency[] @relation(\"ToService\")\n\n  runtimeStatus String? // \"UP\" | \"DOWN\" | \"RESTARTING\" | ...\n  lastReason    String? // \"OOMKilled\", \"Exited code 137\", ...\n  lastSeenAt    DateTime?\n\n  @@unique([name, cluster])\n}\n\nmodel ServiceDependency {\n  id            String   @id @default(cuid())\n  fromService   Service  @relation(\"FromService\", fields: [fromServiceId], references: [id])\n  fromServiceId String\n  toService     Service  @relation(\"ToService\", fields: [toServiceId], references: [id])\n  toServiceId   String\n  reason        String\n  createdAt     DateTime @default(now())\n\n  @@unique([fromServiceId, toServiceId], name: \"unique_service_relation\")\n}\n\nmodel Metrics {\n  id        String   @id @default(uuid())\n  service   String\n  cpu       Float\n  memory    Float\n  networkRx Int\n  networkTx Int\n  status    String\n  source    String\n  createdAt DateTime @default(now())\n\n  @@unique([service, source])\n}\n",
+  "inlineSchemaHash": "b3c5484ab050eee889413e444cb92cd8544089f427a3e20edd219d21659253a8",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Notification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceEvent\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"eventType\",\"kind\":\"enum\",\"type\":\"EventType\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceEventHistory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"eventType\",\"kind\":\"enum\",\"type\":\"EventType\"},{\"name\":\"recordedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Service\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"dependenciesFrom\",\"kind\":\"object\",\"type\":\"ServiceDependency\",\"relationName\":\"FromService\"},{\"name\":\"dependenciesTo\",\"kind\":\"object\",\"type\":\"ServiceDependency\",\"relationName\":\"ToService\"},{\"name\":\"ServiceAI\",\"kind\":\"object\",\"type\":\"ServiceAI\",\"relationName\":\"ServiceToServiceAI\"},{\"name\":\"runtimeStatus\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastReason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastSeenAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceDependency\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromService\",\"kind\":\"object\",\"type\":\"Service\",\"relationName\":\"FromService\"},{\"name\":\"fromServiceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"toService\",\"kind\":\"object\",\"type\":\"Service\",\"relationName\":\"ToService\"},{\"name\":\"toServiceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceAI\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"serviceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"aiData\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"failCount\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"lastUpdated\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lastRefreshedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"service\",\"kind\":\"object\",\"type\":\"Service\",\"relationName\":\"ServiceToServiceAI\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Notification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceEvent\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"eventType\",\"kind\":\"enum\",\"type\":\"EventType\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceEventHistory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"eventType\",\"kind\":\"enum\",\"type\":\"EventType\"},{\"name\":\"recordedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Service\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cluster\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"dependenciesFrom\",\"kind\":\"object\",\"type\":\"ServiceDependency\",\"relationName\":\"FromService\"},{\"name\":\"dependenciesTo\",\"kind\":\"object\",\"type\":\"ServiceDependency\",\"relationName\":\"ToService\"},{\"name\":\"runtimeStatus\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastReason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastSeenAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServiceDependency\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromService\",\"kind\":\"object\",\"type\":\"Service\",\"relationName\":\"FromService\"},{\"name\":\"fromServiceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"toService\",\"kind\":\"object\",\"type\":\"Service\",\"relationName\":\"ToService\"},{\"name\":\"toServiceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Metrics\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cpu\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"memory\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"networkRx\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"networkTx\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"source\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

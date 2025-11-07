@@ -4,9 +4,6 @@ import { GatewayService } from './gateway.service';
 import { AppLoggerModule } from './app-logger/app-logger.module';
 // import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 // import { APP_GUARD } from '@nestjs/core';
-import { MetricsServiceModule } from 'apps/metrics-service/src/metrics-service.module';
-import { MonitorServiceModule } from 'apps/monitor-service/src/monitor-service.module';
-import { NotificationServiceModule } from 'apps/notification-service/src/notification-service.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
@@ -15,19 +12,18 @@ import { EventsModule } from './events/events.module';
 import { DatabaseModule } from '@app/database';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { PubSubModule } from '@app/common';
-import { EventProcessorServiceModule } from 'apps/event-processor-service/src/event-processor-service.module';
 import { NotificationGatewayModule } from './notifications/notification.module';
+import { GatewayMetricsModule } from './metrics/metric.module';
+import { AlertsGatewayModule } from './alerts/alert.module';
 @Module({
   imports: [
     AppLoggerModule,
-    MetricsServiceModule,
-    MonitorServiceModule,
-    NotificationServiceModule,
-    EventProcessorServiceModule,
     ConfigModule,
     EventsModule,
     NotificationGatewayModule,
+    GatewayMetricsModule,
     DatabaseModule,
+    AlertsGatewayModule,
     PubSubModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

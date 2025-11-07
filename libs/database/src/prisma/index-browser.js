@@ -172,22 +172,21 @@ exports.Prisma.ServiceDependencyScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.ServiceAIScalarFieldEnum = {
+exports.Prisma.MetricsScalarFieldEnum = {
   id: 'id',
-  serviceId: 'serviceId',
-  aiData: 'aiData',
-  failCount: 'failCount',
-  lastUpdated: 'lastUpdated',
-  lastRefreshedAt: 'lastRefreshedAt'
+  service: 'service',
+  cpu: 'cpu',
+  memory: 'memory',
+  networkRx: 'networkRx',
+  networkTx: 'networkTx',
+  status: 'status',
+  source: 'source',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -198,12 +197,6 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 exports.EventType = exports.$Enums.EventType = {
   INITIAL: 'INITIAL',
@@ -219,7 +212,7 @@ exports.Prisma.ModelName = {
   ServiceEventHistory: 'ServiceEventHistory',
   Service: 'Service',
   ServiceDependency: 'ServiceDependency',
-  ServiceAI: 'ServiceAI'
+  Metrics: 'Metrics'
 };
 
 /**
