@@ -4,6 +4,8 @@ import { DatabaseService } from '@app/database';
 import { HttpService } from '@nestjs/axios';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 import { firstValueFrom } from 'rxjs';
 import Redis from 'ioredis';
 export interface DispatchableNotification {
@@ -29,6 +31,8 @@ interface NotificationPolicy {
 @Injectable()
 export class NotificationDispatcher {
   private readonly logger = new Logger(NotificationDispatcher.name);
+  private readonly LOG_TOKEN = process.env.NOTIFICATION_SERVICE_TOKEN;
+  private readonly notification_dispatcher_logger: KafkaLogger;
   private lastNotified = new Map<
     string,
     { status: string; message?: string }
@@ -38,6 +42,7 @@ export class NotificationDispatcher {
   constructor(
     private readonly prisma: DatabaseService,
     private readonly http: HttpService,
+    loggerFactory: LoggerFactory,
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
   ) {
     this.loadPolicies();
@@ -45,6 +50,11 @@ export class NotificationDispatcher {
       host: process.env.REDIS_HOST || '127.0.0.1',
       port: Number(process.env.REDIS_PORT || 6379),
     });
+    this.notification_dispatcher_logger = loggerFactory.create(
+      'NotificationDispatcher',
+      'NotificationService',
+      this.LOG_TOKEN,
+    );
   }
 
   private loadPolicies() {
@@ -91,7 +101,7 @@ export class NotificationDispatcher {
     const TTL_SECONDS = 90;
     const exists = await this.redis.exists(dedupKey);
     if (exists) {
-      this.logger.debug(
+      await this.notification_dispatcher_logger.debug(
         `🧊 Duplicate notification skipped (Redis key active): ${dedupKey}`,
       );
       return;
@@ -102,7 +112,7 @@ export class NotificationDispatcher {
       previous.status === event.status &&
       previous.message === event.message
     ) {
-      this.logger.debug(
+      await this.notification_dispatcher_logger.debug(
         `🔕 Skipping duplicate notification for ${event.service} (${event.status})`,
       );
       return;
@@ -142,7 +152,7 @@ export class NotificationDispatcher {
       await this.sendExternal(policy, gqlPayload);
     }
 
-    this.logger.log(
+    await this.notification_dispatcher_logger.log(
       `🔔 Notification dispatched for ${event.service} [${event.eventType}]`,
     );
   }
@@ -190,11 +200,11 @@ export class NotificationDispatcher {
 
       try {
         await firstValueFrom(this.http.post(policy.target, payload));
-        this.logger.log(
+        await this.notification_dispatcher_logger.log(
           `📤 Sent ${policy.channel} alert for ${notification.service}`,
         );
       } catch (err) {
-        this.logger.error(
+        await this.notification_dispatcher_logger.error(
           `❌ Failed to send ${policy.channel} alert: ${(err as Error).message}`,
         );
       }

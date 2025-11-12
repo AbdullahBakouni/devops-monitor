@@ -1,4 +1,4 @@
-import { Injectable, Logger, Inject } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { DockerCollector } from './collectors/docker.collector';
 import { K8sCollector } from './collectors/k8s.collerctor';
@@ -6,10 +6,11 @@ import { DatabaseService } from '@app/database';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
 import { MetricsAlertEngine } from './alerts/metrics-alert-engine';
-import { AnomalyDetector } from './ml/anomaly-detector';
 import { randomUUID } from 'crypto';
 import { ClusterDetector } from './collectors/cluster.collector';
-
+import { AnomalyDetectorV2 } from './ml/anomaly-detector-v2';
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 interface UnifiedMetric {
   name: string;
   service?: string;
@@ -34,28 +35,36 @@ interface AlertPayload {
   value: number;
   threshold: number;
   expected: number;
+  score?: number;
   anomalyConfidence: number;
   createdAt: string;
 }
 @Injectable()
 export class MetricsService {
-  private readonly logger = new Logger(MetricsService.name);
   private alertEngine = new MetricsAlertEngine();
   private lastAlerts = new Map<string, number>();
 
+  private readonly LOG_TOKEN = process.env.METRICS_SERVICE_TOKEN;
+  private readonly logger: KafkaLogger;
   constructor(
     private readonly docker: DockerCollector,
     private readonly k8s: K8sCollector,
     private readonly prisma: DatabaseService,
-    private readonly anomalyDetector: AnomalyDetector,
+    private readonly anomalyDetector: AnomalyDetectorV2,
     private readonly clusterDetector: ClusterDetector,
+    loggerFactory: LoggerFactory,
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
-  ) {}
+  ) {
+    this.logger = loggerFactory.create(
+      'MetricsService',
+      'MetricsService',
+      this.LOG_TOKEN,
+    );
+  }
 
   @Cron(CronExpression.EVERY_MINUTE)
   async collect(): Promise<void> {
-    this.logger.log('📊 Collecting system metrics...');
-
+    await this.logger.log('📊 Collecting system metrics...');
     const dockerMetrics = await this.docker.collectMetrics();
     const k8sMetrics = await this.k8s.collect();
 
@@ -119,8 +128,12 @@ export class MetricsService {
       });
     }
 
-    this.logger.log(
-      `✅ Metrics collected: ${dockerMetrics.length} Docker, ${k8sMetrics.length} K8s`,
+    await this.logger.log(
+      `✅ Metrics collected ,dockerCount:${dockerMetrics.length},k8sCount:${k8sMetrics.length}`,
+      {
+        dockerCount: dockerMetrics.length,
+        k8sCount: k8sMetrics.length,
+      },
     );
   }
   async handleMetrics(sample: {
@@ -149,15 +162,30 @@ export class MetricsService {
         metric: 'cpu',
         metricDisplayName: 'CPU Usage',
         value: cpu,
-        threshold: 0, // ✅ No threshold for anomaly detection
+        threshold: anomaly.bandHigh ?? 0, // ✅ No threshold for anomaly detection
         expected: anomaly.expected ?? 0,
         anomalyConfidence: confidence, // Add confidence if available
         cluster,
+        score: anomaly.score,
         createdAt: new Date().toISOString(),
       });
 
-      this.logger.warn(
+      // await this.sendLog({
+      //   level: 'warn',
+      //   message: `🤖 ML anomaly: ${service} CPU=${cpu}% expected≈${anomaly.expected}%`,
+      //   service,
+      //   cpu,
+      //   expected: anomaly.expected,
+      //   anomalyType: 'cpu',
+      // });
+      await this.logger.warn(
         `🤖 ML anomaly: ${service} CPU=${cpu}% expected≈${anomaly.expected}%`,
+        {
+          service: sample.service,
+          cpu: sample.cpu,
+          expected: anomaly.expected,
+          anomalyType: 'cpu',
+        },
       );
     }
 
@@ -180,8 +208,22 @@ export class MetricsService {
         createdAt: new Date().toISOString(),
       });
 
-      this.logger.warn(
+      // await this.sendLog({
+      //   level: 'warn',
+      //   message: `🔥 Alert: ${service} ${alert.rule.metric}=${alert.value.toFixed(1)}%`,
+      //   service,
+      //   metric: alert.rule.metric,
+      //   value: alert.value,
+      //   threshold: alert.rule.value,
+      // });
+      await this.logger.warn(
         `🔥 Alert: ${service} ${alert.rule.metric}=${alert.value.toFixed(1)}%`,
+        {
+          service,
+          metric: alert.rule.metric,
+          value: alert.value,
+          threshold: alert.rule.value,
+        },
       );
     }
   }
@@ -192,7 +234,16 @@ export class MetricsService {
 
     // 🧊 dedup 60s
     if (this.lastAlerts.has(key) && now - this.lastAlerts.get(key)! < 60_000) {
-      this.logger.debug(`🧊 Skip duplicate alert ${key}`);
+      // await this.sendLog({
+      //   level: 'debug',
+      //   message: `🧊 Skip duplicate alert ${key}`,
+      //   alertKey: key,
+      // });
+
+      await this.logger.debug(`🧊 Skip duplicate alert ${key}`, {
+        message: `🧊 Skip duplicate alert ${key}`,
+        alertKey: key,
+      });
       return;
     }
 
@@ -214,7 +265,24 @@ export class MetricsService {
       metricsAlert: payload,
     });
 
-    this.logger.log(`📡 Alert broadcast: ${payload.service} [${payload.type}]`);
+    // await this.sendLog({
+    //   level: 'log',
+    //   message: `📡 Alert broadcast: ${payload.service} [${payload.type}]`,
+    //   alertType: payload.type,
+    //   service: payload.service,
+    //   metric: payload.metric,
+    //   value: payload.value,
+    // });
+
+    await this.logger.log(
+      `📡 Alert broadcast: ${payload.service} [${payload.type}]`,
+      {
+        alertType: payload.type,
+        service: payload.service,
+        metric: payload.metric,
+        value: payload.value,
+      },
+    );
   }
   private getMetricDisplayName(metric: string): string {
     const displayNames: Record<string, string> = {

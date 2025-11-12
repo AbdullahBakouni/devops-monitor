@@ -2,6 +2,36 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type LogEntryDTO {
+  host: String
+  id: String!
+  image: String
+  level: String!
+  message: String!
+  namespace: String
+  pod: String
+  service: String!
+  source: String
+  spanId: String
+  timestamp: String!
+  traceId: String
+}
+
+input LogSearchFilter {
+  cursor: String
+  from: String
+  level: String
+  limit: Float
+  q: String
+  service: String
+  to: String
+}
+
+type LogSearchResult {
+  items: [LogEntryDTO!]!
+  nextCursor: String
+}
+
 type MetricsAlertDTO {
   anomalyConfidence: Float!
   cluster: String!
@@ -10,6 +40,7 @@ type MetricsAlertDTO {
   message: String!
   metric: String!
   metricDisplayName: String!
+  score: Float
   service: String!
   threshold: Float!
   title: String!
@@ -45,6 +76,7 @@ type NotificationDTO {
 type Query {
   getNotifications: [NotificationDTO!]!
   getServiceEvents: [ServiceEvent!]!
+  searchLogs(filter: LogSearchFilter): LogSearchResult!
 }
 
 type ServiceEvent {
@@ -58,6 +90,7 @@ type ServiceEvent {
 }
 
 type Subscription {
+  logCreated: LogEntryDTO!
   metricsAlert: MetricsAlertDTO!
   metricsUpdated: MetricsDTO!
   notificationCreated: NotificationDTO!

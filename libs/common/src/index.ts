@@ -2,3 +2,8 @@ export * from './common.module';
 export * from './common.service';
 export * from './pubsub/pubsub.module';
 export * from './pubsub/pubsub.provider';
+export * from './kafka/kafka.module';
+export * from './kafka/kafka.service';
+export * from './logging/logger.module';
+export * from './logging/kafka-logger.service';
+export * from './logging/logger.factory';

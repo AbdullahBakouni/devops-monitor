@@ -93,3 +93,33 @@ model Metrics {
 
   @@unique([service, source])
 }
+
+model LogEntry {
+  id        String   @id @default(cuid())
+  logHash   String?  @unique
+  service   String
+  level     String // debug | info | warn | error | fatal
+  message   String
+  context   Json?
+  traceId   String?  @db.VarChar(64)
+  spanId    String?  @db.VarChar(64)
+  host      String?
+  source    String? // docker | k8s | app
+  pod       String?
+  namespace String?
+  image     String?
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([service, level, timestamp(sort: Desc)])
+  @@index([timestamp(sort: Desc)])
+  @@index([logHash])
+}
+
+model LogIngestionToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  service   String // default service tied to the token (optional)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}

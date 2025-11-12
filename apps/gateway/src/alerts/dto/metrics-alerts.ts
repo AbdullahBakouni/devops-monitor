@@ -35,6 +35,8 @@ export class MetricsAlertDTO {
   @Field(() => Float)
   anomalyConfidence: number; // ✅ Now required, use 0 for non-ML alerts
 
+  @Field({ nullable: true }) score?: number;
+
   @Field()
   createdAt: string;
 }

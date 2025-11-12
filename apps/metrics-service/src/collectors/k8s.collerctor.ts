@@ -1,22 +1,32 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import * as k8s from '@kubernetes/client-node';
 import * as fs from 'fs';
 import * as path from 'path';
+import { CoreV1Api } from '@kubernetes/client-node';
 import { K8sMetricsUtil } from './utils/k8s-metrics.util';
-
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 @Injectable()
-export class K8sCollector {
-  private readonly logger = new Logger(K8sCollector.name);
+export class K8sCollector implements OnModuleInit {
   private kubeConfig: k8s.KubeConfig | null = null;
   private k8sApi: k8s.CoreV1Api | null = null;
+  private readonly LOG_TOKEN = process.env.METRICS_SERVICE_TOKEN;
   private metricsApi: k8s.Metrics | null = null;
-  constructor() {
-    this.k8sApi = this.initializeK8sClient();
+  private readonly logger: KafkaLogger;
+  constructor(loggerFactory: LoggerFactory) {
+    this.logger = loggerFactory.create(
+      'K8sCollector',
+      'MetricsService',
+      this.LOG_TOKEN,
+    );
+  }
+  async onModuleInit() {
+    this.k8sApi = await this.initializeK8sClient();
     if (this.k8sApi && this.kubeConfig) {
       this.metricsApi = new k8s.Metrics(this.kubeConfig);
     }
   }
-  private initializeK8sClient(): k8s.CoreV1Api | null {
+  private async initializeK8sClient(): Promise<CoreV1Api | null> {
     try {
       const kc = new k8s.KubeConfig();
       const inCluster = fs.existsSync(
@@ -25,7 +35,7 @@ export class K8sCollector {
 
       if (inCluster) {
         kc.loadFromCluster();
-        this.logger.log(
+        await this.logger.log(
           '🏗️ Detected in-cluster environment — using in-cluster K8s configuration',
         );
       } else {
@@ -35,21 +45,22 @@ export class K8sCollector {
 
         if (fs.existsSync(kubeconfigPath)) {
           kc.loadFromFile(kubeconfigPath);
-          this.logger.log(`🧩 Using kubeconfig from: ${kubeconfigPath}`);
+          await this.logger.log(`🧩 Using kubeconfig from: ${kubeconfigPath}`);
         } else {
           kc.loadFromDefault();
-          this.logger.log('☁️ Using default kubeconfig context');
+          await this.logger.log('☁️ Using default kubeconfig context');
         }
       }
 
       this.kubeConfig = kc;
       const client = kc.makeApiClient(k8s.CoreV1Api);
-      this.logger.log('✅ Kubernetes client initialized successfully');
+      await this.logger.log('✅ Kubernetes client initialized successfully');
       return client;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : String(err);
-      this.logger.warn(
-        `⚠️ Failed to initialize Kubernetes client: ${errorMessage}`,
+      await this.logger.warn(`⚠️ Failed to initialize Kubernetes client`);
+      console.error(
+        `⚠️ Failed to initialize Kubernetes client ${errorMessage}`,
       );
       return null;
     }
@@ -57,7 +68,7 @@ export class K8sCollector {
 
   async collect() {
     if (!this.k8sApi || !this.metricsApi) {
-      this.logger.warn(
+      await this.logger.warn(
         '⚠️ K8s client not initialized — skipping metrics collection.',
       );
       return [];
@@ -66,7 +77,7 @@ export class K8sCollector {
     const hasMetricsServer = await this.isMetricsServerAvailable();
 
     if (!hasMetricsServer) {
-      this.logger.warn(
+      await this.logger.warn(
         '❌ Metrics-server unavailable — canceling K8s metrics collection try: minikube addons enable metrics-server',
       );
       return [];
@@ -120,17 +131,19 @@ export class K8sCollector {
         } catch (nsErr) {
           const errorMessage =
             nsErr instanceof Error ? nsErr.message : String(nsErr);
-          this.logger.debug(
-            `⚠️ Skipping namespace ${namespaceName}: ${errorMessage}`,
+          await this.logger.debug(`⚠️ Skipping namespace ${namespaceName}`);
+          console.error(
+            `⚠️ Skipping namespace ${namespaceName} : ${errorMessage}`,
           );
         }
       }
 
-      this.logger.log(`📈 Collected ${metrics.length} K8s pod metrics`);
+      await this.logger.log(`📈 Collected ${metrics.length} K8s pod metrics`);
       return metrics;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : String(err);
-      this.logger.error(`❌ Failed to collect K8s metrics: ${errorMessage}`);
+      await this.logger.error(`❌ Failed to collect K8s metrics`);
+      console.error(`❌ Failed to collect K8s metrics: ${errorMessage}`);
       return [];
     }
   }
@@ -140,11 +153,14 @@ export class K8sCollector {
 
     try {
       await this.metricsApi.getNodeMetrics();
-      this.logger.log('✅ Metrics Server is available');
+      await this.logger.log('✅ Metrics Server is available');
       return true;
     } catch (e) {
       const error = e as Error;
-      this.logger.debug(
+      await this.logger.debug(
+        `⚠️ Metrics Server NOT available - skipping K8s metrics`,
+      );
+      console.error(
         `⚠️ Metrics Server NOT available - skipping K8s metrics : ${error}`,
       );
       return false;

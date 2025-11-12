@@ -8,6 +8,8 @@ import * as fs from 'fs';
 import { analyzeService } from 'libs/utils/ai/ai.service-analyzer';
 import { analyzeRelationships } from 'libs/utils/ai/ai.relationship-analyzer';
 import pLimit from 'p-limit';
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 interface DockerContainer {
   Names: string[];
   Image: string;
@@ -41,17 +43,26 @@ interface MockPrismaService {
 export class DockerK8sDiscoveryService {
   private readonly logger = new Logger(DockerK8sDiscoveryService.name);
   private docker: Docker | null = null;
+  private readonly LOG_TOKEN = process.env.MONITOR_SERVICE_TOKEN;
   private k8sClient: k8s.CoreV1Api | null = null;
-
-  constructor(private readonly prisma: DatabaseService) {
-    this.initializeDockerClient();
-    this.initializeK8sClient();
+  private readonly desc_all_service_logger: KafkaLogger;
+  constructor(
+    private readonly prisma: DatabaseService,
+    loggerFactory: LoggerFactory,
+  ) {
+    void this.initializeDockerClient();
+    void this.initializeK8sClient();
+    this.desc_all_service_logger = loggerFactory.create(
+      'DockerK8sDiscoveryService',
+      'MonitorService',
+      this.LOG_TOKEN,
+    );
   }
 
   /**
    * 🐳 Initialize Docker client based on operating system
    */
-  private initializeDockerClient(): void {
+  private async initializeDockerClient(): Promise<void> {
     try {
       const platform = os.platform();
       let dockerOptions: Docker.DockerOptions;
@@ -62,7 +73,9 @@ export class DockerK8sDiscoveryService {
           dockerOptions = {
             socketPath: '//./pipe/docker_engine',
           };
-          this.logger.log('🪟 Detected Windows - using named pipe for Docker');
+          await this.desc_all_service_logger.log(
+            '🪟 Detected Windows - using named pipe for Docker',
+          );
           break;
 
         case 'darwin':
@@ -70,7 +83,9 @@ export class DockerK8sDiscoveryService {
           dockerOptions = {
             socketPath: '/var/run/docker.sock',
           };
-          this.logger.log('🍎 Detected macOS - using Unix socket for Docker');
+          await this.desc_all_service_logger.log(
+            '🍎 Detected macOS - using Unix socket for Docker',
+          );
           break;
 
         case 'linux':
@@ -78,7 +93,9 @@ export class DockerK8sDiscoveryService {
           dockerOptions = {
             socketPath: '/var/run/docker.sock',
           };
-          this.logger.log('🐧 Detected Linux - using Unix socket for Docker');
+          await this.desc_all_service_logger.log(
+            '🐧 Detected Linux - using Unix socket for Docker',
+          );
           break;
 
         default:
@@ -94,8 +111,8 @@ export class DockerK8sDiscoveryService {
         .then(() => {
           this.logger.log('✅ Docker client initialized successfully');
         })
-        .catch(() => {
-          this.logger.warn(
+        .catch(async () => {
+          await this.desc_all_service_logger.warn(
             '⚠️ Docker daemon not accessible - Docker discovery will be skipped',
           );
           this.docker = null;
@@ -110,7 +127,7 @@ export class DockerK8sDiscoveryService {
   /**
    * ☸️ Initialize Kubernetes client with multi-environment support
    */
-  private initializeK8sClient(): void {
+  private async initializeK8sClient(): Promise<void> {
     try {
       const kc = new k8s.KubeConfig();
       const platform = os.platform();
@@ -126,11 +143,13 @@ export class DockerK8sDiscoveryService {
           try {
             kc.loadFromFile(configPath);
             configLoaded = true;
-            this.logger.log(`✅ Loaded kubeconfig from: ${configPath}`);
+            await this.desc_all_service_logger.log(
+              `✅ Loaded kubeconfig from: ${configPath}`,
+            );
             break;
           } catch (error) {
             const err = error as Error;
-            this.logger.debug(
+            await this.desc_all_service_logger.debug(
               `Could not load kubeconfig from ${configPath}:${err}`,
             );
           }
@@ -142,10 +161,14 @@ export class DockerK8sDiscoveryService {
         try {
           kc.loadFromCluster();
           configLoaded = true;
-          this.logger.log('✅ Loaded in-cluster Kubernetes configuration');
+          await this.desc_all_service_logger.log(
+            '✅ Loaded in-cluster Kubernetes configuration',
+          );
         } catch (error) {
           const err = error as Error;
-          this.logger.debug(`Not running in Kubernetes cluster: ${err}`);
+          await this.desc_all_service_logger.debug(
+            `Not running in Kubernetes cluster: ${err}`,
+          );
         }
       }
 
@@ -154,7 +177,9 @@ export class DockerK8sDiscoveryService {
         try {
           kc.loadFromDefault();
           configLoaded = true;
-          this.logger.log('✅ Loaded default Kubernetes configuration');
+          await this.desc_all_service_logger.log(
+            '✅ Loaded default Kubernetes configuration',
+          );
         } catch (error) {
           const err = error as Error;
           throw new Error(`No valid kubeconfig found ${err}`);
@@ -166,11 +191,15 @@ export class DockerK8sDiscoveryService {
       // Test connection
       this.k8sClient
         .listNamespace()
-        .then(() => {
-          this.logger.log('✅ Kubernetes client initialized successfully');
+        .then(async () => {
+          await this.desc_all_service_logger.log(
+            '✅ Kubernetes client initialized successfully',
+          );
         })
-        .catch(() => {
-          this.logger.warn('⚠️ Cannot connect to Kubernetes cluster');
+        .catch(async () => {
+          await this.desc_all_service_logger.warn(
+            '⚠️ Cannot connect to Kubernetes cluster',
+          );
           this.k8sClient = null;
         });
     } catch (error) {
@@ -238,7 +267,9 @@ export class DockerK8sDiscoveryService {
     try {
       const containers =
         (await this.docker.listContainers()) as unknown as DockerContainer[];
-      this.logger.log(`🐳 Found ${containers.length} Docker containers.`);
+      await this.desc_all_service_logger.log(
+        `🐳 Found ${containers.length} Docker containers.`,
+      );
 
       const limit = pLimit(5);
 
@@ -284,7 +315,7 @@ export class DockerK8sDiscoveryService {
       this.logger.log('✅ Finished parallel Docker discovery.');
     } catch (error) {
       const err = error as Error;
-      this.logger.error(
+      await this.desc_all_service_logger.error(
         `❌ Error discovering Docker services: ${err.message}`,
         err.stack,
       );
@@ -331,7 +362,7 @@ export class DockerK8sDiscoveryService {
       });
       const services = response.items as unknown as K8sService[];
 
-      this.logger.log(
+      await this.desc_all_service_logger.log(
         `☸️ Found ${services.length} K8s services in namespace '${namespace}'.`,
       );
       const limit = pLimit(5);
@@ -383,7 +414,7 @@ export class DockerK8sDiscoveryService {
       await Promise.allSettled(tasks);
     } catch (error) {
       const err = error as Error;
-      this.logger.error(
+      await this.desc_all_service_logger.error(
         `❌ Error discovering Kubernetes services: ${err.message}`,
         err.stack,
       );
@@ -406,7 +437,7 @@ export class DockerK8sDiscoveryService {
         .map((ns) => ns.metadata?.name)
         .filter(Boolean) as string[];
 
-      this.logger.log(
+      await this.desc_all_service_logger.log(
         `🔍 Discovering services across ${namespaces.length} namespaces...`,
       );
 
@@ -416,7 +447,7 @@ export class DockerK8sDiscoveryService {
       }
     } catch (error) {
       const err = error as Error;
-      this.logger.error(
+      await this.desc_all_service_logger.error(
         `❌ Error discovering K8s services from all namespaces: ${err.message}`,
         err.stack,
       );
@@ -435,7 +466,9 @@ export class DockerK8sDiscoveryService {
     includeAllNamespaces: boolean = false,
   ): Promise<void> {
     const platform = os.platform();
-    this.logger.log(`🔍 Starting service discovery on ${platform}...`);
+    await this.desc_all_service_logger.log(
+      `🔍 Starting service discovery on ${platform}...`,
+    );
 
     await this.discoverDockerServices();
 
@@ -471,16 +504,20 @@ export class DockerK8sDiscoveryService {
               reason: rel.reason,
             },
           });
-          this.logger.log(`🔗 Stored relation: ${rel.from} → ${rel.to}`);
+          await this.desc_all_service_logger.log(
+            `🔗 Stored relation: ${rel.from} → ${rel.to}`,
+          );
         } else {
-          this.logger.debug(
+          await this.desc_all_service_logger.debug(
             `⏭️ Relation ${rel.from} → ${rel.to} already exists, skipping.`,
           );
         }
       }
     }
 
-    this.logger.log('✅ Discovery + AI relationship analysis completed');
+    await this.desc_all_service_logger.log(
+      '✅ Discovery + AI relationship analysis completed',
+    );
   }
 
   /**

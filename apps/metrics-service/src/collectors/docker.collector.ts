@@ -2,7 +2,9 @@ import Docker from 'dockerode';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 interface Metric {
   id: string;
   service: string;
@@ -21,21 +23,27 @@ interface StoredContainerStats {
   // Add other stats if you need to track their deltas later, e.g., memory, network
 }
 @Injectable()
-export class DockerCollector {
-  private readonly logger = new Logger(DockerCollector.name);
+export class DockerCollector implements OnModuleInit {
   private docker: Docker;
+  private readonly LOG_TOKEN = process.env.METRICS_SERVICE_TOKEN;
   private lastCollectedStats = new Map<string, StoredContainerStats>();
-
-  constructor() {
-    this.docker = this.initializeDockerClient();
+  private readonly logger: KafkaLogger;
+  constructor(loggerFactory: LoggerFactory) {
+    this.logger = loggerFactory.create(
+      'DockerCollector',
+      'MetricsService',
+      this.LOG_TOKEN,
+    );
   }
-
-  private initializeDockerClient(): Docker {
+  async onModuleInit() {
+    this.docker = await this.initializeDockerClient();
+  }
+  private async initializeDockerClient(): Promise<Docker> {
     const platform = os.platform();
     let socketPath = '/var/run/docker.sock';
     let dockerOptions: Docker.DockerOptions = {};
     if (process.env.DOCKER_HOST) {
-      this.logger.log(
+      await this.logger.log(
         `🌐 Using remote Docker host: ${process.env.DOCKER_HOST}`,
       );
 
@@ -57,7 +65,7 @@ export class DockerCollector {
           key: fs.readFileSync(path.join(certPath, 'key.pem')),
           protocol: 'https',
         };
-        this.logger.log('🔐 TLS connection enabled for Docker host.');
+        await this.logger.log('🔐 TLS connection enabled for Docker host.');
       }
 
       return new Docker(dockerOptions);
@@ -66,7 +74,7 @@ export class DockerCollector {
       fs.existsSync('/.dockerenv') && fs.existsSync('/var/run/docker.sock');
 
     if (insideContainer) {
-      this.logger.log(
+      await this.logger.log(
         '🐳 Running inside Docker container — connecting via socket',
       );
       dockerOptions = { socketPath };
@@ -75,21 +83,21 @@ export class DockerCollector {
     switch (platform) {
       case 'win32':
         socketPath = '//./pipe/docker_engine';
-        this.logger.log('🪟 Detected Windows — using named pipe');
+        await this.logger.log('🪟 Detected Windows — using named pipe');
         dockerOptions = { socketPath };
         break;
       case 'darwin':
-        this.logger.log('🍎 Detected macOS — using Unix socket');
+        await this.logger.log('🍎 Detected macOS — using Unix socket');
         dockerOptions = { socketPath };
         break;
       default:
-        this.logger.log('🐧 Detected Linux — using Unix socket');
+        await this.logger.log('🐧 Detected Linux — using Unix socket');
         dockerOptions = { socketPath };
         break;
     }
 
     if (!fs.existsSync(socketPath)) {
-      this.logger.warn(`⚠️ Docker socket not found at ${socketPath}`);
+      await this.logger.warn(`⚠️ Docker socket not found at ${socketPath}`);
     }
 
     return new Docker(dockerOptions);
@@ -101,7 +109,7 @@ export class DockerCollector {
       const containers = await this.docker.listContainers({
         filters: { status: ['running'] },
       });
-      this.logger.log(`📦 Found ${containers.length} containers.`);
+      await this.logger.log(`📦 Found ${containers.length} containers.`);
 
       for (const containerInfo of containers) {
         const container = this.docker.getContainer(containerInfo.Id);
@@ -115,12 +123,17 @@ export class DockerCollector {
 
         // Skip metric creation if this is the first collection
         if (!prevStats) {
-          this.logger.debug(
-            `Skipping ${containerInfo.Id} - first collection (no baseline)`,
+          await this.logger.debug(
+            `Skipping ${containerInfo.Image} - first collection (no baseline)`,
           );
           continue;
         }
-        const cpuUsage = this.calculateCPUPercent(statsStream, prevStats);
+
+        const resolvedCpuUsage: number = await this.calculateCPUPercent(
+          // Explicitly type the awaited value
+          statsStream,
+          prevStats,
+        );
         const memoryUsage = this.calculateMemoryPercent(statsStream);
         const net: { rx: number; tx: number } = statsStream.networks
           ? Object.values(statsStream.networks).reduce(
@@ -142,30 +155,30 @@ export class DockerCollector {
             containerInfo.Names?.[0]?.replace('/', '') || containerInfo.Id, // Added service
           cluster: 'docker', // Added cluster
           state: containerInfo.State,
-          cpuUsage,
+          cpuUsage: resolvedCpuUsage,
           memoryUsage,
           networkIO: net,
           createdAt: new Date(),
-          timestamp: new Date(), // Added timestamp
+          timestamp: new Date(),
         });
       }
 
-      this.logger.log(
+      await this.logger.log(
         `📈 Collected metrics for ${metrics.length} Docker containers.`,
       );
       return metrics;
     } catch (err) {
       const error = err as Error;
-      this.logger.error(
+      await this.logger.error(
         `❌ Failed to collect Docker metrics: ${error.message}`,
       );
       return [];
     }
   }
-  private calculateCPUPercent(
+  private async calculateCPUPercent(
     currentStats: Docker.ContainerStats, // Renamed from 'stats' for clarity
     prevStats?: StoredContainerStats, // Now accepts optional previous stats
-  ): number {
+  ): Promise<number> {
     try {
       // Use stored previous stats if available, otherwise fall back to Docker's precpu_stats
       const cpuDelta =
@@ -180,13 +193,15 @@ export class DockerCollector {
         const cpuPercent = parseFloat(
           ((cpuDelta / systemDelta) * cpuCount * 100).toFixed(4),
         );
-        this.logger.debug(`  Calculated CPU Percent: ${cpuPercent}%`);
+        await this.logger.debug(`Calculated CPU Percent: ${cpuPercent}%`);
         return cpuPercent;
       }
       return 0;
     } catch (e) {
       const error = e as Error;
-      this.logger.error(`Error calculating CPU percent: ${error.message}`);
+      await this.logger.error(
+        `Error calculating CPU percent: ${error.message}`,
+      );
       return 0;
     }
   }

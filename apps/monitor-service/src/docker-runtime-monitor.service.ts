@@ -9,6 +9,8 @@ import Docker from 'dockerode';
 import { DatabaseService } from '@app/database';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 import * as os from 'os';
 import * as fs from 'fs';
 interface DockerEvent {
@@ -34,6 +36,8 @@ export class DockerRuntimeMonitorService
   implements OnModuleInit, OnModuleDestroy
 {
   private readonly logger = new Logger(DockerRuntimeMonitorService.name);
+  private readonly LOG_TOKEN = process.env.MONITOR_SERVICE_TOKEN;
+  private readonly snapshot_docker_logger: KafkaLogger;
   private docker: Docker;
   private eventStream:
     | (NodeJS.ReadableStream & { destroy?: () => void })
@@ -46,9 +50,15 @@ export class DockerRuntimeMonitorService
   }[] = [];
   constructor(
     private readonly prisma: DatabaseService,
+    loggerFactory: LoggerFactory,
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
   ) {
     this.docker = this.initializeDockerClient();
+    this.snapshot_docker_logger = loggerFactory.create(
+      'DockerRuntimeMonitorService',
+      'MonitorService',
+      this.LOG_TOKEN,
+    );
   }
   private initializeDockerClient(): Docker {
     const platform = os.platform();
@@ -250,7 +260,9 @@ export class DockerRuntimeMonitorService
         updatedAt: new Date(),
       });
 
-      this.logger.debug(`Snapshot: ${name} -> ${status} (${reason})`);
+      await this.snapshot_docker_logger.debug(
+        `Snapshot: ${name} -> ${status} (${reason})`,
+      );
     }
   }
 

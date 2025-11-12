@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { GatewayModule } from './gateway.module';
-import { AppLoggerService } from './app-logger/app-logger.service';
 import { Logger } from '@nestjs/common';
 import { createServer } from 'http';
 import { Server as WebSocketServer } from 'ws';
@@ -11,9 +10,6 @@ async function bootstrap() {
   const app = await NestFactory.create(GatewayModule, {
     bufferLogs: true,
   });
-
-  const appLogger = app.get(AppLoggerService);
-  app.useLogger(appLogger);
 
   // const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? '')
   //   .split(',')

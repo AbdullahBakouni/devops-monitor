@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
 import { DatabaseService } from '@app/database';
@@ -7,6 +7,8 @@ import { DockerK8sDiscoveryService } from './docker-k8s-discovery.service';
 import { DockerRuntimeMonitorService } from './docker-runtime-monitor.service';
 import { K8sRuntimeMonitorService } from './k8s-runtime-monitor.service';
 import { EventProcessorService } from 'apps/event-processor-service/src/event-processor-service.service';
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 import * as fs from 'fs';
 import { addMinutes } from 'date-fns';
 import * as dotenv from 'dotenv';
@@ -15,8 +17,9 @@ dotenv.config();
 
 @Injectable()
 export class MonitorServiceService {
-  private readonly logger = new Logger(MonitorServiceService.name);
-
+  // private readonly logger = new Logger(MonitorServiceService.name);
+  private readonly LOG_TOKEN = process.env.MONITOR_SERVICE_TOKEN;
+  private readonly logger: KafkaLogger;
   // 🧠 Cache for latest runtime statuses
   private runtimeCache = new Map<
     string,
@@ -29,15 +32,22 @@ export class MonitorServiceService {
     private readonly discovery: DockerK8sDiscoveryService,
     private readonly dockerMonitor: DockerRuntimeMonitorService,
     private readonly k8sMonitor: K8sRuntimeMonitorService,
+    loggerFactory: LoggerFactory,
     private readonly eventProcessor: EventProcessorService,
-  ) {}
+  ) {
+    this.logger = loggerFactory.create(
+      'MonitorService',
+      'MonitorService',
+      this.LOG_TOKEN,
+    );
+  }
 
   /** 🕒 Runs every minute to update all runtime statuses and process events */
   @Cron(CronExpression.EVERY_MINUTE)
   async checkServices(): Promise<void> {
     const env = this.detectEnvironment();
-    this.logger.log(`🌍 Running environment detected: ${env}`);
-    this.logger.log('🔍 Checking all services (Docker, K8s)...');
+    await this.logger.log(`🌍 Running environment detected: ${env}`);
+    await this.logger.log('🔍 Checking all services (Docker, K8s)...');
     await this.discovery.discoverAllServices();
 
     await this.refreshRuntimeCache();
@@ -54,13 +64,13 @@ export class MonitorServiceService {
         });
 
         if (!existsInDB) {
-          this.logger.warn(
+          await this.logger.warn(
             `🚫 Skipping notification for ${name} — not found in DB (probably old cache).`,
           );
           this.runtimeCache.delete(name);
           continue;
         }
-        this.logger.warn(`🧼 Removing stale cached service: ${name}`);
+        await this.logger.warn(`🧼 Removing stale cached service: ${name}`);
         this.runtimeCache.delete(name);
 
         await this.eventProcessor.handleRuntimeStatus({
@@ -87,13 +97,13 @@ export class MonitorServiceService {
       const withinCooldown = now.getTime() - lastUpdated < COOLDOWN_MS;
 
       if (!isFirstTime && !hasChanged && withinCooldown) {
-        this.logger.debug(
+        await this.logger.debug(
           `😴 ${svc.name} unchanged (${runtime.status}) — still within cooldown.`,
         );
         continue;
       }
 
-      this.logger.debug(
+      await this.logger.debug(
         isFirstTime
           ? `🆕 ${svc.name} detected for the first time (${runtime.status})`
           : `📡 ${svc.name} changed or refreshed (${runtime.status})`,
@@ -113,7 +123,7 @@ export class MonitorServiceService {
       });
     }
 
-    this.logger.log('✅ Full check cycle completed.');
+    await this.logger.log('✅ Full check cycle completed.');
   }
   @Cron(CronExpression.EVERY_10_MINUTES)
   async cleanupOldDatabaseServices(): Promise<void> {
@@ -122,7 +132,7 @@ export class MonitorServiceService {
     );
     const thresholdDate = addMinutes(new Date(), -thresholdMinutes);
 
-    this.logger.log(
+    await this.logger.log(
       `🧹 Checking for old DB services older than ${thresholdMinutes} minutes...`,
     );
 
@@ -131,12 +141,12 @@ export class MonitorServiceService {
     });
 
     if (oldServices.length === 0) {
-      this.logger.log('✅ No old DB services found.');
+      await this.logger.log('✅ No old DB services found.');
       return;
     }
 
     for (const svc of oldServices) {
-      this.logger.warn(
+      await this.logger.warn(
         `🗑️ Removing old service from DB: ${svc.name} (last seen ${svc.lastSeenAt?.toISOString()})`,
       );
 
@@ -150,7 +160,7 @@ export class MonitorServiceService {
       await this.prisma.service.delete({ where: { id: svc.id } });
     }
 
-    this.logger.log(
+    await this.logger.log(
       `🧹 Cleanup completed — removed ${oldServices.length} services.`,
     );
   }
@@ -169,7 +179,7 @@ export class MonitorServiceService {
   /** 🧹 Cleanup stale (inactive) services */
   @Cron(CronExpression.EVERY_10_MINUTES)
   async cleanupStaleServices(): Promise<void> {
-    this.logger.log('🧹 Running auto-cleanup for stale services...');
+    await this.logger.log('🧹 Running auto-cleanup for stale services...');
 
     const thresholdMinutes = Number(process.env.SERVICE_CLEANUP_MINUTES || 30);
     const now = new Date();
@@ -180,7 +190,7 @@ export class MonitorServiceService {
     });
 
     if (staleServices.length === 0) {
-      this.logger.log('✅ No stale services found.');
+      await this.logger.log('✅ No stale services found.');
       return;
     }
 
@@ -188,7 +198,7 @@ export class MonitorServiceService {
       await this.prisma.service.delete({ where: { id: svc.id } });
       this.runtimeCache.delete(svc.name); // 🧠 remove from cache too
 
-      this.logger.warn(
+      await this.logger.warn(
         `🗑️ Removed stale service: ${svc.name} (last seen ${svc.lastSeenAt?.toISOString()})`,
       );
 
@@ -204,13 +214,13 @@ export class MonitorServiceService {
       });
     }
 
-    this.logger.log(
+    await this.logger.log(
       `🧹 Cleanup completed. Removed ${staleServices.length} services.`,
     );
   }
 
   /** ⚙️ Refresh cache from Docker + K8s monitors */
-  private refreshRuntimeCache(): Promise<void> {
+  private async refreshRuntimeCache(): Promise<void> {
     const dockerStatuses = this.dockerMonitor.getLatestStatuses?.() || [];
     const k8sStatuses = this.k8sMonitor.getLatestStatuses?.() || [];
 
@@ -234,7 +244,7 @@ export class MonitorServiceService {
       });
     }
 
-    this.logger.debug(
+    await this.logger.debug(
       `🧠 Runtime cache updated: ${this.runtimeCache.size} entries`,
     );
     return Promise.resolve();

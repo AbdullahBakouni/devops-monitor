@@ -8,7 +8,7 @@ import { DockerK8sDiscoveryService } from './docker-k8s-discovery.service';
 import { DiscoveryModule } from '@nestjs/core';
 import { DockerRuntimeMonitorService } from './docker-runtime-monitor.service';
 import { K8sRuntimeMonitorService } from './k8s-runtime-monitor.service';
-import { PubSubModule } from '@app/common';
+import { LoggerModule, PubSubModule } from '@app/common';
 import { NotificationServiceModule } from 'apps/notification-service/src/notification-service.module';
 import { EventProcessorServiceModule } from 'apps/event-processor-service/src/event-processor-service.module';
 import { ServiceEventHistoryService } from './service-event-history.service';
@@ -19,6 +19,7 @@ import { ServiceEventHistoryService } from './service-event-history.service';
     DatabaseModule,
     DiscoveryModule,
     PubSubModule,
+    LoggerModule,
     NotificationServiceModule,
     EventProcessorServiceModule,
   ],

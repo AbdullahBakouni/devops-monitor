@@ -184,9 +184,40 @@ exports.Prisma.MetricsScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.LogEntryScalarFieldEnum = {
+  id: 'id',
+  logHash: 'logHash',
+  service: 'service',
+  level: 'level',
+  message: 'message',
+  context: 'context',
+  traceId: 'traceId',
+  spanId: 'spanId',
+  host: 'host',
+  source: 'source',
+  pod: 'pod',
+  namespace: 'namespace',
+  image: 'image',
+  timestamp: 'timestamp',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.LogIngestionTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  service: 'service',
+  active: 'active',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -197,6 +228,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.EventType = exports.$Enums.EventType = {
   INITIAL: 'INITIAL',
@@ -212,7 +249,9 @@ exports.Prisma.ModelName = {
   ServiceEventHistory: 'ServiceEventHistory',
   Service: 'Service',
   ServiceDependency: 'ServiceDependency',
-  Metrics: 'Metrics'
+  Metrics: 'Metrics',
+  LogEntry: 'LogEntry',
+  LogIngestionToken: 'LogIngestionToken'
 };
 
 /**

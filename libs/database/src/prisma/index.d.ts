@@ -43,6 +43,16 @@ export type ServiceDependency = $Result.DefaultSelection<Prisma.$ServiceDependen
  * 
  */
 export type Metrics = $Result.DefaultSelection<Prisma.$MetricsPayload>
+/**
+ * Model LogEntry
+ * 
+ */
+export type LogEntry = $Result.DefaultSelection<Prisma.$LogEntryPayload>
+/**
+ * Model LogIngestionToken
+ * 
+ */
+export type LogIngestionToken = $Result.DefaultSelection<Prisma.$LogIngestionTokenPayload>
 
 /**
  * Enums
@@ -241,6 +251,26 @@ export class PrismaClient<
     * ```
     */
   get metrics(): Prisma.MetricsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.logEntry`: Exposes CRUD operations for the **LogEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LogEntries
+    * const logEntries = await prisma.logEntry.findMany()
+    * ```
+    */
+  get logEntry(): Prisma.LogEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.logIngestionToken`: Exposes CRUD operations for the **LogIngestionToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LogIngestionTokens
+    * const logIngestionTokens = await prisma.logIngestionToken.findMany()
+    * ```
+    */
+  get logIngestionToken(): Prisma.LogIngestionTokenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -686,7 +716,9 @@ export namespace Prisma {
     ServiceEventHistory: 'ServiceEventHistory',
     Service: 'Service',
     ServiceDependency: 'ServiceDependency',
-    Metrics: 'Metrics'
+    Metrics: 'Metrics',
+    LogEntry: 'LogEntry',
+    LogIngestionToken: 'LogIngestionToken'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -705,7 +737,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "metrics"
+      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "metrics" | "logEntry" | "logIngestionToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1153,6 +1185,154 @@ export namespace Prisma {
           }
         }
       }
+      LogEntry: {
+        payload: Prisma.$LogEntryPayload<ExtArgs>
+        fields: Prisma.LogEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LogEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LogEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.LogEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LogEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>
+          }
+          findMany: {
+            args: Prisma.LogEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>[]
+          }
+          create: {
+            args: Prisma.LogEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>
+          }
+          createMany: {
+            args: Prisma.LogEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LogEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.LogEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>
+          }
+          update: {
+            args: Prisma.LogEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.LogEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LogEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LogEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.LogEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.LogEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLogEntry>
+          }
+          groupBy: {
+            args: Prisma.LogEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LogEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LogEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<LogEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+      LogIngestionToken: {
+        payload: Prisma.$LogIngestionTokenPayload<ExtArgs>
+        fields: Prisma.LogIngestionTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LogIngestionTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LogIngestionTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.LogIngestionTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LogIngestionTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>
+          }
+          findMany: {
+            args: Prisma.LogIngestionTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>[]
+          }
+          create: {
+            args: Prisma.LogIngestionTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>
+          }
+          createMany: {
+            args: Prisma.LogIngestionTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LogIngestionTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.LogIngestionTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>
+          }
+          update: {
+            args: Prisma.LogIngestionTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.LogIngestionTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LogIngestionTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LogIngestionTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.LogIngestionTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LogIngestionTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.LogIngestionTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLogIngestionToken>
+          }
+          groupBy: {
+            args: Prisma.LogIngestionTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LogIngestionTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LogIngestionTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<LogIngestionTokenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1255,6 +1435,8 @@ export namespace Prisma {
     service?: ServiceOmit
     serviceDependency?: ServiceDependencyOmit
     metrics?: MetricsOmit
+    logEntry?: LogEntryOmit
+    logIngestionToken?: LogIngestionTokenOmit
   }
 
   /* Types for Logging */
@@ -7773,6 +7955,2122 @@ export namespace Prisma {
 
 
   /**
+   * Model LogEntry
+   */
+
+  export type AggregateLogEntry = {
+    _count: LogEntryCountAggregateOutputType | null
+    _min: LogEntryMinAggregateOutputType | null
+    _max: LogEntryMaxAggregateOutputType | null
+  }
+
+  export type LogEntryMinAggregateOutputType = {
+    id: string | null
+    logHash: string | null
+    service: string | null
+    level: string | null
+    message: string | null
+    traceId: string | null
+    spanId: string | null
+    host: string | null
+    source: string | null
+    pod: string | null
+    namespace: string | null
+    image: string | null
+    timestamp: Date | null
+    createdAt: Date | null
+  }
+
+  export type LogEntryMaxAggregateOutputType = {
+    id: string | null
+    logHash: string | null
+    service: string | null
+    level: string | null
+    message: string | null
+    traceId: string | null
+    spanId: string | null
+    host: string | null
+    source: string | null
+    pod: string | null
+    namespace: string | null
+    image: string | null
+    timestamp: Date | null
+    createdAt: Date | null
+  }
+
+  export type LogEntryCountAggregateOutputType = {
+    id: number
+    logHash: number
+    service: number
+    level: number
+    message: number
+    context: number
+    traceId: number
+    spanId: number
+    host: number
+    source: number
+    pod: number
+    namespace: number
+    image: number
+    timestamp: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LogEntryMinAggregateInputType = {
+    id?: true
+    logHash?: true
+    service?: true
+    level?: true
+    message?: true
+    traceId?: true
+    spanId?: true
+    host?: true
+    source?: true
+    pod?: true
+    namespace?: true
+    image?: true
+    timestamp?: true
+    createdAt?: true
+  }
+
+  export type LogEntryMaxAggregateInputType = {
+    id?: true
+    logHash?: true
+    service?: true
+    level?: true
+    message?: true
+    traceId?: true
+    spanId?: true
+    host?: true
+    source?: true
+    pod?: true
+    namespace?: true
+    image?: true
+    timestamp?: true
+    createdAt?: true
+  }
+
+  export type LogEntryCountAggregateInputType = {
+    id?: true
+    logHash?: true
+    service?: true
+    level?: true
+    message?: true
+    context?: true
+    traceId?: true
+    spanId?: true
+    host?: true
+    source?: true
+    pod?: true
+    namespace?: true
+    image?: true
+    timestamp?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LogEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LogEntry to aggregate.
+     */
+    where?: LogEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogEntries to fetch.
+     */
+    orderBy?: LogEntryOrderByWithRelationInput | LogEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LogEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LogEntries
+    **/
+    _count?: true | LogEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LogEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LogEntryMaxAggregateInputType
+  }
+
+  export type GetLogEntryAggregateType<T extends LogEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateLogEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLogEntry[P]>
+      : GetScalarType<T[P], AggregateLogEntry[P]>
+  }
+
+
+
+
+  export type LogEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogEntryWhereInput
+    orderBy?: LogEntryOrderByWithAggregationInput | LogEntryOrderByWithAggregationInput[]
+    by: LogEntryScalarFieldEnum[] | LogEntryScalarFieldEnum
+    having?: LogEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LogEntryCountAggregateInputType | true
+    _min?: LogEntryMinAggregateInputType
+    _max?: LogEntryMaxAggregateInputType
+  }
+
+  export type LogEntryGroupByOutputType = {
+    id: string
+    logHash: string | null
+    service: string
+    level: string
+    message: string
+    context: JsonValue | null
+    traceId: string | null
+    spanId: string | null
+    host: string | null
+    source: string | null
+    pod: string | null
+    namespace: string | null
+    image: string | null
+    timestamp: Date
+    createdAt: Date
+    _count: LogEntryCountAggregateOutputType | null
+    _min: LogEntryMinAggregateOutputType | null
+    _max: LogEntryMaxAggregateOutputType | null
+  }
+
+  type GetLogEntryGroupByPayload<T extends LogEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LogEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LogEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LogEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], LogEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LogEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    logHash?: boolean
+    service?: boolean
+    level?: boolean
+    message?: boolean
+    context?: boolean
+    traceId?: boolean
+    spanId?: boolean
+    host?: boolean
+    source?: boolean
+    pod?: boolean
+    namespace?: boolean
+    image?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["logEntry"]>
+
+  export type LogEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    logHash?: boolean
+    service?: boolean
+    level?: boolean
+    message?: boolean
+    context?: boolean
+    traceId?: boolean
+    spanId?: boolean
+    host?: boolean
+    source?: boolean
+    pod?: boolean
+    namespace?: boolean
+    image?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["logEntry"]>
+
+  export type LogEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    logHash?: boolean
+    service?: boolean
+    level?: boolean
+    message?: boolean
+    context?: boolean
+    traceId?: boolean
+    spanId?: boolean
+    host?: boolean
+    source?: boolean
+    pod?: boolean
+    namespace?: boolean
+    image?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["logEntry"]>
+
+  export type LogEntrySelectScalar = {
+    id?: boolean
+    logHash?: boolean
+    service?: boolean
+    level?: boolean
+    message?: boolean
+    context?: boolean
+    traceId?: boolean
+    spanId?: boolean
+    host?: boolean
+    source?: boolean
+    pod?: boolean
+    namespace?: boolean
+    image?: boolean
+    timestamp?: boolean
+    createdAt?: boolean
+  }
+
+  export type LogEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "logHash" | "service" | "level" | "message" | "context" | "traceId" | "spanId" | "host" | "source" | "pod" | "namespace" | "image" | "timestamp" | "createdAt", ExtArgs["result"]["logEntry"]>
+
+  export type $LogEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LogEntry"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      logHash: string | null
+      service: string
+      level: string
+      message: string
+      context: Prisma.JsonValue | null
+      traceId: string | null
+      spanId: string | null
+      host: string | null
+      source: string | null
+      pod: string | null
+      namespace: string | null
+      image: string | null
+      timestamp: Date
+      createdAt: Date
+    }, ExtArgs["result"]["logEntry"]>
+    composites: {}
+  }
+
+  type LogEntryGetPayload<S extends boolean | null | undefined | LogEntryDefaultArgs> = $Result.GetResult<Prisma.$LogEntryPayload, S>
+
+  type LogEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LogEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LogEntryCountAggregateInputType | true
+    }
+
+  export interface LogEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LogEntry'], meta: { name: 'LogEntry' } }
+    /**
+     * Find zero or one LogEntry that matches the filter.
+     * @param {LogEntryFindUniqueArgs} args - Arguments to find a LogEntry
+     * @example
+     * // Get one LogEntry
+     * const logEntry = await prisma.logEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LogEntryFindUniqueArgs>(args: SelectSubset<T, LogEntryFindUniqueArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LogEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LogEntryFindUniqueOrThrowArgs} args - Arguments to find a LogEntry
+     * @example
+     * // Get one LogEntry
+     * const logEntry = await prisma.logEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LogEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, LogEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LogEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryFindFirstArgs} args - Arguments to find a LogEntry
+     * @example
+     * // Get one LogEntry
+     * const logEntry = await prisma.logEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LogEntryFindFirstArgs>(args?: SelectSubset<T, LogEntryFindFirstArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LogEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryFindFirstOrThrowArgs} args - Arguments to find a LogEntry
+     * @example
+     * // Get one LogEntry
+     * const logEntry = await prisma.logEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LogEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, LogEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LogEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LogEntries
+     * const logEntries = await prisma.logEntry.findMany()
+     * 
+     * // Get first 10 LogEntries
+     * const logEntries = await prisma.logEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const logEntryWithIdOnly = await prisma.logEntry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LogEntryFindManyArgs>(args?: SelectSubset<T, LogEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LogEntry.
+     * @param {LogEntryCreateArgs} args - Arguments to create a LogEntry.
+     * @example
+     * // Create one LogEntry
+     * const LogEntry = await prisma.logEntry.create({
+     *   data: {
+     *     // ... data to create a LogEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends LogEntryCreateArgs>(args: SelectSubset<T, LogEntryCreateArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LogEntries.
+     * @param {LogEntryCreateManyArgs} args - Arguments to create many LogEntries.
+     * @example
+     * // Create many LogEntries
+     * const logEntry = await prisma.logEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LogEntryCreateManyArgs>(args?: SelectSubset<T, LogEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LogEntries and returns the data saved in the database.
+     * @param {LogEntryCreateManyAndReturnArgs} args - Arguments to create many LogEntries.
+     * @example
+     * // Create many LogEntries
+     * const logEntry = await prisma.logEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LogEntries and only return the `id`
+     * const logEntryWithIdOnly = await prisma.logEntry.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LogEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, LogEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LogEntry.
+     * @param {LogEntryDeleteArgs} args - Arguments to delete one LogEntry.
+     * @example
+     * // Delete one LogEntry
+     * const LogEntry = await prisma.logEntry.delete({
+     *   where: {
+     *     // ... filter to delete one LogEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LogEntryDeleteArgs>(args: SelectSubset<T, LogEntryDeleteArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LogEntry.
+     * @param {LogEntryUpdateArgs} args - Arguments to update one LogEntry.
+     * @example
+     * // Update one LogEntry
+     * const logEntry = await prisma.logEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LogEntryUpdateArgs>(args: SelectSubset<T, LogEntryUpdateArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LogEntries.
+     * @param {LogEntryDeleteManyArgs} args - Arguments to filter LogEntries to delete.
+     * @example
+     * // Delete a few LogEntries
+     * const { count } = await prisma.logEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LogEntryDeleteManyArgs>(args?: SelectSubset<T, LogEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LogEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LogEntries
+     * const logEntry = await prisma.logEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LogEntryUpdateManyArgs>(args: SelectSubset<T, LogEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LogEntries and returns the data updated in the database.
+     * @param {LogEntryUpdateManyAndReturnArgs} args - Arguments to update many LogEntries.
+     * @example
+     * // Update many LogEntries
+     * const logEntry = await prisma.logEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LogEntries and only return the `id`
+     * const logEntryWithIdOnly = await prisma.logEntry.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LogEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, LogEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LogEntry.
+     * @param {LogEntryUpsertArgs} args - Arguments to update or create a LogEntry.
+     * @example
+     * // Update or create a LogEntry
+     * const logEntry = await prisma.logEntry.upsert({
+     *   create: {
+     *     // ... data to create a LogEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LogEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LogEntryUpsertArgs>(args: SelectSubset<T, LogEntryUpsertArgs<ExtArgs>>): Prisma__LogEntryClient<$Result.GetResult<Prisma.$LogEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LogEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryCountArgs} args - Arguments to filter LogEntries to count.
+     * @example
+     * // Count the number of LogEntries
+     * const count = await prisma.logEntry.count({
+     *   where: {
+     *     // ... the filter for the LogEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends LogEntryCountArgs>(
+      args?: Subset<T, LogEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LogEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LogEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LogEntryAggregateArgs>(args: Subset<T, LogEntryAggregateArgs>): Prisma.PrismaPromise<GetLogEntryAggregateType<T>>
+
+    /**
+     * Group by LogEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LogEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LogEntryGroupByArgs['orderBy'] }
+        : { orderBy?: LogEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LogEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLogEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LogEntry model
+   */
+  readonly fields: LogEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LogEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LogEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LogEntry model
+   */
+  interface LogEntryFieldRefs {
+    readonly id: FieldRef<"LogEntry", 'String'>
+    readonly logHash: FieldRef<"LogEntry", 'String'>
+    readonly service: FieldRef<"LogEntry", 'String'>
+    readonly level: FieldRef<"LogEntry", 'String'>
+    readonly message: FieldRef<"LogEntry", 'String'>
+    readonly context: FieldRef<"LogEntry", 'Json'>
+    readonly traceId: FieldRef<"LogEntry", 'String'>
+    readonly spanId: FieldRef<"LogEntry", 'String'>
+    readonly host: FieldRef<"LogEntry", 'String'>
+    readonly source: FieldRef<"LogEntry", 'String'>
+    readonly pod: FieldRef<"LogEntry", 'String'>
+    readonly namespace: FieldRef<"LogEntry", 'String'>
+    readonly image: FieldRef<"LogEntry", 'String'>
+    readonly timestamp: FieldRef<"LogEntry", 'DateTime'>
+    readonly createdAt: FieldRef<"LogEntry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LogEntry findUnique
+   */
+  export type LogEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which LogEntry to fetch.
+     */
+    where: LogEntryWhereUniqueInput
+  }
+
+  /**
+   * LogEntry findUniqueOrThrow
+   */
+  export type LogEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which LogEntry to fetch.
+     */
+    where: LogEntryWhereUniqueInput
+  }
+
+  /**
+   * LogEntry findFirst
+   */
+  export type LogEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which LogEntry to fetch.
+     */
+    where?: LogEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogEntries to fetch.
+     */
+    orderBy?: LogEntryOrderByWithRelationInput | LogEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LogEntries.
+     */
+    cursor?: LogEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LogEntries.
+     */
+    distinct?: LogEntryScalarFieldEnum | LogEntryScalarFieldEnum[]
+  }
+
+  /**
+   * LogEntry findFirstOrThrow
+   */
+  export type LogEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which LogEntry to fetch.
+     */
+    where?: LogEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogEntries to fetch.
+     */
+    orderBy?: LogEntryOrderByWithRelationInput | LogEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LogEntries.
+     */
+    cursor?: LogEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LogEntries.
+     */
+    distinct?: LogEntryScalarFieldEnum | LogEntryScalarFieldEnum[]
+  }
+
+  /**
+   * LogEntry findMany
+   */
+  export type LogEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * Filter, which LogEntries to fetch.
+     */
+    where?: LogEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogEntries to fetch.
+     */
+    orderBy?: LogEntryOrderByWithRelationInput | LogEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LogEntries.
+     */
+    cursor?: LogEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogEntries.
+     */
+    skip?: number
+    distinct?: LogEntryScalarFieldEnum | LogEntryScalarFieldEnum[]
+  }
+
+  /**
+   * LogEntry create
+   */
+  export type LogEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LogEntry.
+     */
+    data: XOR<LogEntryCreateInput, LogEntryUncheckedCreateInput>
+  }
+
+  /**
+   * LogEntry createMany
+   */
+  export type LogEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LogEntries.
+     */
+    data: LogEntryCreateManyInput | LogEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LogEntry createManyAndReturn
+   */
+  export type LogEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many LogEntries.
+     */
+    data: LogEntryCreateManyInput | LogEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LogEntry update
+   */
+  export type LogEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LogEntry.
+     */
+    data: XOR<LogEntryUpdateInput, LogEntryUncheckedUpdateInput>
+    /**
+     * Choose, which LogEntry to update.
+     */
+    where: LogEntryWhereUniqueInput
+  }
+
+  /**
+   * LogEntry updateMany
+   */
+  export type LogEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LogEntries.
+     */
+    data: XOR<LogEntryUpdateManyMutationInput, LogEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which LogEntries to update
+     */
+    where?: LogEntryWhereInput
+    /**
+     * Limit how many LogEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LogEntry updateManyAndReturn
+   */
+  export type LogEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update LogEntries.
+     */
+    data: XOR<LogEntryUpdateManyMutationInput, LogEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which LogEntries to update
+     */
+    where?: LogEntryWhereInput
+    /**
+     * Limit how many LogEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LogEntry upsert
+   */
+  export type LogEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LogEntry to update in case it exists.
+     */
+    where: LogEntryWhereUniqueInput
+    /**
+     * In case the LogEntry found by the `where` argument doesn't exist, create a new LogEntry with this data.
+     */
+    create: XOR<LogEntryCreateInput, LogEntryUncheckedCreateInput>
+    /**
+     * In case the LogEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LogEntryUpdateInput, LogEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * LogEntry delete
+   */
+  export type LogEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+    /**
+     * Filter which LogEntry to delete.
+     */
+    where: LogEntryWhereUniqueInput
+  }
+
+  /**
+   * LogEntry deleteMany
+   */
+  export type LogEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LogEntries to delete
+     */
+    where?: LogEntryWhereInput
+    /**
+     * Limit how many LogEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LogEntry without action
+   */
+  export type LogEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogEntry
+     */
+    select?: LogEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogEntry
+     */
+    omit?: LogEntryOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LogIngestionToken
+   */
+
+  export type AggregateLogIngestionToken = {
+    _count: LogIngestionTokenCountAggregateOutputType | null
+    _min: LogIngestionTokenMinAggregateOutputType | null
+    _max: LogIngestionTokenMaxAggregateOutputType | null
+  }
+
+  export type LogIngestionTokenMinAggregateOutputType = {
+    id: string | null
+    token: string | null
+    service: string | null
+    active: boolean | null
+    createdAt: Date | null
+  }
+
+  export type LogIngestionTokenMaxAggregateOutputType = {
+    id: string | null
+    token: string | null
+    service: string | null
+    active: boolean | null
+    createdAt: Date | null
+  }
+
+  export type LogIngestionTokenCountAggregateOutputType = {
+    id: number
+    token: number
+    service: number
+    active: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LogIngestionTokenMinAggregateInputType = {
+    id?: true
+    token?: true
+    service?: true
+    active?: true
+    createdAt?: true
+  }
+
+  export type LogIngestionTokenMaxAggregateInputType = {
+    id?: true
+    token?: true
+    service?: true
+    active?: true
+    createdAt?: true
+  }
+
+  export type LogIngestionTokenCountAggregateInputType = {
+    id?: true
+    token?: true
+    service?: true
+    active?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LogIngestionTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LogIngestionToken to aggregate.
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogIngestionTokens to fetch.
+     */
+    orderBy?: LogIngestionTokenOrderByWithRelationInput | LogIngestionTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LogIngestionTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogIngestionTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogIngestionTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LogIngestionTokens
+    **/
+    _count?: true | LogIngestionTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LogIngestionTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LogIngestionTokenMaxAggregateInputType
+  }
+
+  export type GetLogIngestionTokenAggregateType<T extends LogIngestionTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateLogIngestionToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLogIngestionToken[P]>
+      : GetScalarType<T[P], AggregateLogIngestionToken[P]>
+  }
+
+
+
+
+  export type LogIngestionTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogIngestionTokenWhereInput
+    orderBy?: LogIngestionTokenOrderByWithAggregationInput | LogIngestionTokenOrderByWithAggregationInput[]
+    by: LogIngestionTokenScalarFieldEnum[] | LogIngestionTokenScalarFieldEnum
+    having?: LogIngestionTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LogIngestionTokenCountAggregateInputType | true
+    _min?: LogIngestionTokenMinAggregateInputType
+    _max?: LogIngestionTokenMaxAggregateInputType
+  }
+
+  export type LogIngestionTokenGroupByOutputType = {
+    id: string
+    token: string
+    service: string
+    active: boolean
+    createdAt: Date
+    _count: LogIngestionTokenCountAggregateOutputType | null
+    _min: LogIngestionTokenMinAggregateOutputType | null
+    _max: LogIngestionTokenMaxAggregateOutputType | null
+  }
+
+  type GetLogIngestionTokenGroupByPayload<T extends LogIngestionTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LogIngestionTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LogIngestionTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LogIngestionTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], LogIngestionTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LogIngestionTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    service?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["logIngestionToken"]>
+
+  export type LogIngestionTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    service?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["logIngestionToken"]>
+
+  export type LogIngestionTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    service?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["logIngestionToken"]>
+
+  export type LogIngestionTokenSelectScalar = {
+    id?: boolean
+    token?: boolean
+    service?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }
+
+  export type LogIngestionTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "token" | "service" | "active" | "createdAt", ExtArgs["result"]["logIngestionToken"]>
+
+  export type $LogIngestionTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LogIngestionToken"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      token: string
+      service: string
+      active: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["logIngestionToken"]>
+    composites: {}
+  }
+
+  type LogIngestionTokenGetPayload<S extends boolean | null | undefined | LogIngestionTokenDefaultArgs> = $Result.GetResult<Prisma.$LogIngestionTokenPayload, S>
+
+  type LogIngestionTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LogIngestionTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LogIngestionTokenCountAggregateInputType | true
+    }
+
+  export interface LogIngestionTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LogIngestionToken'], meta: { name: 'LogIngestionToken' } }
+    /**
+     * Find zero or one LogIngestionToken that matches the filter.
+     * @param {LogIngestionTokenFindUniqueArgs} args - Arguments to find a LogIngestionToken
+     * @example
+     * // Get one LogIngestionToken
+     * const logIngestionToken = await prisma.logIngestionToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LogIngestionTokenFindUniqueArgs>(args: SelectSubset<T, LogIngestionTokenFindUniqueArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LogIngestionToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LogIngestionTokenFindUniqueOrThrowArgs} args - Arguments to find a LogIngestionToken
+     * @example
+     * // Get one LogIngestionToken
+     * const logIngestionToken = await prisma.logIngestionToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LogIngestionTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, LogIngestionTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LogIngestionToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenFindFirstArgs} args - Arguments to find a LogIngestionToken
+     * @example
+     * // Get one LogIngestionToken
+     * const logIngestionToken = await prisma.logIngestionToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LogIngestionTokenFindFirstArgs>(args?: SelectSubset<T, LogIngestionTokenFindFirstArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LogIngestionToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenFindFirstOrThrowArgs} args - Arguments to find a LogIngestionToken
+     * @example
+     * // Get one LogIngestionToken
+     * const logIngestionToken = await prisma.logIngestionToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LogIngestionTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, LogIngestionTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LogIngestionTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LogIngestionTokens
+     * const logIngestionTokens = await prisma.logIngestionToken.findMany()
+     * 
+     * // Get first 10 LogIngestionTokens
+     * const logIngestionTokens = await prisma.logIngestionToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const logIngestionTokenWithIdOnly = await prisma.logIngestionToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LogIngestionTokenFindManyArgs>(args?: SelectSubset<T, LogIngestionTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LogIngestionToken.
+     * @param {LogIngestionTokenCreateArgs} args - Arguments to create a LogIngestionToken.
+     * @example
+     * // Create one LogIngestionToken
+     * const LogIngestionToken = await prisma.logIngestionToken.create({
+     *   data: {
+     *     // ... data to create a LogIngestionToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends LogIngestionTokenCreateArgs>(args: SelectSubset<T, LogIngestionTokenCreateArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LogIngestionTokens.
+     * @param {LogIngestionTokenCreateManyArgs} args - Arguments to create many LogIngestionTokens.
+     * @example
+     * // Create many LogIngestionTokens
+     * const logIngestionToken = await prisma.logIngestionToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LogIngestionTokenCreateManyArgs>(args?: SelectSubset<T, LogIngestionTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LogIngestionTokens and returns the data saved in the database.
+     * @param {LogIngestionTokenCreateManyAndReturnArgs} args - Arguments to create many LogIngestionTokens.
+     * @example
+     * // Create many LogIngestionTokens
+     * const logIngestionToken = await prisma.logIngestionToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LogIngestionTokens and only return the `id`
+     * const logIngestionTokenWithIdOnly = await prisma.logIngestionToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LogIngestionTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, LogIngestionTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LogIngestionToken.
+     * @param {LogIngestionTokenDeleteArgs} args - Arguments to delete one LogIngestionToken.
+     * @example
+     * // Delete one LogIngestionToken
+     * const LogIngestionToken = await prisma.logIngestionToken.delete({
+     *   where: {
+     *     // ... filter to delete one LogIngestionToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LogIngestionTokenDeleteArgs>(args: SelectSubset<T, LogIngestionTokenDeleteArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LogIngestionToken.
+     * @param {LogIngestionTokenUpdateArgs} args - Arguments to update one LogIngestionToken.
+     * @example
+     * // Update one LogIngestionToken
+     * const logIngestionToken = await prisma.logIngestionToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LogIngestionTokenUpdateArgs>(args: SelectSubset<T, LogIngestionTokenUpdateArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LogIngestionTokens.
+     * @param {LogIngestionTokenDeleteManyArgs} args - Arguments to filter LogIngestionTokens to delete.
+     * @example
+     * // Delete a few LogIngestionTokens
+     * const { count } = await prisma.logIngestionToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LogIngestionTokenDeleteManyArgs>(args?: SelectSubset<T, LogIngestionTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LogIngestionTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LogIngestionTokens
+     * const logIngestionToken = await prisma.logIngestionToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LogIngestionTokenUpdateManyArgs>(args: SelectSubset<T, LogIngestionTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LogIngestionTokens and returns the data updated in the database.
+     * @param {LogIngestionTokenUpdateManyAndReturnArgs} args - Arguments to update many LogIngestionTokens.
+     * @example
+     * // Update many LogIngestionTokens
+     * const logIngestionToken = await prisma.logIngestionToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LogIngestionTokens and only return the `id`
+     * const logIngestionTokenWithIdOnly = await prisma.logIngestionToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LogIngestionTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, LogIngestionTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LogIngestionToken.
+     * @param {LogIngestionTokenUpsertArgs} args - Arguments to update or create a LogIngestionToken.
+     * @example
+     * // Update or create a LogIngestionToken
+     * const logIngestionToken = await prisma.logIngestionToken.upsert({
+     *   create: {
+     *     // ... data to create a LogIngestionToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LogIngestionToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LogIngestionTokenUpsertArgs>(args: SelectSubset<T, LogIngestionTokenUpsertArgs<ExtArgs>>): Prisma__LogIngestionTokenClient<$Result.GetResult<Prisma.$LogIngestionTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LogIngestionTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenCountArgs} args - Arguments to filter LogIngestionTokens to count.
+     * @example
+     * // Count the number of LogIngestionTokens
+     * const count = await prisma.logIngestionToken.count({
+     *   where: {
+     *     // ... the filter for the LogIngestionTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends LogIngestionTokenCountArgs>(
+      args?: Subset<T, LogIngestionTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LogIngestionTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LogIngestionToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LogIngestionTokenAggregateArgs>(args: Subset<T, LogIngestionTokenAggregateArgs>): Prisma.PrismaPromise<GetLogIngestionTokenAggregateType<T>>
+
+    /**
+     * Group by LogIngestionToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogIngestionTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LogIngestionTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LogIngestionTokenGroupByArgs['orderBy'] }
+        : { orderBy?: LogIngestionTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LogIngestionTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLogIngestionTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LogIngestionToken model
+   */
+  readonly fields: LogIngestionTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LogIngestionToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LogIngestionTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LogIngestionToken model
+   */
+  interface LogIngestionTokenFieldRefs {
+    readonly id: FieldRef<"LogIngestionToken", 'String'>
+    readonly token: FieldRef<"LogIngestionToken", 'String'>
+    readonly service: FieldRef<"LogIngestionToken", 'String'>
+    readonly active: FieldRef<"LogIngestionToken", 'Boolean'>
+    readonly createdAt: FieldRef<"LogIngestionToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LogIngestionToken findUnique
+   */
+  export type LogIngestionTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which LogIngestionToken to fetch.
+     */
+    where: LogIngestionTokenWhereUniqueInput
+  }
+
+  /**
+   * LogIngestionToken findUniqueOrThrow
+   */
+  export type LogIngestionTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which LogIngestionToken to fetch.
+     */
+    where: LogIngestionTokenWhereUniqueInput
+  }
+
+  /**
+   * LogIngestionToken findFirst
+   */
+  export type LogIngestionTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which LogIngestionToken to fetch.
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogIngestionTokens to fetch.
+     */
+    orderBy?: LogIngestionTokenOrderByWithRelationInput | LogIngestionTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LogIngestionTokens.
+     */
+    cursor?: LogIngestionTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogIngestionTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogIngestionTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LogIngestionTokens.
+     */
+    distinct?: LogIngestionTokenScalarFieldEnum | LogIngestionTokenScalarFieldEnum[]
+  }
+
+  /**
+   * LogIngestionToken findFirstOrThrow
+   */
+  export type LogIngestionTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which LogIngestionToken to fetch.
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogIngestionTokens to fetch.
+     */
+    orderBy?: LogIngestionTokenOrderByWithRelationInput | LogIngestionTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LogIngestionTokens.
+     */
+    cursor?: LogIngestionTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogIngestionTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogIngestionTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LogIngestionTokens.
+     */
+    distinct?: LogIngestionTokenScalarFieldEnum | LogIngestionTokenScalarFieldEnum[]
+  }
+
+  /**
+   * LogIngestionToken findMany
+   */
+  export type LogIngestionTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which LogIngestionTokens to fetch.
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LogIngestionTokens to fetch.
+     */
+    orderBy?: LogIngestionTokenOrderByWithRelationInput | LogIngestionTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LogIngestionTokens.
+     */
+    cursor?: LogIngestionTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LogIngestionTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LogIngestionTokens.
+     */
+    skip?: number
+    distinct?: LogIngestionTokenScalarFieldEnum | LogIngestionTokenScalarFieldEnum[]
+  }
+
+  /**
+   * LogIngestionToken create
+   */
+  export type LogIngestionTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LogIngestionToken.
+     */
+    data: XOR<LogIngestionTokenCreateInput, LogIngestionTokenUncheckedCreateInput>
+  }
+
+  /**
+   * LogIngestionToken createMany
+   */
+  export type LogIngestionTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LogIngestionTokens.
+     */
+    data: LogIngestionTokenCreateManyInput | LogIngestionTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LogIngestionToken createManyAndReturn
+   */
+  export type LogIngestionTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many LogIngestionTokens.
+     */
+    data: LogIngestionTokenCreateManyInput | LogIngestionTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LogIngestionToken update
+   */
+  export type LogIngestionTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LogIngestionToken.
+     */
+    data: XOR<LogIngestionTokenUpdateInput, LogIngestionTokenUncheckedUpdateInput>
+    /**
+     * Choose, which LogIngestionToken to update.
+     */
+    where: LogIngestionTokenWhereUniqueInput
+  }
+
+  /**
+   * LogIngestionToken updateMany
+   */
+  export type LogIngestionTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LogIngestionTokens.
+     */
+    data: XOR<LogIngestionTokenUpdateManyMutationInput, LogIngestionTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which LogIngestionTokens to update
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * Limit how many LogIngestionTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LogIngestionToken updateManyAndReturn
+   */
+  export type LogIngestionTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update LogIngestionTokens.
+     */
+    data: XOR<LogIngestionTokenUpdateManyMutationInput, LogIngestionTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which LogIngestionTokens to update
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * Limit how many LogIngestionTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LogIngestionToken upsert
+   */
+  export type LogIngestionTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LogIngestionToken to update in case it exists.
+     */
+    where: LogIngestionTokenWhereUniqueInput
+    /**
+     * In case the LogIngestionToken found by the `where` argument doesn't exist, create a new LogIngestionToken with this data.
+     */
+    create: XOR<LogIngestionTokenCreateInput, LogIngestionTokenUncheckedCreateInput>
+    /**
+     * In case the LogIngestionToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LogIngestionTokenUpdateInput, LogIngestionTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * LogIngestionToken delete
+   */
+  export type LogIngestionTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+    /**
+     * Filter which LogIngestionToken to delete.
+     */
+    where: LogIngestionTokenWhereUniqueInput
+  }
+
+  /**
+   * LogIngestionToken deleteMany
+   */
+  export type LogIngestionTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LogIngestionTokens to delete
+     */
+    where?: LogIngestionTokenWhereInput
+    /**
+     * Limit how many LogIngestionTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LogIngestionToken without action
+   */
+  export type LogIngestionTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogIngestionToken
+     */
+    select?: LogIngestionTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogIngestionToken
+     */
+    omit?: LogIngestionTokenOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7868,12 +10166,52 @@ export namespace Prisma {
   export type MetricsScalarFieldEnum = (typeof MetricsScalarFieldEnum)[keyof typeof MetricsScalarFieldEnum]
 
 
+  export const LogEntryScalarFieldEnum: {
+    id: 'id',
+    logHash: 'logHash',
+    service: 'service',
+    level: 'level',
+    message: 'message',
+    context: 'context',
+    traceId: 'traceId',
+    spanId: 'spanId',
+    host: 'host',
+    source: 'source',
+    pod: 'pod',
+    namespace: 'namespace',
+    image: 'image',
+    timestamp: 'timestamp',
+    createdAt: 'createdAt'
+  };
+
+  export type LogEntryScalarFieldEnum = (typeof LogEntryScalarFieldEnum)[keyof typeof LogEntryScalarFieldEnum]
+
+
+  export const LogIngestionTokenScalarFieldEnum: {
+    id: 'id',
+    token: 'token',
+    service: 'service',
+    active: 'active',
+    createdAt: 'createdAt'
+  };
+
+  export type LogIngestionTokenScalarFieldEnum = (typeof LogIngestionTokenScalarFieldEnum)[keyof typeof LogIngestionTokenScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -7890,6 +10228,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -7964,6 +10311,27 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -8377,6 +10745,160 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter<"Metrics"> | string
     source?: StringWithAggregatesFilter<"Metrics"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Metrics"> | Date | string
+  }
+
+  export type LogEntryWhereInput = {
+    AND?: LogEntryWhereInput | LogEntryWhereInput[]
+    OR?: LogEntryWhereInput[]
+    NOT?: LogEntryWhereInput | LogEntryWhereInput[]
+    id?: StringFilter<"LogEntry"> | string
+    logHash?: StringNullableFilter<"LogEntry"> | string | null
+    service?: StringFilter<"LogEntry"> | string
+    level?: StringFilter<"LogEntry"> | string
+    message?: StringFilter<"LogEntry"> | string
+    context?: JsonNullableFilter<"LogEntry">
+    traceId?: StringNullableFilter<"LogEntry"> | string | null
+    spanId?: StringNullableFilter<"LogEntry"> | string | null
+    host?: StringNullableFilter<"LogEntry"> | string | null
+    source?: StringNullableFilter<"LogEntry"> | string | null
+    pod?: StringNullableFilter<"LogEntry"> | string | null
+    namespace?: StringNullableFilter<"LogEntry"> | string | null
+    image?: StringNullableFilter<"LogEntry"> | string | null
+    timestamp?: DateTimeFilter<"LogEntry"> | Date | string
+    createdAt?: DateTimeFilter<"LogEntry"> | Date | string
+  }
+
+  export type LogEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    logHash?: SortOrderInput | SortOrder
+    service?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    context?: SortOrderInput | SortOrder
+    traceId?: SortOrderInput | SortOrder
+    spanId?: SortOrderInput | SortOrder
+    host?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    pod?: SortOrderInput | SortOrder
+    namespace?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LogEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    logHash?: string
+    AND?: LogEntryWhereInput | LogEntryWhereInput[]
+    OR?: LogEntryWhereInput[]
+    NOT?: LogEntryWhereInput | LogEntryWhereInput[]
+    service?: StringFilter<"LogEntry"> | string
+    level?: StringFilter<"LogEntry"> | string
+    message?: StringFilter<"LogEntry"> | string
+    context?: JsonNullableFilter<"LogEntry">
+    traceId?: StringNullableFilter<"LogEntry"> | string | null
+    spanId?: StringNullableFilter<"LogEntry"> | string | null
+    host?: StringNullableFilter<"LogEntry"> | string | null
+    source?: StringNullableFilter<"LogEntry"> | string | null
+    pod?: StringNullableFilter<"LogEntry"> | string | null
+    namespace?: StringNullableFilter<"LogEntry"> | string | null
+    image?: StringNullableFilter<"LogEntry"> | string | null
+    timestamp?: DateTimeFilter<"LogEntry"> | Date | string
+    createdAt?: DateTimeFilter<"LogEntry"> | Date | string
+  }, "id" | "logHash">
+
+  export type LogEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    logHash?: SortOrderInput | SortOrder
+    service?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    context?: SortOrderInput | SortOrder
+    traceId?: SortOrderInput | SortOrder
+    spanId?: SortOrderInput | SortOrder
+    host?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    pod?: SortOrderInput | SortOrder
+    namespace?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+    _count?: LogEntryCountOrderByAggregateInput
+    _max?: LogEntryMaxOrderByAggregateInput
+    _min?: LogEntryMinOrderByAggregateInput
+  }
+
+  export type LogEntryScalarWhereWithAggregatesInput = {
+    AND?: LogEntryScalarWhereWithAggregatesInput | LogEntryScalarWhereWithAggregatesInput[]
+    OR?: LogEntryScalarWhereWithAggregatesInput[]
+    NOT?: LogEntryScalarWhereWithAggregatesInput | LogEntryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LogEntry"> | string
+    logHash?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    service?: StringWithAggregatesFilter<"LogEntry"> | string
+    level?: StringWithAggregatesFilter<"LogEntry"> | string
+    message?: StringWithAggregatesFilter<"LogEntry"> | string
+    context?: JsonNullableWithAggregatesFilter<"LogEntry">
+    traceId?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    spanId?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    host?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    source?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    pod?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    namespace?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    image?: StringNullableWithAggregatesFilter<"LogEntry"> | string | null
+    timestamp?: DateTimeWithAggregatesFilter<"LogEntry"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"LogEntry"> | Date | string
+  }
+
+  export type LogIngestionTokenWhereInput = {
+    AND?: LogIngestionTokenWhereInput | LogIngestionTokenWhereInput[]
+    OR?: LogIngestionTokenWhereInput[]
+    NOT?: LogIngestionTokenWhereInput | LogIngestionTokenWhereInput[]
+    id?: StringFilter<"LogIngestionToken"> | string
+    token?: StringFilter<"LogIngestionToken"> | string
+    service?: StringFilter<"LogIngestionToken"> | string
+    active?: BoolFilter<"LogIngestionToken"> | boolean
+    createdAt?: DateTimeFilter<"LogIngestionToken"> | Date | string
+  }
+
+  export type LogIngestionTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    service?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LogIngestionTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    AND?: LogIngestionTokenWhereInput | LogIngestionTokenWhereInput[]
+    OR?: LogIngestionTokenWhereInput[]
+    NOT?: LogIngestionTokenWhereInput | LogIngestionTokenWhereInput[]
+    service?: StringFilter<"LogIngestionToken"> | string
+    active?: BoolFilter<"LogIngestionToken"> | boolean
+    createdAt?: DateTimeFilter<"LogIngestionToken"> | Date | string
+  }, "id" | "token">
+
+  export type LogIngestionTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    service?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    _count?: LogIngestionTokenCountOrderByAggregateInput
+    _max?: LogIngestionTokenMaxOrderByAggregateInput
+    _min?: LogIngestionTokenMinOrderByAggregateInput
+  }
+
+  export type LogIngestionTokenScalarWhereWithAggregatesInput = {
+    AND?: LogIngestionTokenScalarWhereWithAggregatesInput | LogIngestionTokenScalarWhereWithAggregatesInput[]
+    OR?: LogIngestionTokenScalarWhereWithAggregatesInput[]
+    NOT?: LogIngestionTokenScalarWhereWithAggregatesInput | LogIngestionTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LogIngestionToken"> | string
+    token?: StringWithAggregatesFilter<"LogIngestionToken"> | string
+    service?: StringWithAggregatesFilter<"LogIngestionToken"> | string
+    active?: BoolWithAggregatesFilter<"LogIngestionToken"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"LogIngestionToken"> | Date | string
   }
 
   export type NotificationCreateInput = {
@@ -8833,6 +11355,188 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LogEntryCreateInput = {
+    id?: string
+    logHash?: string | null
+    service: string
+    level: string
+    message: string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: string | null
+    spanId?: string | null
+    host?: string | null
+    source?: string | null
+    pod?: string | null
+    namespace?: string | null
+    image?: string | null
+    timestamp?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LogEntryUncheckedCreateInput = {
+    id?: string
+    logHash?: string | null
+    service: string
+    level: string
+    message: string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: string | null
+    spanId?: string | null
+    host?: string | null
+    source?: string | null
+    pod?: string | null
+    namespace?: string | null
+    image?: string | null
+    timestamp?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LogEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    logHash?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: NullableStringFieldUpdateOperationsInput | string | null
+    spanId?: NullableStringFieldUpdateOperationsInput | string | null
+    host?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    pod?: NullableStringFieldUpdateOperationsInput | string | null
+    namespace?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogEntryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    logHash?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: NullableStringFieldUpdateOperationsInput | string | null
+    spanId?: NullableStringFieldUpdateOperationsInput | string | null
+    host?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    pod?: NullableStringFieldUpdateOperationsInput | string | null
+    namespace?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogEntryCreateManyInput = {
+    id?: string
+    logHash?: string | null
+    service: string
+    level: string
+    message: string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: string | null
+    spanId?: string | null
+    host?: string | null
+    source?: string | null
+    pod?: string | null
+    namespace?: string | null
+    image?: string | null
+    timestamp?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LogEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    logHash?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: NullableStringFieldUpdateOperationsInput | string | null
+    spanId?: NullableStringFieldUpdateOperationsInput | string | null
+    host?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    pod?: NullableStringFieldUpdateOperationsInput | string | null
+    namespace?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogEntryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    logHash?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    context?: NullableJsonNullValueInput | InputJsonValue
+    traceId?: NullableStringFieldUpdateOperationsInput | string | null
+    spanId?: NullableStringFieldUpdateOperationsInput | string | null
+    host?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    pod?: NullableStringFieldUpdateOperationsInput | string | null
+    namespace?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogIngestionTokenCreateInput = {
+    id?: string
+    token: string
+    service: string
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type LogIngestionTokenUncheckedCreateInput = {
+    id?: string
+    token: string
+    service: string
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type LogIngestionTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogIngestionTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogIngestionTokenCreateManyInput = {
+    id?: string
+    token: string
+    service: string
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type LogIngestionTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogIngestionTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -9260,6 +11964,144 @@ export namespace Prisma {
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type LogEntryCountOrderByAggregateInput = {
+    id?: SortOrder
+    logHash?: SortOrder
+    service?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    context?: SortOrder
+    traceId?: SortOrder
+    spanId?: SortOrder
+    host?: SortOrder
+    source?: SortOrder
+    pod?: SortOrder
+    namespace?: SortOrder
+    image?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LogEntryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    logHash?: SortOrder
+    service?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    traceId?: SortOrder
+    spanId?: SortOrder
+    host?: SortOrder
+    source?: SortOrder
+    pod?: SortOrder
+    namespace?: SortOrder
+    image?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LogEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    logHash?: SortOrder
+    service?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    traceId?: SortOrder
+    spanId?: SortOrder
+    host?: SortOrder
+    source?: SortOrder
+    pod?: SortOrder
+    namespace?: SortOrder
+    image?: SortOrder
+    timestamp?: SortOrder
+    createdAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type LogIngestionTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    service?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LogIngestionTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    service?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LogIngestionTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    service?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
@@ -9407,6 +12249,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9601,6 +12447,42 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ServiceDependencyCreateWithoutFromServiceInput = {

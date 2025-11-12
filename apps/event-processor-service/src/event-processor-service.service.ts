@@ -4,7 +4,8 @@ import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { PUB_SUB } from '@app/common/pubsub/pubsub.provider';
 import { NotificationDispatcher } from 'apps/notification-service/src/notification-dispatcher';
 import { EventType, ServiceEvent, Prisma } from '@app/database/prisma';
-
+import { KafkaLogger } from '@app/common/logging/kafka-logger.service';
+import { LoggerFactory } from '@app/common/logging/logger.factory';
 export interface IncomingRuntimeEvent {
   service: string;
   status: string;
@@ -25,19 +26,29 @@ export interface ProcessedServiceEvent {
 @Injectable()
 export class EventProcessorService {
   private readonly logger = new Logger(EventProcessorService.name);
-
+  private readonly LOG_TOKEN = process.env.EVENTS_SERVICE_TOKEN;
+  private readonly events_logger: KafkaLogger;
   constructor(
     private readonly prisma: DatabaseService,
+    loggerFactory: LoggerFactory,
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
     @Inject(forwardRef(() => NotificationDispatcher))
     private readonly dispatcher: NotificationDispatcher,
-  ) {}
+  ) {
+    this.events_logger = loggerFactory.create(
+      'EventProcessorService',
+      'EventProcessorService',
+      this.LOG_TOKEN,
+    );
+  }
 
   async handleRuntimeStatus(event: IncomingRuntimeEvent): Promise<void> {
     const { service, status, cluster, message } = event;
     const now = new Date();
 
-    this.logger.debug(`⚙️ Processing runtime event for ${service}: ${status}`);
+    await this.events_logger.debug(
+      `⚙️ Processing runtime event for ${service}: ${status}`,
+    );
 
     const lastEvent = await this.prisma.serviceEvent.findFirst({
       where: { service },
@@ -62,12 +73,12 @@ export class EventProcessorService {
       lastStatus: lastEvent?.status,
       newStatus: status,
     });
-    this.logger.debug(
+    await this.events_logger.debug(
       `🧩 Noise check for ${service}: eventType=${eventType}, msSinceLast=${msSinceLast}, result=${noisy}`,
     );
 
     if (noisy) {
-      this.logger.debug(
+      await this.events_logger.debug(
         `🔕 Ignoring noisy event for ${service} (${status}, type=${eventType})`,
       );
 
@@ -86,7 +97,7 @@ export class EventProcessorService {
     const withinCooldown = msSinceLast < COOLDOWN_MS;
 
     if (!hasChanged || withinCooldown) {
-      this.logger.debug(
+      await this.events_logger.debug(
         withinCooldown
           ? `🕒 Cooldown active for ${service} (${msSinceLast}ms < ${COOLDOWN_MS}ms)`
           : `⏭️ No change for ${service} (${status}) — skipping event.`,
@@ -162,7 +173,7 @@ export class EventProcessorService {
       serviceEventCreated: processed,
     });
 
-    this.logger.log(
+    await this.events_logger.log(
       `📡 [${processed.eventType}] ${processed.service} -> ${processed.status} (${processed.message ?? 'no message'})`,
     );
 
