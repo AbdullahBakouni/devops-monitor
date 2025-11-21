@@ -123,3 +123,84 @@ model LogIngestionToken {
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 }
+
+model StatisticsHourly {
+  id      String   @id @default(uuid())
+  service String
+  hour    DateTime
+
+  avgCpu     Float
+  avgMemory  Float
+  peakCpu    Float
+  peakMemory Float
+
+  logsErrors   Int
+  logsWarnings Int
+  logsInfo     Int
+
+  failures   Int
+  recoveries Int
+  crashLoops Int
+
+  anomalies Int
+
+  createdAt DateTime @default(now())
+}
+
+model StatisticsDaily {
+  id      String   @id @default(uuid())
+  service String
+  day     DateTime
+
+  avgCpu    Float
+  avgMemory Float
+
+  errors   Int
+  warnings Int
+  info     Int
+
+  failures   Int
+  recoveries Int
+  crashLoops Int
+
+  uptimePercentage Float
+  anomalyCount     Int
+
+  createdAt DateTime @default(now())
+}
+model ServiceRisk {
+  id        String   @id @default(uuid())
+  service   String
+  riskScore Int
+  level     String   // NORMAL | WARNING | CRITICAL
+  reason    String?
+  createdAt DateTime @default(now())
+}
+
+model RootCauseReport {
+  id         String   @id @default(uuid())
+  service    String
+  cause      String
+  confidence Int       // 0–100
+  createdAt  DateTime  @default(now())
+}
+
+model FailurePrediction {
+  id          String   @id @default(uuid())
+  service     String
+  windowHours Int
+  probability Float    // 0–1
+  reason      String?
+  createdAt   DateTime @default(now())
+}
+
+model ServiceDailyStats {
+  id           String   @id @default(uuid())
+  service      String
+  date         DateTime
+  avgCpu       Float
+  avgMemory    Float
+  failures     Int
+  anomalies    Int
+  createdAt    DateTime @default(now())
+}

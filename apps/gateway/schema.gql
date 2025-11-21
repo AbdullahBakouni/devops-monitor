@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type FailurePredictionDto {
+  id: String!
+  probability: Float!
+  reason: String
+  service: String!
+  timestamp: String!
+  windowHours: Int!
+}
+
 type LogEntryDTO {
   host: String
   id: String!
@@ -73,10 +82,56 @@ type NotificationDTO {
   type: String!
 }
 
+type PredictionStatsDto {
+  averageProbability: Float!
+  highRisk: Int!
+  lowRisk: Int!
+  moderateRisk: Int!
+  total: Int!
+}
+
 type Query {
+  failurePredictions(limit: Float = 100, service: String, windowHours: Int): [FailurePredictionDto!]!
   getNotifications: [NotificationDTO!]!
   getServiceEvents: [ServiceEvent!]!
+  latestPrediction(service: String!): FailurePredictionDto
+  latestRCAReport(service: String!): RootCauseReportDto
+  latestRisk(service: String!): ServiceRiskDto
+  predictionStatistics: PredictionStatsDto!
+  rcaReports(limit: Float = 50, minConfidence: Int, service: String): [RootCauseReportDto!]!
+  rcaStatistics: RCAStatsDto!
+  riskStatistics: RiskStatsDto!
   searchLogs(filter: LogSearchFilter): LogSearchResult!
+  serviceRisks(limit: Float = 100, service: String): [ServiceRiskDto!]!
+}
+
+type RCAStatsDto {
+  highConfidence: Int!
+  lowConfidence: Int!
+  mediumConfidence: Int!
+  total: Int!
+}
+
+"""Risk level for a service"""
+enum RiskLevel {
+  CRITICAL
+  NORMAL
+  WARNING
+}
+
+type RiskStatsDto {
+  critical: Int!
+  normal: Int!
+  total: Int!
+  warning: Int!
+}
+
+type RootCauseReportDto {
+  cause: String!
+  confidence: Int!
+  id: String!
+  service: String!
+  timestamp: String!
 }
 
 type ServiceEvent {
@@ -89,10 +144,22 @@ type ServiceEvent {
   status: String!
 }
 
+type ServiceRiskDto {
+  id: String!
+  level: RiskLevel!
+  reason: String
+  riskScore: Int!
+  service: String!
+  timestamp: String!
+}
+
 type Subscription {
   logCreated: LogEntryDTO!
   metricsAlert: MetricsAlertDTO!
   metricsUpdated: MetricsDTO!
   notificationCreated: NotificationDTO!
+  predictionUpdated: FailurePredictionDto!
+  rcaReportCreated: RootCauseReportDto!
+  riskUpdated: ServiceRiskDto!
   serviceEventCreated(service: String, status: String): ServiceEvent!
 }

@@ -7,8 +7,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { Prisma } from '@app/database/prisma';
 import { KafkaService } from '@app/common/kafka/kafka.service';
 import { Consumer, EachMessagePayload } from 'kafkajs';
-import * as crypto from 'crypto';
-
+import { createHash } from 'crypto';
 interface IngestItem {
   service?: string;
   level?: string;
@@ -315,25 +314,49 @@ export class LogService {
 
       // Deduplicate logs using the cache (across batches)
       const uniqueLogs = this.deduplicateLogsWithCache(validItems);
+      const savedLogs = await this.prisma.$transaction(
+        uniqueLogs.map((log) => {
+          const logHash = this.generateLogHash(log);
 
+          return this.prisma.logEntry.upsert({
+            where: { logHash },
+            update: {}, // Don't update if exists (log already saved)
+            create: {
+              logHash,
+              service: log.service!,
+              level: log.level!,
+              message: log.message,
+              context: log.context || undefined,
+              traceId: log.traceId,
+              spanId: log.spanId,
+              host: log.host,
+              source: log.source,
+              pod: log.pod,
+              namespace: log.namespace,
+              image: log.image,
+              timestamp: log.ts!,
+            },
+          });
+        }),
+      );
       // Limit to last 5 logs to avoid flooding
-      const logsToPublish = uniqueLogs.slice(0, Math.min(5, uniqueLogs.length));
+      const logsToPublish = savedLogs.slice(0, Math.min(5, savedLogs.length));
       // Broadcast unique logs to real-time subscribers
       await Promise.all(
         logsToPublish.map(async (log) => {
           const payload: LogCreatedPayload = {
-            id: this.generateLogId(log), // Generate a temporary ID
-            service: log.service!,
-            level: log.level!,
+            id: log.id, // Generate a temporary ID
+            service: log.service,
+            level: log.level,
             message: log.message,
-            traceId: log.traceId,
-            spanId: log.spanId,
-            host: log.host,
-            source: log.source,
-            pod: log.pod,
-            namespace: log.namespace,
-            image: log.image,
-            timestamp: log.ts!.toISOString(),
+            traceId: log.traceId!,
+            spanId: log.spanId!,
+            host: log.host!,
+            source: log.source!,
+            pod: log.pod!,
+            namespace: log.namespace!,
+            image: log.image!,
+            timestamp: log.timestamp.toISOString(),
           };
 
           await this.pubSub.publish('logCreated', { logCreated: payload });
@@ -409,13 +432,24 @@ export class LogService {
   /**
    * Generates a unique ID for a log entry (for streaming purposes)
    */
-  private generateLogId(log: IngestItem): string {
-    const idInput = `${log.service}:${log.message}:${log.ts?.getTime()}:${log.traceId ?? ''}`;
-    return crypto
-      .createHash('sha256')
-      .update(idInput)
-      .digest('hex')
-      .substring(0, 16);
+  // private generateLogId(log: IngestItem): string {
+  //   const idInput = `${log.service}:${log.message}:${log.ts?.getTime()}:${log.traceId ?? ''}`;
+  //   return crypto
+  //     .createHash('sha256')
+  //     .update(idInput)
+  //     .digest('hex')
+  //     .substring(0, 16);
+  // }
+  private generateLogHash(log: IngestItem): string {
+    const hashInput = JSON.stringify({
+      service: log.service,
+      level: log.level,
+      message: log.message,
+      traceId: log.traceId,
+      spanId: log.spanId,
+      timestamp: log.ts?.toISOString(),
+    });
+    return createHash('sha256').update(hashInput).digest('hex');
   }
   // GraphQL search
   async search(

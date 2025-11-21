@@ -15,6 +15,9 @@ import { PubSubModule } from '@app/common';
 import { NotificationGatewayModule } from './notifications/notification.module';
 import { GatewayMetricsModule } from './metrics/metric.module';
 import { AlertsGatewayModule } from './alerts/alert.module';
+import { RisksGatewayModule } from './risks/risk.module';
+import { PredictionsGatewayModule } from './predictions/prediction.module';
+import { RcaGatewayModule } from './rca/rca.module';
 @Module({
   imports: [
     AppLoggerModule,
@@ -24,6 +27,9 @@ import { AlertsGatewayModule } from './alerts/alert.module';
     GatewayMetricsModule,
     DatabaseModule,
     AlertsGatewayModule,
+    RisksGatewayModule,
+    PredictionsGatewayModule,
+    RcaGatewayModule,
     PubSubModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

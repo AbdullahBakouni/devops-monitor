@@ -4,9 +4,11 @@ import { EventProcessorService } from './event-processor-service.service';
 import { DatabaseModule } from '@app/database';
 import { LoggerModule, PubSubModule } from '@app/common';
 import { NotificationServiceModule } from 'apps/notification-service/src/notification-service.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     DatabaseModule,
     PubSubModule,
     NotificationServiceModule,

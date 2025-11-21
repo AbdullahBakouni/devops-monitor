@@ -210,6 +210,78 @@ exports.Prisma.LogIngestionTokenScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.StatisticsHourlyScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  hour: 'hour',
+  avgCpu: 'avgCpu',
+  avgMemory: 'avgMemory',
+  peakCpu: 'peakCpu',
+  peakMemory: 'peakMemory',
+  logsErrors: 'logsErrors',
+  logsWarnings: 'logsWarnings',
+  logsInfo: 'logsInfo',
+  failures: 'failures',
+  recoveries: 'recoveries',
+  crashLoops: 'crashLoops',
+  anomalies: 'anomalies',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.StatisticsDailyScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  day: 'day',
+  avgCpu: 'avgCpu',
+  avgMemory: 'avgMemory',
+  errors: 'errors',
+  warnings: 'warnings',
+  info: 'info',
+  failures: 'failures',
+  recoveries: 'recoveries',
+  crashLoops: 'crashLoops',
+  uptimePercentage: 'uptimePercentage',
+  anomalyCount: 'anomalyCount',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceRiskScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  riskScore: 'riskScore',
+  level: 'level',
+  reason: 'reason',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RootCauseReportScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  cause: 'cause',
+  confidence: 'confidence',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FailurePredictionScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  windowHours: 'windowHours',
+  probability: 'probability',
+  reason: 'reason',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceDailyStatsScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  date: 'date',
+  avgCpu: 'avgCpu',
+  avgMemory: 'avgMemory',
+  failures: 'failures',
+  anomalies: 'anomalies',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -251,7 +323,13 @@ exports.Prisma.ModelName = {
   ServiceDependency: 'ServiceDependency',
   Metrics: 'Metrics',
   LogEntry: 'LogEntry',
-  LogIngestionToken: 'LogIngestionToken'
+  LogIngestionToken: 'LogIngestionToken',
+  StatisticsHourly: 'StatisticsHourly',
+  StatisticsDaily: 'StatisticsDaily',
+  ServiceRisk: 'ServiceRisk',
+  RootCauseReport: 'RootCauseReport',
+  FailurePrediction: 'FailurePrediction',
+  ServiceDailyStats: 'ServiceDailyStats'
 };
 
 /**

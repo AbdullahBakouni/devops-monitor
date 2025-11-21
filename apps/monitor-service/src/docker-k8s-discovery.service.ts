@@ -50,8 +50,8 @@ export class DockerK8sDiscoveryService {
     private readonly prisma: DatabaseService,
     loggerFactory: LoggerFactory,
   ) {
-    void this.initializeDockerClient();
-    void this.initializeK8sClient();
+    this.initializeDockerClient();
+    this.initializeK8sClient();
     this.desc_all_service_logger = loggerFactory.create(
       'DockerK8sDiscoveryService',
       'MonitorService',
@@ -62,7 +62,7 @@ export class DockerK8sDiscoveryService {
   /**
    * 🐳 Initialize Docker client based on operating system
    */
-  private async initializeDockerClient(): Promise<void> {
+  private initializeDockerClient(): void {
     try {
       const platform = os.platform();
       let dockerOptions: Docker.DockerOptions;
@@ -73,9 +73,7 @@ export class DockerK8sDiscoveryService {
           dockerOptions = {
             socketPath: '//./pipe/docker_engine',
           };
-          await this.desc_all_service_logger.log(
-            '🪟 Detected Windows - using named pipe for Docker',
-          );
+          this.logger.log('🪟 Detected Windows - using named pipe for Docker');
           break;
 
         case 'darwin':
@@ -83,9 +81,7 @@ export class DockerK8sDiscoveryService {
           dockerOptions = {
             socketPath: '/var/run/docker.sock',
           };
-          await this.desc_all_service_logger.log(
-            '🍎 Detected macOS - using Unix socket for Docker',
-          );
+          this.logger.log('🍎 Detected macOS - using Unix socket for Docker');
           break;
 
         case 'linux':
@@ -93,9 +89,7 @@ export class DockerK8sDiscoveryService {
           dockerOptions = {
             socketPath: '/var/run/docker.sock',
           };
-          await this.desc_all_service_logger.log(
-            '🐧 Detected Linux - using Unix socket for Docker',
-          );
+          this.logger.log('🐧 Detected Linux - using Unix socket for Docker');
           break;
 
         default:
@@ -111,8 +105,8 @@ export class DockerK8sDiscoveryService {
         .then(() => {
           this.logger.log('✅ Docker client initialized successfully');
         })
-        .catch(async () => {
-          await this.desc_all_service_logger.warn(
+        .catch(() => {
+          this.logger.warn(
             '⚠️ Docker daemon not accessible - Docker discovery will be skipped',
           );
           this.docker = null;
@@ -127,7 +121,7 @@ export class DockerK8sDiscoveryService {
   /**
    * ☸️ Initialize Kubernetes client with multi-environment support
    */
-  private async initializeK8sClient(): Promise<void> {
+  private initializeK8sClient(): void {
     try {
       const kc = new k8s.KubeConfig();
       const platform = os.platform();
@@ -143,13 +137,11 @@ export class DockerK8sDiscoveryService {
           try {
             kc.loadFromFile(configPath);
             configLoaded = true;
-            await this.desc_all_service_logger.log(
-              `✅ Loaded kubeconfig from: ${configPath}`,
-            );
+            this.logger.log(`✅ Loaded kubeconfig from: ${configPath}`);
             break;
           } catch (error) {
             const err = error as Error;
-            await this.desc_all_service_logger.debug(
+            this.logger.debug(
               `Could not load kubeconfig from ${configPath}:${err}`,
             );
           }
@@ -161,14 +153,10 @@ export class DockerK8sDiscoveryService {
         try {
           kc.loadFromCluster();
           configLoaded = true;
-          await this.desc_all_service_logger.log(
-            '✅ Loaded in-cluster Kubernetes configuration',
-          );
+          this.logger.log('✅ Loaded in-cluster Kubernetes configuration');
         } catch (error) {
           const err = error as Error;
-          await this.desc_all_service_logger.debug(
-            `Not running in Kubernetes cluster: ${err}`,
-          );
+          this.logger.debug(`Not running in Kubernetes cluster: ${err}`);
         }
       }
 
@@ -177,9 +165,7 @@ export class DockerK8sDiscoveryService {
         try {
           kc.loadFromDefault();
           configLoaded = true;
-          await this.desc_all_service_logger.log(
-            '✅ Loaded default Kubernetes configuration',
-          );
+          this.logger.log('✅ Loaded default Kubernetes configuration');
         } catch (error) {
           const err = error as Error;
           throw new Error(`No valid kubeconfig found ${err}`);
@@ -191,15 +177,11 @@ export class DockerK8sDiscoveryService {
       // Test connection
       this.k8sClient
         .listNamespace()
-        .then(async () => {
-          await this.desc_all_service_logger.log(
-            '✅ Kubernetes client initialized successfully',
-          );
+        .then(() => {
+          this.logger.log('✅ Kubernetes client initialized successfully');
         })
-        .catch(async () => {
-          await this.desc_all_service_logger.warn(
-            '⚠️ Cannot connect to Kubernetes cluster',
-          );
+        .catch(() => {
+          this.logger.warn('⚠️ Cannot connect to Kubernetes cluster');
           this.k8sClient = null;
         });
     } catch (error) {

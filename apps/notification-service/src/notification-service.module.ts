@@ -5,8 +5,15 @@ import { DatabaseModule } from '@app/database';
 import { LoggerModule, PubSubModule } from '@app/common';
 import { NotificationDispatcher } from './notification-dispatcher';
 import { HttpModule } from '@nestjs/axios';
+import { ScheduleModule } from '@nestjs/schedule';
 @Module({
-  imports: [DatabaseModule, PubSubModule, HttpModule, LoggerModule],
+  imports: [
+    ScheduleModule.forRoot(),
+    DatabaseModule,
+    PubSubModule,
+    HttpModule,
+    LoggerModule,
+  ],
   controllers: [NotificationServiceController],
   providers: [NotificationServiceService, NotificationDispatcher],
   exports: [NotificationDispatcher],

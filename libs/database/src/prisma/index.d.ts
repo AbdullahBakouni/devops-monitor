@@ -53,6 +53,36 @@ export type LogEntry = $Result.DefaultSelection<Prisma.$LogEntryPayload>
  * 
  */
 export type LogIngestionToken = $Result.DefaultSelection<Prisma.$LogIngestionTokenPayload>
+/**
+ * Model StatisticsHourly
+ * 
+ */
+export type StatisticsHourly = $Result.DefaultSelection<Prisma.$StatisticsHourlyPayload>
+/**
+ * Model StatisticsDaily
+ * 
+ */
+export type StatisticsDaily = $Result.DefaultSelection<Prisma.$StatisticsDailyPayload>
+/**
+ * Model ServiceRisk
+ * 
+ */
+export type ServiceRisk = $Result.DefaultSelection<Prisma.$ServiceRiskPayload>
+/**
+ * Model RootCauseReport
+ * 
+ */
+export type RootCauseReport = $Result.DefaultSelection<Prisma.$RootCauseReportPayload>
+/**
+ * Model FailurePrediction
+ * 
+ */
+export type FailurePrediction = $Result.DefaultSelection<Prisma.$FailurePredictionPayload>
+/**
+ * Model ServiceDailyStats
+ * 
+ */
+export type ServiceDailyStats = $Result.DefaultSelection<Prisma.$ServiceDailyStatsPayload>
 
 /**
  * Enums
@@ -271,6 +301,66 @@ export class PrismaClient<
     * ```
     */
   get logIngestionToken(): Prisma.LogIngestionTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.statisticsHourly`: Exposes CRUD operations for the **StatisticsHourly** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StatisticsHourlies
+    * const statisticsHourlies = await prisma.statisticsHourly.findMany()
+    * ```
+    */
+  get statisticsHourly(): Prisma.StatisticsHourlyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.statisticsDaily`: Exposes CRUD operations for the **StatisticsDaily** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StatisticsDailies
+    * const statisticsDailies = await prisma.statisticsDaily.findMany()
+    * ```
+    */
+  get statisticsDaily(): Prisma.StatisticsDailyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceRisk`: Exposes CRUD operations for the **ServiceRisk** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceRisks
+    * const serviceRisks = await prisma.serviceRisk.findMany()
+    * ```
+    */
+  get serviceRisk(): Prisma.ServiceRiskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.rootCauseReport`: Exposes CRUD operations for the **RootCauseReport** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RootCauseReports
+    * const rootCauseReports = await prisma.rootCauseReport.findMany()
+    * ```
+    */
+  get rootCauseReport(): Prisma.RootCauseReportDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.failurePrediction`: Exposes CRUD operations for the **FailurePrediction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FailurePredictions
+    * const failurePredictions = await prisma.failurePrediction.findMany()
+    * ```
+    */
+  get failurePrediction(): Prisma.FailurePredictionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceDailyStats`: Exposes CRUD operations for the **ServiceDailyStats** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceDailyStats
+    * const serviceDailyStats = await prisma.serviceDailyStats.findMany()
+    * ```
+    */
+  get serviceDailyStats(): Prisma.ServiceDailyStatsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -718,7 +808,13 @@ export namespace Prisma {
     ServiceDependency: 'ServiceDependency',
     Metrics: 'Metrics',
     LogEntry: 'LogEntry',
-    LogIngestionToken: 'LogIngestionToken'
+    LogIngestionToken: 'LogIngestionToken',
+    StatisticsHourly: 'StatisticsHourly',
+    StatisticsDaily: 'StatisticsDaily',
+    ServiceRisk: 'ServiceRisk',
+    RootCauseReport: 'RootCauseReport',
+    FailurePrediction: 'FailurePrediction',
+    ServiceDailyStats: 'ServiceDailyStats'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -737,7 +833,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "metrics" | "logEntry" | "logIngestionToken"
+      modelProps: "notification" | "serviceEvent" | "serviceEventHistory" | "service" | "serviceDependency" | "metrics" | "logEntry" | "logIngestionToken" | "statisticsHourly" | "statisticsDaily" | "serviceRisk" | "rootCauseReport" | "failurePrediction" | "serviceDailyStats"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1333,6 +1429,450 @@ export namespace Prisma {
           }
         }
       }
+      StatisticsHourly: {
+        payload: Prisma.$StatisticsHourlyPayload<ExtArgs>
+        fields: Prisma.StatisticsHourlyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StatisticsHourlyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StatisticsHourlyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>
+          }
+          findFirst: {
+            args: Prisma.StatisticsHourlyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StatisticsHourlyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>
+          }
+          findMany: {
+            args: Prisma.StatisticsHourlyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>[]
+          }
+          create: {
+            args: Prisma.StatisticsHourlyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>
+          }
+          createMany: {
+            args: Prisma.StatisticsHourlyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StatisticsHourlyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>[]
+          }
+          delete: {
+            args: Prisma.StatisticsHourlyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>
+          }
+          update: {
+            args: Prisma.StatisticsHourlyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>
+          }
+          deleteMany: {
+            args: Prisma.StatisticsHourlyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StatisticsHourlyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StatisticsHourlyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>[]
+          }
+          upsert: {
+            args: Prisma.StatisticsHourlyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsHourlyPayload>
+          }
+          aggregate: {
+            args: Prisma.StatisticsHourlyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStatisticsHourly>
+          }
+          groupBy: {
+            args: Prisma.StatisticsHourlyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StatisticsHourlyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StatisticsHourlyCountArgs<ExtArgs>
+            result: $Utils.Optional<StatisticsHourlyCountAggregateOutputType> | number
+          }
+        }
+      }
+      StatisticsDaily: {
+        payload: Prisma.$StatisticsDailyPayload<ExtArgs>
+        fields: Prisma.StatisticsDailyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StatisticsDailyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StatisticsDailyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>
+          }
+          findFirst: {
+            args: Prisma.StatisticsDailyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StatisticsDailyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>
+          }
+          findMany: {
+            args: Prisma.StatisticsDailyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>[]
+          }
+          create: {
+            args: Prisma.StatisticsDailyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>
+          }
+          createMany: {
+            args: Prisma.StatisticsDailyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StatisticsDailyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>[]
+          }
+          delete: {
+            args: Prisma.StatisticsDailyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>
+          }
+          update: {
+            args: Prisma.StatisticsDailyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>
+          }
+          deleteMany: {
+            args: Prisma.StatisticsDailyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StatisticsDailyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StatisticsDailyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>[]
+          }
+          upsert: {
+            args: Prisma.StatisticsDailyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StatisticsDailyPayload>
+          }
+          aggregate: {
+            args: Prisma.StatisticsDailyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStatisticsDaily>
+          }
+          groupBy: {
+            args: Prisma.StatisticsDailyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StatisticsDailyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StatisticsDailyCountArgs<ExtArgs>
+            result: $Utils.Optional<StatisticsDailyCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServiceRisk: {
+        payload: Prisma.$ServiceRiskPayload<ExtArgs>
+        fields: Prisma.ServiceRiskFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceRiskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceRiskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceRiskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceRiskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceRiskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceRiskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceRiskCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServiceRiskCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>[]
+          }
+          delete: {
+            args: Prisma.ServiceRiskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>
+          }
+          update: {
+            args: Prisma.ServiceRiskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceRiskDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceRiskUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ServiceRiskUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>[]
+          }
+          upsert: {
+            args: Prisma.ServiceRiskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceRiskPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceRiskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceRisk>
+          }
+          groupBy: {
+            args: Prisma.ServiceRiskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceRiskGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServiceRiskCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceRiskCountAggregateOutputType> | number
+          }
+        }
+      }
+      RootCauseReport: {
+        payload: Prisma.$RootCauseReportPayload<ExtArgs>
+        fields: Prisma.RootCauseReportFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RootCauseReportFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RootCauseReportFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>
+          }
+          findFirst: {
+            args: Prisma.RootCauseReportFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RootCauseReportFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>
+          }
+          findMany: {
+            args: Prisma.RootCauseReportFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>[]
+          }
+          create: {
+            args: Prisma.RootCauseReportCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>
+          }
+          createMany: {
+            args: Prisma.RootCauseReportCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RootCauseReportCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>[]
+          }
+          delete: {
+            args: Prisma.RootCauseReportDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>
+          }
+          update: {
+            args: Prisma.RootCauseReportUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>
+          }
+          deleteMany: {
+            args: Prisma.RootCauseReportDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RootCauseReportUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RootCauseReportUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>[]
+          }
+          upsert: {
+            args: Prisma.RootCauseReportUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RootCauseReportPayload>
+          }
+          aggregate: {
+            args: Prisma.RootCauseReportAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRootCauseReport>
+          }
+          groupBy: {
+            args: Prisma.RootCauseReportGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RootCauseReportGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RootCauseReportCountArgs<ExtArgs>
+            result: $Utils.Optional<RootCauseReportCountAggregateOutputType> | number
+          }
+        }
+      }
+      FailurePrediction: {
+        payload: Prisma.$FailurePredictionPayload<ExtArgs>
+        fields: Prisma.FailurePredictionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FailurePredictionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FailurePredictionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>
+          }
+          findFirst: {
+            args: Prisma.FailurePredictionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FailurePredictionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>
+          }
+          findMany: {
+            args: Prisma.FailurePredictionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>[]
+          }
+          create: {
+            args: Prisma.FailurePredictionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>
+          }
+          createMany: {
+            args: Prisma.FailurePredictionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FailurePredictionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>[]
+          }
+          delete: {
+            args: Prisma.FailurePredictionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>
+          }
+          update: {
+            args: Prisma.FailurePredictionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>
+          }
+          deleteMany: {
+            args: Prisma.FailurePredictionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FailurePredictionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FailurePredictionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>[]
+          }
+          upsert: {
+            args: Prisma.FailurePredictionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailurePredictionPayload>
+          }
+          aggregate: {
+            args: Prisma.FailurePredictionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFailurePrediction>
+          }
+          groupBy: {
+            args: Prisma.FailurePredictionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FailurePredictionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FailurePredictionCountArgs<ExtArgs>
+            result: $Utils.Optional<FailurePredictionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServiceDailyStats: {
+        payload: Prisma.$ServiceDailyStatsPayload<ExtArgs>
+        fields: Prisma.ServiceDailyStatsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceDailyStatsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceDailyStatsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceDailyStatsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceDailyStatsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceDailyStatsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceDailyStatsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceDailyStatsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServiceDailyStatsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>[]
+          }
+          delete: {
+            args: Prisma.ServiceDailyStatsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>
+          }
+          update: {
+            args: Prisma.ServiceDailyStatsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceDailyStatsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceDailyStatsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ServiceDailyStatsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ServiceDailyStatsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceDailyStatsPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceDailyStatsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceDailyStats>
+          }
+          groupBy: {
+            args: Prisma.ServiceDailyStatsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceDailyStatsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServiceDailyStatsCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceDailyStatsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1437,6 +1977,12 @@ export namespace Prisma {
     metrics?: MetricsOmit
     logEntry?: LogEntryOmit
     logIngestionToken?: LogIngestionTokenOmit
+    statisticsHourly?: StatisticsHourlyOmit
+    statisticsDaily?: StatisticsDailyOmit
+    serviceRisk?: ServiceRiskOmit
+    rootCauseReport?: RootCauseReportOmit
+    failurePrediction?: FailurePredictionOmit
+    serviceDailyStats?: ServiceDailyStatsOmit
   }
 
   /* Types for Logging */
@@ -10071,6 +10617,6584 @@ export namespace Prisma {
 
 
   /**
+   * Model StatisticsHourly
+   */
+
+  export type AggregateStatisticsHourly = {
+    _count: StatisticsHourlyCountAggregateOutputType | null
+    _avg: StatisticsHourlyAvgAggregateOutputType | null
+    _sum: StatisticsHourlySumAggregateOutputType | null
+    _min: StatisticsHourlyMinAggregateOutputType | null
+    _max: StatisticsHourlyMaxAggregateOutputType | null
+  }
+
+  export type StatisticsHourlyAvgAggregateOutputType = {
+    avgCpu: number | null
+    avgMemory: number | null
+    peakCpu: number | null
+    peakMemory: number | null
+    logsErrors: number | null
+    logsWarnings: number | null
+    logsInfo: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    anomalies: number | null
+  }
+
+  export type StatisticsHourlySumAggregateOutputType = {
+    avgCpu: number | null
+    avgMemory: number | null
+    peakCpu: number | null
+    peakMemory: number | null
+    logsErrors: number | null
+    logsWarnings: number | null
+    logsInfo: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    anomalies: number | null
+  }
+
+  export type StatisticsHourlyMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    hour: Date | null
+    avgCpu: number | null
+    avgMemory: number | null
+    peakCpu: number | null
+    peakMemory: number | null
+    logsErrors: number | null
+    logsWarnings: number | null
+    logsInfo: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    anomalies: number | null
+    createdAt: Date | null
+  }
+
+  export type StatisticsHourlyMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    hour: Date | null
+    avgCpu: number | null
+    avgMemory: number | null
+    peakCpu: number | null
+    peakMemory: number | null
+    logsErrors: number | null
+    logsWarnings: number | null
+    logsInfo: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    anomalies: number | null
+    createdAt: Date | null
+  }
+
+  export type StatisticsHourlyCountAggregateOutputType = {
+    id: number
+    service: number
+    hour: number
+    avgCpu: number
+    avgMemory: number
+    peakCpu: number
+    peakMemory: number
+    logsErrors: number
+    logsWarnings: number
+    logsInfo: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    anomalies: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type StatisticsHourlyAvgAggregateInputType = {
+    avgCpu?: true
+    avgMemory?: true
+    peakCpu?: true
+    peakMemory?: true
+    logsErrors?: true
+    logsWarnings?: true
+    logsInfo?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    anomalies?: true
+  }
+
+  export type StatisticsHourlySumAggregateInputType = {
+    avgCpu?: true
+    avgMemory?: true
+    peakCpu?: true
+    peakMemory?: true
+    logsErrors?: true
+    logsWarnings?: true
+    logsInfo?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    anomalies?: true
+  }
+
+  export type StatisticsHourlyMinAggregateInputType = {
+    id?: true
+    service?: true
+    hour?: true
+    avgCpu?: true
+    avgMemory?: true
+    peakCpu?: true
+    peakMemory?: true
+    logsErrors?: true
+    logsWarnings?: true
+    logsInfo?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    anomalies?: true
+    createdAt?: true
+  }
+
+  export type StatisticsHourlyMaxAggregateInputType = {
+    id?: true
+    service?: true
+    hour?: true
+    avgCpu?: true
+    avgMemory?: true
+    peakCpu?: true
+    peakMemory?: true
+    logsErrors?: true
+    logsWarnings?: true
+    logsInfo?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    anomalies?: true
+    createdAt?: true
+  }
+
+  export type StatisticsHourlyCountAggregateInputType = {
+    id?: true
+    service?: true
+    hour?: true
+    avgCpu?: true
+    avgMemory?: true
+    peakCpu?: true
+    peakMemory?: true
+    logsErrors?: true
+    logsWarnings?: true
+    logsInfo?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    anomalies?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type StatisticsHourlyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StatisticsHourly to aggregate.
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsHourlies to fetch.
+     */
+    orderBy?: StatisticsHourlyOrderByWithRelationInput | StatisticsHourlyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StatisticsHourlyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsHourlies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsHourlies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StatisticsHourlies
+    **/
+    _count?: true | StatisticsHourlyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StatisticsHourlyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StatisticsHourlySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StatisticsHourlyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StatisticsHourlyMaxAggregateInputType
+  }
+
+  export type GetStatisticsHourlyAggregateType<T extends StatisticsHourlyAggregateArgs> = {
+        [P in keyof T & keyof AggregateStatisticsHourly]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStatisticsHourly[P]>
+      : GetScalarType<T[P], AggregateStatisticsHourly[P]>
+  }
+
+
+
+
+  export type StatisticsHourlyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StatisticsHourlyWhereInput
+    orderBy?: StatisticsHourlyOrderByWithAggregationInput | StatisticsHourlyOrderByWithAggregationInput[]
+    by: StatisticsHourlyScalarFieldEnum[] | StatisticsHourlyScalarFieldEnum
+    having?: StatisticsHourlyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StatisticsHourlyCountAggregateInputType | true
+    _avg?: StatisticsHourlyAvgAggregateInputType
+    _sum?: StatisticsHourlySumAggregateInputType
+    _min?: StatisticsHourlyMinAggregateInputType
+    _max?: StatisticsHourlyMaxAggregateInputType
+  }
+
+  export type StatisticsHourlyGroupByOutputType = {
+    id: string
+    service: string
+    hour: Date
+    avgCpu: number
+    avgMemory: number
+    peakCpu: number
+    peakMemory: number
+    logsErrors: number
+    logsWarnings: number
+    logsInfo: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    anomalies: number
+    createdAt: Date
+    _count: StatisticsHourlyCountAggregateOutputType | null
+    _avg: StatisticsHourlyAvgAggregateOutputType | null
+    _sum: StatisticsHourlySumAggregateOutputType | null
+    _min: StatisticsHourlyMinAggregateOutputType | null
+    _max: StatisticsHourlyMaxAggregateOutputType | null
+  }
+
+  type GetStatisticsHourlyGroupByPayload<T extends StatisticsHourlyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StatisticsHourlyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StatisticsHourlyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StatisticsHourlyGroupByOutputType[P]>
+            : GetScalarType<T[P], StatisticsHourlyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StatisticsHourlySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    hour?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    peakCpu?: boolean
+    peakMemory?: boolean
+    logsErrors?: boolean
+    logsWarnings?: boolean
+    logsInfo?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["statisticsHourly"]>
+
+  export type StatisticsHourlySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    hour?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    peakCpu?: boolean
+    peakMemory?: boolean
+    logsErrors?: boolean
+    logsWarnings?: boolean
+    logsInfo?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["statisticsHourly"]>
+
+  export type StatisticsHourlySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    hour?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    peakCpu?: boolean
+    peakMemory?: boolean
+    logsErrors?: boolean
+    logsWarnings?: boolean
+    logsInfo?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["statisticsHourly"]>
+
+  export type StatisticsHourlySelectScalar = {
+    id?: boolean
+    service?: boolean
+    hour?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    peakCpu?: boolean
+    peakMemory?: boolean
+    logsErrors?: boolean
+    logsWarnings?: boolean
+    logsInfo?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }
+
+  export type StatisticsHourlyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "hour" | "avgCpu" | "avgMemory" | "peakCpu" | "peakMemory" | "logsErrors" | "logsWarnings" | "logsInfo" | "failures" | "recoveries" | "crashLoops" | "anomalies" | "createdAt", ExtArgs["result"]["statisticsHourly"]>
+
+  export type $StatisticsHourlyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StatisticsHourly"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      hour: Date
+      avgCpu: number
+      avgMemory: number
+      peakCpu: number
+      peakMemory: number
+      logsErrors: number
+      logsWarnings: number
+      logsInfo: number
+      failures: number
+      recoveries: number
+      crashLoops: number
+      anomalies: number
+      createdAt: Date
+    }, ExtArgs["result"]["statisticsHourly"]>
+    composites: {}
+  }
+
+  type StatisticsHourlyGetPayload<S extends boolean | null | undefined | StatisticsHourlyDefaultArgs> = $Result.GetResult<Prisma.$StatisticsHourlyPayload, S>
+
+  type StatisticsHourlyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StatisticsHourlyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StatisticsHourlyCountAggregateInputType | true
+    }
+
+  export interface StatisticsHourlyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StatisticsHourly'], meta: { name: 'StatisticsHourly' } }
+    /**
+     * Find zero or one StatisticsHourly that matches the filter.
+     * @param {StatisticsHourlyFindUniqueArgs} args - Arguments to find a StatisticsHourly
+     * @example
+     * // Get one StatisticsHourly
+     * const statisticsHourly = await prisma.statisticsHourly.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StatisticsHourlyFindUniqueArgs>(args: SelectSubset<T, StatisticsHourlyFindUniqueArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StatisticsHourly that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StatisticsHourlyFindUniqueOrThrowArgs} args - Arguments to find a StatisticsHourly
+     * @example
+     * // Get one StatisticsHourly
+     * const statisticsHourly = await prisma.statisticsHourly.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StatisticsHourlyFindUniqueOrThrowArgs>(args: SelectSubset<T, StatisticsHourlyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StatisticsHourly that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyFindFirstArgs} args - Arguments to find a StatisticsHourly
+     * @example
+     * // Get one StatisticsHourly
+     * const statisticsHourly = await prisma.statisticsHourly.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StatisticsHourlyFindFirstArgs>(args?: SelectSubset<T, StatisticsHourlyFindFirstArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StatisticsHourly that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyFindFirstOrThrowArgs} args - Arguments to find a StatisticsHourly
+     * @example
+     * // Get one StatisticsHourly
+     * const statisticsHourly = await prisma.statisticsHourly.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StatisticsHourlyFindFirstOrThrowArgs>(args?: SelectSubset<T, StatisticsHourlyFindFirstOrThrowArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StatisticsHourlies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StatisticsHourlies
+     * const statisticsHourlies = await prisma.statisticsHourly.findMany()
+     * 
+     * // Get first 10 StatisticsHourlies
+     * const statisticsHourlies = await prisma.statisticsHourly.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const statisticsHourlyWithIdOnly = await prisma.statisticsHourly.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StatisticsHourlyFindManyArgs>(args?: SelectSubset<T, StatisticsHourlyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StatisticsHourly.
+     * @param {StatisticsHourlyCreateArgs} args - Arguments to create a StatisticsHourly.
+     * @example
+     * // Create one StatisticsHourly
+     * const StatisticsHourly = await prisma.statisticsHourly.create({
+     *   data: {
+     *     // ... data to create a StatisticsHourly
+     *   }
+     * })
+     * 
+     */
+    create<T extends StatisticsHourlyCreateArgs>(args: SelectSubset<T, StatisticsHourlyCreateArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StatisticsHourlies.
+     * @param {StatisticsHourlyCreateManyArgs} args - Arguments to create many StatisticsHourlies.
+     * @example
+     * // Create many StatisticsHourlies
+     * const statisticsHourly = await prisma.statisticsHourly.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StatisticsHourlyCreateManyArgs>(args?: SelectSubset<T, StatisticsHourlyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StatisticsHourlies and returns the data saved in the database.
+     * @param {StatisticsHourlyCreateManyAndReturnArgs} args - Arguments to create many StatisticsHourlies.
+     * @example
+     * // Create many StatisticsHourlies
+     * const statisticsHourly = await prisma.statisticsHourly.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StatisticsHourlies and only return the `id`
+     * const statisticsHourlyWithIdOnly = await prisma.statisticsHourly.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StatisticsHourlyCreateManyAndReturnArgs>(args?: SelectSubset<T, StatisticsHourlyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StatisticsHourly.
+     * @param {StatisticsHourlyDeleteArgs} args - Arguments to delete one StatisticsHourly.
+     * @example
+     * // Delete one StatisticsHourly
+     * const StatisticsHourly = await prisma.statisticsHourly.delete({
+     *   where: {
+     *     // ... filter to delete one StatisticsHourly
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StatisticsHourlyDeleteArgs>(args: SelectSubset<T, StatisticsHourlyDeleteArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StatisticsHourly.
+     * @param {StatisticsHourlyUpdateArgs} args - Arguments to update one StatisticsHourly.
+     * @example
+     * // Update one StatisticsHourly
+     * const statisticsHourly = await prisma.statisticsHourly.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StatisticsHourlyUpdateArgs>(args: SelectSubset<T, StatisticsHourlyUpdateArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StatisticsHourlies.
+     * @param {StatisticsHourlyDeleteManyArgs} args - Arguments to filter StatisticsHourlies to delete.
+     * @example
+     * // Delete a few StatisticsHourlies
+     * const { count } = await prisma.statisticsHourly.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StatisticsHourlyDeleteManyArgs>(args?: SelectSubset<T, StatisticsHourlyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StatisticsHourlies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StatisticsHourlies
+     * const statisticsHourly = await prisma.statisticsHourly.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StatisticsHourlyUpdateManyArgs>(args: SelectSubset<T, StatisticsHourlyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StatisticsHourlies and returns the data updated in the database.
+     * @param {StatisticsHourlyUpdateManyAndReturnArgs} args - Arguments to update many StatisticsHourlies.
+     * @example
+     * // Update many StatisticsHourlies
+     * const statisticsHourly = await prisma.statisticsHourly.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StatisticsHourlies and only return the `id`
+     * const statisticsHourlyWithIdOnly = await prisma.statisticsHourly.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StatisticsHourlyUpdateManyAndReturnArgs>(args: SelectSubset<T, StatisticsHourlyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StatisticsHourly.
+     * @param {StatisticsHourlyUpsertArgs} args - Arguments to update or create a StatisticsHourly.
+     * @example
+     * // Update or create a StatisticsHourly
+     * const statisticsHourly = await prisma.statisticsHourly.upsert({
+     *   create: {
+     *     // ... data to create a StatisticsHourly
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StatisticsHourly we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StatisticsHourlyUpsertArgs>(args: SelectSubset<T, StatisticsHourlyUpsertArgs<ExtArgs>>): Prisma__StatisticsHourlyClient<$Result.GetResult<Prisma.$StatisticsHourlyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StatisticsHourlies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyCountArgs} args - Arguments to filter StatisticsHourlies to count.
+     * @example
+     * // Count the number of StatisticsHourlies
+     * const count = await prisma.statisticsHourly.count({
+     *   where: {
+     *     // ... the filter for the StatisticsHourlies we want to count
+     *   }
+     * })
+    **/
+    count<T extends StatisticsHourlyCountArgs>(
+      args?: Subset<T, StatisticsHourlyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StatisticsHourlyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StatisticsHourly.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StatisticsHourlyAggregateArgs>(args: Subset<T, StatisticsHourlyAggregateArgs>): Prisma.PrismaPromise<GetStatisticsHourlyAggregateType<T>>
+
+    /**
+     * Group by StatisticsHourly.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsHourlyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StatisticsHourlyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StatisticsHourlyGroupByArgs['orderBy'] }
+        : { orderBy?: StatisticsHourlyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StatisticsHourlyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStatisticsHourlyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StatisticsHourly model
+   */
+  readonly fields: StatisticsHourlyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StatisticsHourly.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StatisticsHourlyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StatisticsHourly model
+   */
+  interface StatisticsHourlyFieldRefs {
+    readonly id: FieldRef<"StatisticsHourly", 'String'>
+    readonly service: FieldRef<"StatisticsHourly", 'String'>
+    readonly hour: FieldRef<"StatisticsHourly", 'DateTime'>
+    readonly avgCpu: FieldRef<"StatisticsHourly", 'Float'>
+    readonly avgMemory: FieldRef<"StatisticsHourly", 'Float'>
+    readonly peakCpu: FieldRef<"StatisticsHourly", 'Float'>
+    readonly peakMemory: FieldRef<"StatisticsHourly", 'Float'>
+    readonly logsErrors: FieldRef<"StatisticsHourly", 'Int'>
+    readonly logsWarnings: FieldRef<"StatisticsHourly", 'Int'>
+    readonly logsInfo: FieldRef<"StatisticsHourly", 'Int'>
+    readonly failures: FieldRef<"StatisticsHourly", 'Int'>
+    readonly recoveries: FieldRef<"StatisticsHourly", 'Int'>
+    readonly crashLoops: FieldRef<"StatisticsHourly", 'Int'>
+    readonly anomalies: FieldRef<"StatisticsHourly", 'Int'>
+    readonly createdAt: FieldRef<"StatisticsHourly", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StatisticsHourly findUnique
+   */
+  export type StatisticsHourlyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsHourly to fetch.
+     */
+    where: StatisticsHourlyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsHourly findUniqueOrThrow
+   */
+  export type StatisticsHourlyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsHourly to fetch.
+     */
+    where: StatisticsHourlyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsHourly findFirst
+   */
+  export type StatisticsHourlyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsHourly to fetch.
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsHourlies to fetch.
+     */
+    orderBy?: StatisticsHourlyOrderByWithRelationInput | StatisticsHourlyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StatisticsHourlies.
+     */
+    cursor?: StatisticsHourlyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsHourlies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsHourlies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StatisticsHourlies.
+     */
+    distinct?: StatisticsHourlyScalarFieldEnum | StatisticsHourlyScalarFieldEnum[]
+  }
+
+  /**
+   * StatisticsHourly findFirstOrThrow
+   */
+  export type StatisticsHourlyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsHourly to fetch.
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsHourlies to fetch.
+     */
+    orderBy?: StatisticsHourlyOrderByWithRelationInput | StatisticsHourlyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StatisticsHourlies.
+     */
+    cursor?: StatisticsHourlyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsHourlies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsHourlies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StatisticsHourlies.
+     */
+    distinct?: StatisticsHourlyScalarFieldEnum | StatisticsHourlyScalarFieldEnum[]
+  }
+
+  /**
+   * StatisticsHourly findMany
+   */
+  export type StatisticsHourlyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsHourlies to fetch.
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsHourlies to fetch.
+     */
+    orderBy?: StatisticsHourlyOrderByWithRelationInput | StatisticsHourlyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StatisticsHourlies.
+     */
+    cursor?: StatisticsHourlyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsHourlies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsHourlies.
+     */
+    skip?: number
+    distinct?: StatisticsHourlyScalarFieldEnum | StatisticsHourlyScalarFieldEnum[]
+  }
+
+  /**
+   * StatisticsHourly create
+   */
+  export type StatisticsHourlyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * The data needed to create a StatisticsHourly.
+     */
+    data: XOR<StatisticsHourlyCreateInput, StatisticsHourlyUncheckedCreateInput>
+  }
+
+  /**
+   * StatisticsHourly createMany
+   */
+  export type StatisticsHourlyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StatisticsHourlies.
+     */
+    data: StatisticsHourlyCreateManyInput | StatisticsHourlyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StatisticsHourly createManyAndReturn
+   */
+  export type StatisticsHourlyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * The data used to create many StatisticsHourlies.
+     */
+    data: StatisticsHourlyCreateManyInput | StatisticsHourlyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StatisticsHourly update
+   */
+  export type StatisticsHourlyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * The data needed to update a StatisticsHourly.
+     */
+    data: XOR<StatisticsHourlyUpdateInput, StatisticsHourlyUncheckedUpdateInput>
+    /**
+     * Choose, which StatisticsHourly to update.
+     */
+    where: StatisticsHourlyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsHourly updateMany
+   */
+  export type StatisticsHourlyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StatisticsHourlies.
+     */
+    data: XOR<StatisticsHourlyUpdateManyMutationInput, StatisticsHourlyUncheckedUpdateManyInput>
+    /**
+     * Filter which StatisticsHourlies to update
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * Limit how many StatisticsHourlies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StatisticsHourly updateManyAndReturn
+   */
+  export type StatisticsHourlyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * The data used to update StatisticsHourlies.
+     */
+    data: XOR<StatisticsHourlyUpdateManyMutationInput, StatisticsHourlyUncheckedUpdateManyInput>
+    /**
+     * Filter which StatisticsHourlies to update
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * Limit how many StatisticsHourlies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StatisticsHourly upsert
+   */
+  export type StatisticsHourlyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * The filter to search for the StatisticsHourly to update in case it exists.
+     */
+    where: StatisticsHourlyWhereUniqueInput
+    /**
+     * In case the StatisticsHourly found by the `where` argument doesn't exist, create a new StatisticsHourly with this data.
+     */
+    create: XOR<StatisticsHourlyCreateInput, StatisticsHourlyUncheckedCreateInput>
+    /**
+     * In case the StatisticsHourly was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StatisticsHourlyUpdateInput, StatisticsHourlyUncheckedUpdateInput>
+  }
+
+  /**
+   * StatisticsHourly delete
+   */
+  export type StatisticsHourlyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+    /**
+     * Filter which StatisticsHourly to delete.
+     */
+    where: StatisticsHourlyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsHourly deleteMany
+   */
+  export type StatisticsHourlyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StatisticsHourlies to delete
+     */
+    where?: StatisticsHourlyWhereInput
+    /**
+     * Limit how many StatisticsHourlies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StatisticsHourly without action
+   */
+  export type StatisticsHourlyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsHourly
+     */
+    select?: StatisticsHourlySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsHourly
+     */
+    omit?: StatisticsHourlyOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StatisticsDaily
+   */
+
+  export type AggregateStatisticsDaily = {
+    _count: StatisticsDailyCountAggregateOutputType | null
+    _avg: StatisticsDailyAvgAggregateOutputType | null
+    _sum: StatisticsDailySumAggregateOutputType | null
+    _min: StatisticsDailyMinAggregateOutputType | null
+    _max: StatisticsDailyMaxAggregateOutputType | null
+  }
+
+  export type StatisticsDailyAvgAggregateOutputType = {
+    avgCpu: number | null
+    avgMemory: number | null
+    errors: number | null
+    warnings: number | null
+    info: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    uptimePercentage: number | null
+    anomalyCount: number | null
+  }
+
+  export type StatisticsDailySumAggregateOutputType = {
+    avgCpu: number | null
+    avgMemory: number | null
+    errors: number | null
+    warnings: number | null
+    info: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    uptimePercentage: number | null
+    anomalyCount: number | null
+  }
+
+  export type StatisticsDailyMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    day: Date | null
+    avgCpu: number | null
+    avgMemory: number | null
+    errors: number | null
+    warnings: number | null
+    info: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    uptimePercentage: number | null
+    anomalyCount: number | null
+    createdAt: Date | null
+  }
+
+  export type StatisticsDailyMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    day: Date | null
+    avgCpu: number | null
+    avgMemory: number | null
+    errors: number | null
+    warnings: number | null
+    info: number | null
+    failures: number | null
+    recoveries: number | null
+    crashLoops: number | null
+    uptimePercentage: number | null
+    anomalyCount: number | null
+    createdAt: Date | null
+  }
+
+  export type StatisticsDailyCountAggregateOutputType = {
+    id: number
+    service: number
+    day: number
+    avgCpu: number
+    avgMemory: number
+    errors: number
+    warnings: number
+    info: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    uptimePercentage: number
+    anomalyCount: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type StatisticsDailyAvgAggregateInputType = {
+    avgCpu?: true
+    avgMemory?: true
+    errors?: true
+    warnings?: true
+    info?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    uptimePercentage?: true
+    anomalyCount?: true
+  }
+
+  export type StatisticsDailySumAggregateInputType = {
+    avgCpu?: true
+    avgMemory?: true
+    errors?: true
+    warnings?: true
+    info?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    uptimePercentage?: true
+    anomalyCount?: true
+  }
+
+  export type StatisticsDailyMinAggregateInputType = {
+    id?: true
+    service?: true
+    day?: true
+    avgCpu?: true
+    avgMemory?: true
+    errors?: true
+    warnings?: true
+    info?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    uptimePercentage?: true
+    anomalyCount?: true
+    createdAt?: true
+  }
+
+  export type StatisticsDailyMaxAggregateInputType = {
+    id?: true
+    service?: true
+    day?: true
+    avgCpu?: true
+    avgMemory?: true
+    errors?: true
+    warnings?: true
+    info?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    uptimePercentage?: true
+    anomalyCount?: true
+    createdAt?: true
+  }
+
+  export type StatisticsDailyCountAggregateInputType = {
+    id?: true
+    service?: true
+    day?: true
+    avgCpu?: true
+    avgMemory?: true
+    errors?: true
+    warnings?: true
+    info?: true
+    failures?: true
+    recoveries?: true
+    crashLoops?: true
+    uptimePercentage?: true
+    anomalyCount?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type StatisticsDailyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StatisticsDaily to aggregate.
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsDailies to fetch.
+     */
+    orderBy?: StatisticsDailyOrderByWithRelationInput | StatisticsDailyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StatisticsDailyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsDailies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsDailies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StatisticsDailies
+    **/
+    _count?: true | StatisticsDailyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StatisticsDailyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StatisticsDailySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StatisticsDailyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StatisticsDailyMaxAggregateInputType
+  }
+
+  export type GetStatisticsDailyAggregateType<T extends StatisticsDailyAggregateArgs> = {
+        [P in keyof T & keyof AggregateStatisticsDaily]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStatisticsDaily[P]>
+      : GetScalarType<T[P], AggregateStatisticsDaily[P]>
+  }
+
+
+
+
+  export type StatisticsDailyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StatisticsDailyWhereInput
+    orderBy?: StatisticsDailyOrderByWithAggregationInput | StatisticsDailyOrderByWithAggregationInput[]
+    by: StatisticsDailyScalarFieldEnum[] | StatisticsDailyScalarFieldEnum
+    having?: StatisticsDailyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StatisticsDailyCountAggregateInputType | true
+    _avg?: StatisticsDailyAvgAggregateInputType
+    _sum?: StatisticsDailySumAggregateInputType
+    _min?: StatisticsDailyMinAggregateInputType
+    _max?: StatisticsDailyMaxAggregateInputType
+  }
+
+  export type StatisticsDailyGroupByOutputType = {
+    id: string
+    service: string
+    day: Date
+    avgCpu: number
+    avgMemory: number
+    errors: number
+    warnings: number
+    info: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    uptimePercentage: number
+    anomalyCount: number
+    createdAt: Date
+    _count: StatisticsDailyCountAggregateOutputType | null
+    _avg: StatisticsDailyAvgAggregateOutputType | null
+    _sum: StatisticsDailySumAggregateOutputType | null
+    _min: StatisticsDailyMinAggregateOutputType | null
+    _max: StatisticsDailyMaxAggregateOutputType | null
+  }
+
+  type GetStatisticsDailyGroupByPayload<T extends StatisticsDailyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StatisticsDailyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StatisticsDailyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StatisticsDailyGroupByOutputType[P]>
+            : GetScalarType<T[P], StatisticsDailyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StatisticsDailySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    day?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    errors?: boolean
+    warnings?: boolean
+    info?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    uptimePercentage?: boolean
+    anomalyCount?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["statisticsDaily"]>
+
+  export type StatisticsDailySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    day?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    errors?: boolean
+    warnings?: boolean
+    info?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    uptimePercentage?: boolean
+    anomalyCount?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["statisticsDaily"]>
+
+  export type StatisticsDailySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    day?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    errors?: boolean
+    warnings?: boolean
+    info?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    uptimePercentage?: boolean
+    anomalyCount?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["statisticsDaily"]>
+
+  export type StatisticsDailySelectScalar = {
+    id?: boolean
+    service?: boolean
+    day?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    errors?: boolean
+    warnings?: boolean
+    info?: boolean
+    failures?: boolean
+    recoveries?: boolean
+    crashLoops?: boolean
+    uptimePercentage?: boolean
+    anomalyCount?: boolean
+    createdAt?: boolean
+  }
+
+  export type StatisticsDailyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "day" | "avgCpu" | "avgMemory" | "errors" | "warnings" | "info" | "failures" | "recoveries" | "crashLoops" | "uptimePercentage" | "anomalyCount" | "createdAt", ExtArgs["result"]["statisticsDaily"]>
+
+  export type $StatisticsDailyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StatisticsDaily"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      day: Date
+      avgCpu: number
+      avgMemory: number
+      errors: number
+      warnings: number
+      info: number
+      failures: number
+      recoveries: number
+      crashLoops: number
+      uptimePercentage: number
+      anomalyCount: number
+      createdAt: Date
+    }, ExtArgs["result"]["statisticsDaily"]>
+    composites: {}
+  }
+
+  type StatisticsDailyGetPayload<S extends boolean | null | undefined | StatisticsDailyDefaultArgs> = $Result.GetResult<Prisma.$StatisticsDailyPayload, S>
+
+  type StatisticsDailyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StatisticsDailyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StatisticsDailyCountAggregateInputType | true
+    }
+
+  export interface StatisticsDailyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StatisticsDaily'], meta: { name: 'StatisticsDaily' } }
+    /**
+     * Find zero or one StatisticsDaily that matches the filter.
+     * @param {StatisticsDailyFindUniqueArgs} args - Arguments to find a StatisticsDaily
+     * @example
+     * // Get one StatisticsDaily
+     * const statisticsDaily = await prisma.statisticsDaily.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StatisticsDailyFindUniqueArgs>(args: SelectSubset<T, StatisticsDailyFindUniqueArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StatisticsDaily that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StatisticsDailyFindUniqueOrThrowArgs} args - Arguments to find a StatisticsDaily
+     * @example
+     * // Get one StatisticsDaily
+     * const statisticsDaily = await prisma.statisticsDaily.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StatisticsDailyFindUniqueOrThrowArgs>(args: SelectSubset<T, StatisticsDailyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StatisticsDaily that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyFindFirstArgs} args - Arguments to find a StatisticsDaily
+     * @example
+     * // Get one StatisticsDaily
+     * const statisticsDaily = await prisma.statisticsDaily.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StatisticsDailyFindFirstArgs>(args?: SelectSubset<T, StatisticsDailyFindFirstArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StatisticsDaily that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyFindFirstOrThrowArgs} args - Arguments to find a StatisticsDaily
+     * @example
+     * // Get one StatisticsDaily
+     * const statisticsDaily = await prisma.statisticsDaily.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StatisticsDailyFindFirstOrThrowArgs>(args?: SelectSubset<T, StatisticsDailyFindFirstOrThrowArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StatisticsDailies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StatisticsDailies
+     * const statisticsDailies = await prisma.statisticsDaily.findMany()
+     * 
+     * // Get first 10 StatisticsDailies
+     * const statisticsDailies = await prisma.statisticsDaily.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const statisticsDailyWithIdOnly = await prisma.statisticsDaily.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StatisticsDailyFindManyArgs>(args?: SelectSubset<T, StatisticsDailyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StatisticsDaily.
+     * @param {StatisticsDailyCreateArgs} args - Arguments to create a StatisticsDaily.
+     * @example
+     * // Create one StatisticsDaily
+     * const StatisticsDaily = await prisma.statisticsDaily.create({
+     *   data: {
+     *     // ... data to create a StatisticsDaily
+     *   }
+     * })
+     * 
+     */
+    create<T extends StatisticsDailyCreateArgs>(args: SelectSubset<T, StatisticsDailyCreateArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StatisticsDailies.
+     * @param {StatisticsDailyCreateManyArgs} args - Arguments to create many StatisticsDailies.
+     * @example
+     * // Create many StatisticsDailies
+     * const statisticsDaily = await prisma.statisticsDaily.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StatisticsDailyCreateManyArgs>(args?: SelectSubset<T, StatisticsDailyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StatisticsDailies and returns the data saved in the database.
+     * @param {StatisticsDailyCreateManyAndReturnArgs} args - Arguments to create many StatisticsDailies.
+     * @example
+     * // Create many StatisticsDailies
+     * const statisticsDaily = await prisma.statisticsDaily.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StatisticsDailies and only return the `id`
+     * const statisticsDailyWithIdOnly = await prisma.statisticsDaily.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StatisticsDailyCreateManyAndReturnArgs>(args?: SelectSubset<T, StatisticsDailyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StatisticsDaily.
+     * @param {StatisticsDailyDeleteArgs} args - Arguments to delete one StatisticsDaily.
+     * @example
+     * // Delete one StatisticsDaily
+     * const StatisticsDaily = await prisma.statisticsDaily.delete({
+     *   where: {
+     *     // ... filter to delete one StatisticsDaily
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StatisticsDailyDeleteArgs>(args: SelectSubset<T, StatisticsDailyDeleteArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StatisticsDaily.
+     * @param {StatisticsDailyUpdateArgs} args - Arguments to update one StatisticsDaily.
+     * @example
+     * // Update one StatisticsDaily
+     * const statisticsDaily = await prisma.statisticsDaily.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StatisticsDailyUpdateArgs>(args: SelectSubset<T, StatisticsDailyUpdateArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StatisticsDailies.
+     * @param {StatisticsDailyDeleteManyArgs} args - Arguments to filter StatisticsDailies to delete.
+     * @example
+     * // Delete a few StatisticsDailies
+     * const { count } = await prisma.statisticsDaily.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StatisticsDailyDeleteManyArgs>(args?: SelectSubset<T, StatisticsDailyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StatisticsDailies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StatisticsDailies
+     * const statisticsDaily = await prisma.statisticsDaily.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StatisticsDailyUpdateManyArgs>(args: SelectSubset<T, StatisticsDailyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StatisticsDailies and returns the data updated in the database.
+     * @param {StatisticsDailyUpdateManyAndReturnArgs} args - Arguments to update many StatisticsDailies.
+     * @example
+     * // Update many StatisticsDailies
+     * const statisticsDaily = await prisma.statisticsDaily.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StatisticsDailies and only return the `id`
+     * const statisticsDailyWithIdOnly = await prisma.statisticsDaily.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StatisticsDailyUpdateManyAndReturnArgs>(args: SelectSubset<T, StatisticsDailyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StatisticsDaily.
+     * @param {StatisticsDailyUpsertArgs} args - Arguments to update or create a StatisticsDaily.
+     * @example
+     * // Update or create a StatisticsDaily
+     * const statisticsDaily = await prisma.statisticsDaily.upsert({
+     *   create: {
+     *     // ... data to create a StatisticsDaily
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StatisticsDaily we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StatisticsDailyUpsertArgs>(args: SelectSubset<T, StatisticsDailyUpsertArgs<ExtArgs>>): Prisma__StatisticsDailyClient<$Result.GetResult<Prisma.$StatisticsDailyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StatisticsDailies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyCountArgs} args - Arguments to filter StatisticsDailies to count.
+     * @example
+     * // Count the number of StatisticsDailies
+     * const count = await prisma.statisticsDaily.count({
+     *   where: {
+     *     // ... the filter for the StatisticsDailies we want to count
+     *   }
+     * })
+    **/
+    count<T extends StatisticsDailyCountArgs>(
+      args?: Subset<T, StatisticsDailyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StatisticsDailyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StatisticsDaily.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StatisticsDailyAggregateArgs>(args: Subset<T, StatisticsDailyAggregateArgs>): Prisma.PrismaPromise<GetStatisticsDailyAggregateType<T>>
+
+    /**
+     * Group by StatisticsDaily.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatisticsDailyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StatisticsDailyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StatisticsDailyGroupByArgs['orderBy'] }
+        : { orderBy?: StatisticsDailyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StatisticsDailyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStatisticsDailyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StatisticsDaily model
+   */
+  readonly fields: StatisticsDailyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StatisticsDaily.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StatisticsDailyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StatisticsDaily model
+   */
+  interface StatisticsDailyFieldRefs {
+    readonly id: FieldRef<"StatisticsDaily", 'String'>
+    readonly service: FieldRef<"StatisticsDaily", 'String'>
+    readonly day: FieldRef<"StatisticsDaily", 'DateTime'>
+    readonly avgCpu: FieldRef<"StatisticsDaily", 'Float'>
+    readonly avgMemory: FieldRef<"StatisticsDaily", 'Float'>
+    readonly errors: FieldRef<"StatisticsDaily", 'Int'>
+    readonly warnings: FieldRef<"StatisticsDaily", 'Int'>
+    readonly info: FieldRef<"StatisticsDaily", 'Int'>
+    readonly failures: FieldRef<"StatisticsDaily", 'Int'>
+    readonly recoveries: FieldRef<"StatisticsDaily", 'Int'>
+    readonly crashLoops: FieldRef<"StatisticsDaily", 'Int'>
+    readonly uptimePercentage: FieldRef<"StatisticsDaily", 'Float'>
+    readonly anomalyCount: FieldRef<"StatisticsDaily", 'Int'>
+    readonly createdAt: FieldRef<"StatisticsDaily", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StatisticsDaily findUnique
+   */
+  export type StatisticsDailyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsDaily to fetch.
+     */
+    where: StatisticsDailyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsDaily findUniqueOrThrow
+   */
+  export type StatisticsDailyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsDaily to fetch.
+     */
+    where: StatisticsDailyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsDaily findFirst
+   */
+  export type StatisticsDailyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsDaily to fetch.
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsDailies to fetch.
+     */
+    orderBy?: StatisticsDailyOrderByWithRelationInput | StatisticsDailyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StatisticsDailies.
+     */
+    cursor?: StatisticsDailyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsDailies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsDailies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StatisticsDailies.
+     */
+    distinct?: StatisticsDailyScalarFieldEnum | StatisticsDailyScalarFieldEnum[]
+  }
+
+  /**
+   * StatisticsDaily findFirstOrThrow
+   */
+  export type StatisticsDailyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsDaily to fetch.
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsDailies to fetch.
+     */
+    orderBy?: StatisticsDailyOrderByWithRelationInput | StatisticsDailyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StatisticsDailies.
+     */
+    cursor?: StatisticsDailyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsDailies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsDailies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StatisticsDailies.
+     */
+    distinct?: StatisticsDailyScalarFieldEnum | StatisticsDailyScalarFieldEnum[]
+  }
+
+  /**
+   * StatisticsDaily findMany
+   */
+  export type StatisticsDailyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * Filter, which StatisticsDailies to fetch.
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StatisticsDailies to fetch.
+     */
+    orderBy?: StatisticsDailyOrderByWithRelationInput | StatisticsDailyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StatisticsDailies.
+     */
+    cursor?: StatisticsDailyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StatisticsDailies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StatisticsDailies.
+     */
+    skip?: number
+    distinct?: StatisticsDailyScalarFieldEnum | StatisticsDailyScalarFieldEnum[]
+  }
+
+  /**
+   * StatisticsDaily create
+   */
+  export type StatisticsDailyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * The data needed to create a StatisticsDaily.
+     */
+    data: XOR<StatisticsDailyCreateInput, StatisticsDailyUncheckedCreateInput>
+  }
+
+  /**
+   * StatisticsDaily createMany
+   */
+  export type StatisticsDailyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StatisticsDailies.
+     */
+    data: StatisticsDailyCreateManyInput | StatisticsDailyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StatisticsDaily createManyAndReturn
+   */
+  export type StatisticsDailyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * The data used to create many StatisticsDailies.
+     */
+    data: StatisticsDailyCreateManyInput | StatisticsDailyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StatisticsDaily update
+   */
+  export type StatisticsDailyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * The data needed to update a StatisticsDaily.
+     */
+    data: XOR<StatisticsDailyUpdateInput, StatisticsDailyUncheckedUpdateInput>
+    /**
+     * Choose, which StatisticsDaily to update.
+     */
+    where: StatisticsDailyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsDaily updateMany
+   */
+  export type StatisticsDailyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StatisticsDailies.
+     */
+    data: XOR<StatisticsDailyUpdateManyMutationInput, StatisticsDailyUncheckedUpdateManyInput>
+    /**
+     * Filter which StatisticsDailies to update
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * Limit how many StatisticsDailies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StatisticsDaily updateManyAndReturn
+   */
+  export type StatisticsDailyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * The data used to update StatisticsDailies.
+     */
+    data: XOR<StatisticsDailyUpdateManyMutationInput, StatisticsDailyUncheckedUpdateManyInput>
+    /**
+     * Filter which StatisticsDailies to update
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * Limit how many StatisticsDailies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StatisticsDaily upsert
+   */
+  export type StatisticsDailyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * The filter to search for the StatisticsDaily to update in case it exists.
+     */
+    where: StatisticsDailyWhereUniqueInput
+    /**
+     * In case the StatisticsDaily found by the `where` argument doesn't exist, create a new StatisticsDaily with this data.
+     */
+    create: XOR<StatisticsDailyCreateInput, StatisticsDailyUncheckedCreateInput>
+    /**
+     * In case the StatisticsDaily was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StatisticsDailyUpdateInput, StatisticsDailyUncheckedUpdateInput>
+  }
+
+  /**
+   * StatisticsDaily delete
+   */
+  export type StatisticsDailyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+    /**
+     * Filter which StatisticsDaily to delete.
+     */
+    where: StatisticsDailyWhereUniqueInput
+  }
+
+  /**
+   * StatisticsDaily deleteMany
+   */
+  export type StatisticsDailyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StatisticsDailies to delete
+     */
+    where?: StatisticsDailyWhereInput
+    /**
+     * Limit how many StatisticsDailies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StatisticsDaily without action
+   */
+  export type StatisticsDailyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StatisticsDaily
+     */
+    select?: StatisticsDailySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StatisticsDaily
+     */
+    omit?: StatisticsDailyOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ServiceRisk
+   */
+
+  export type AggregateServiceRisk = {
+    _count: ServiceRiskCountAggregateOutputType | null
+    _avg: ServiceRiskAvgAggregateOutputType | null
+    _sum: ServiceRiskSumAggregateOutputType | null
+    _min: ServiceRiskMinAggregateOutputType | null
+    _max: ServiceRiskMaxAggregateOutputType | null
+  }
+
+  export type ServiceRiskAvgAggregateOutputType = {
+    riskScore: number | null
+  }
+
+  export type ServiceRiskSumAggregateOutputType = {
+    riskScore: number | null
+  }
+
+  export type ServiceRiskMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    riskScore: number | null
+    level: string | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type ServiceRiskMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    riskScore: number | null
+    level: string | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type ServiceRiskCountAggregateOutputType = {
+    id: number
+    service: number
+    riskScore: number
+    level: number
+    reason: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ServiceRiskAvgAggregateInputType = {
+    riskScore?: true
+  }
+
+  export type ServiceRiskSumAggregateInputType = {
+    riskScore?: true
+  }
+
+  export type ServiceRiskMinAggregateInputType = {
+    id?: true
+    service?: true
+    riskScore?: true
+    level?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type ServiceRiskMaxAggregateInputType = {
+    id?: true
+    service?: true
+    riskScore?: true
+    level?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type ServiceRiskCountAggregateInputType = {
+    id?: true
+    service?: true
+    riskScore?: true
+    level?: true
+    reason?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ServiceRiskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceRisk to aggregate.
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceRisks to fetch.
+     */
+    orderBy?: ServiceRiskOrderByWithRelationInput | ServiceRiskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceRiskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceRisks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceRisks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceRisks
+    **/
+    _count?: true | ServiceRiskCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ServiceRiskAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServiceRiskSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceRiskMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceRiskMaxAggregateInputType
+  }
+
+  export type GetServiceRiskAggregateType<T extends ServiceRiskAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceRisk]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceRisk[P]>
+      : GetScalarType<T[P], AggregateServiceRisk[P]>
+  }
+
+
+
+
+  export type ServiceRiskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceRiskWhereInput
+    orderBy?: ServiceRiskOrderByWithAggregationInput | ServiceRiskOrderByWithAggregationInput[]
+    by: ServiceRiskScalarFieldEnum[] | ServiceRiskScalarFieldEnum
+    having?: ServiceRiskScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceRiskCountAggregateInputType | true
+    _avg?: ServiceRiskAvgAggregateInputType
+    _sum?: ServiceRiskSumAggregateInputType
+    _min?: ServiceRiskMinAggregateInputType
+    _max?: ServiceRiskMaxAggregateInputType
+  }
+
+  export type ServiceRiskGroupByOutputType = {
+    id: string
+    service: string
+    riskScore: number
+    level: string
+    reason: string | null
+    createdAt: Date
+    _count: ServiceRiskCountAggregateOutputType | null
+    _avg: ServiceRiskAvgAggregateOutputType | null
+    _sum: ServiceRiskSumAggregateOutputType | null
+    _min: ServiceRiskMinAggregateOutputType | null
+    _max: ServiceRiskMaxAggregateOutputType | null
+  }
+
+  type GetServiceRiskGroupByPayload<T extends ServiceRiskGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceRiskGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceRiskGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceRiskGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceRiskGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceRiskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    riskScore?: boolean
+    level?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceRisk"]>
+
+  export type ServiceRiskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    riskScore?: boolean
+    level?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceRisk"]>
+
+  export type ServiceRiskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    riskScore?: boolean
+    level?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceRisk"]>
+
+  export type ServiceRiskSelectScalar = {
+    id?: boolean
+    service?: boolean
+    riskScore?: boolean
+    level?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }
+
+  export type ServiceRiskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "riskScore" | "level" | "reason" | "createdAt", ExtArgs["result"]["serviceRisk"]>
+
+  export type $ServiceRiskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceRisk"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      riskScore: number
+      level: string
+      reason: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["serviceRisk"]>
+    composites: {}
+  }
+
+  type ServiceRiskGetPayload<S extends boolean | null | undefined | ServiceRiskDefaultArgs> = $Result.GetResult<Prisma.$ServiceRiskPayload, S>
+
+  type ServiceRiskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceRiskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceRiskCountAggregateInputType | true
+    }
+
+  export interface ServiceRiskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceRisk'], meta: { name: 'ServiceRisk' } }
+    /**
+     * Find zero or one ServiceRisk that matches the filter.
+     * @param {ServiceRiskFindUniqueArgs} args - Arguments to find a ServiceRisk
+     * @example
+     * // Get one ServiceRisk
+     * const serviceRisk = await prisma.serviceRisk.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceRiskFindUniqueArgs>(args: SelectSubset<T, ServiceRiskFindUniqueArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceRisk that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceRiskFindUniqueOrThrowArgs} args - Arguments to find a ServiceRisk
+     * @example
+     * // Get one ServiceRisk
+     * const serviceRisk = await prisma.serviceRisk.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceRiskFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceRiskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceRisk that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskFindFirstArgs} args - Arguments to find a ServiceRisk
+     * @example
+     * // Get one ServiceRisk
+     * const serviceRisk = await prisma.serviceRisk.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceRiskFindFirstArgs>(args?: SelectSubset<T, ServiceRiskFindFirstArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceRisk that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskFindFirstOrThrowArgs} args - Arguments to find a ServiceRisk
+     * @example
+     * // Get one ServiceRisk
+     * const serviceRisk = await prisma.serviceRisk.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceRiskFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceRiskFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceRisks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceRisks
+     * const serviceRisks = await prisma.serviceRisk.findMany()
+     * 
+     * // Get first 10 ServiceRisks
+     * const serviceRisks = await prisma.serviceRisk.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceRiskWithIdOnly = await prisma.serviceRisk.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceRiskFindManyArgs>(args?: SelectSubset<T, ServiceRiskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceRisk.
+     * @param {ServiceRiskCreateArgs} args - Arguments to create a ServiceRisk.
+     * @example
+     * // Create one ServiceRisk
+     * const ServiceRisk = await prisma.serviceRisk.create({
+     *   data: {
+     *     // ... data to create a ServiceRisk
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceRiskCreateArgs>(args: SelectSubset<T, ServiceRiskCreateArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceRisks.
+     * @param {ServiceRiskCreateManyArgs} args - Arguments to create many ServiceRisks.
+     * @example
+     * // Create many ServiceRisks
+     * const serviceRisk = await prisma.serviceRisk.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceRiskCreateManyArgs>(args?: SelectSubset<T, ServiceRiskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServiceRisks and returns the data saved in the database.
+     * @param {ServiceRiskCreateManyAndReturnArgs} args - Arguments to create many ServiceRisks.
+     * @example
+     * // Create many ServiceRisks
+     * const serviceRisk = await prisma.serviceRisk.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServiceRisks and only return the `id`
+     * const serviceRiskWithIdOnly = await prisma.serviceRisk.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServiceRiskCreateManyAndReturnArgs>(args?: SelectSubset<T, ServiceRiskCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServiceRisk.
+     * @param {ServiceRiskDeleteArgs} args - Arguments to delete one ServiceRisk.
+     * @example
+     * // Delete one ServiceRisk
+     * const ServiceRisk = await prisma.serviceRisk.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceRisk
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceRiskDeleteArgs>(args: SelectSubset<T, ServiceRiskDeleteArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceRisk.
+     * @param {ServiceRiskUpdateArgs} args - Arguments to update one ServiceRisk.
+     * @example
+     * // Update one ServiceRisk
+     * const serviceRisk = await prisma.serviceRisk.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceRiskUpdateArgs>(args: SelectSubset<T, ServiceRiskUpdateArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceRisks.
+     * @param {ServiceRiskDeleteManyArgs} args - Arguments to filter ServiceRisks to delete.
+     * @example
+     * // Delete a few ServiceRisks
+     * const { count } = await prisma.serviceRisk.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceRiskDeleteManyArgs>(args?: SelectSubset<T, ServiceRiskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceRisks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceRisks
+     * const serviceRisk = await prisma.serviceRisk.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceRiskUpdateManyArgs>(args: SelectSubset<T, ServiceRiskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceRisks and returns the data updated in the database.
+     * @param {ServiceRiskUpdateManyAndReturnArgs} args - Arguments to update many ServiceRisks.
+     * @example
+     * // Update many ServiceRisks
+     * const serviceRisk = await prisma.serviceRisk.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServiceRisks and only return the `id`
+     * const serviceRiskWithIdOnly = await prisma.serviceRisk.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServiceRiskUpdateManyAndReturnArgs>(args: SelectSubset<T, ServiceRiskUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServiceRisk.
+     * @param {ServiceRiskUpsertArgs} args - Arguments to update or create a ServiceRisk.
+     * @example
+     * // Update or create a ServiceRisk
+     * const serviceRisk = await prisma.serviceRisk.upsert({
+     *   create: {
+     *     // ... data to create a ServiceRisk
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceRisk we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceRiskUpsertArgs>(args: SelectSubset<T, ServiceRiskUpsertArgs<ExtArgs>>): Prisma__ServiceRiskClient<$Result.GetResult<Prisma.$ServiceRiskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServiceRisks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskCountArgs} args - Arguments to filter ServiceRisks to count.
+     * @example
+     * // Count the number of ServiceRisks
+     * const count = await prisma.serviceRisk.count({
+     *   where: {
+     *     // ... the filter for the ServiceRisks we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceRiskCountArgs>(
+      args?: Subset<T, ServiceRiskCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceRiskCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceRisk.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceRiskAggregateArgs>(args: Subset<T, ServiceRiskAggregateArgs>): Prisma.PrismaPromise<GetServiceRiskAggregateType<T>>
+
+    /**
+     * Group by ServiceRisk.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceRiskGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceRiskGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceRiskGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceRiskGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceRiskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceRiskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceRisk model
+   */
+  readonly fields: ServiceRiskFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceRisk.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceRiskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceRisk model
+   */
+  interface ServiceRiskFieldRefs {
+    readonly id: FieldRef<"ServiceRisk", 'String'>
+    readonly service: FieldRef<"ServiceRisk", 'String'>
+    readonly riskScore: FieldRef<"ServiceRisk", 'Int'>
+    readonly level: FieldRef<"ServiceRisk", 'String'>
+    readonly reason: FieldRef<"ServiceRisk", 'String'>
+    readonly createdAt: FieldRef<"ServiceRisk", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceRisk findUnique
+   */
+  export type ServiceRiskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceRisk to fetch.
+     */
+    where: ServiceRiskWhereUniqueInput
+  }
+
+  /**
+   * ServiceRisk findUniqueOrThrow
+   */
+  export type ServiceRiskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceRisk to fetch.
+     */
+    where: ServiceRiskWhereUniqueInput
+  }
+
+  /**
+   * ServiceRisk findFirst
+   */
+  export type ServiceRiskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceRisk to fetch.
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceRisks to fetch.
+     */
+    orderBy?: ServiceRiskOrderByWithRelationInput | ServiceRiskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceRisks.
+     */
+    cursor?: ServiceRiskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceRisks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceRisks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceRisks.
+     */
+    distinct?: ServiceRiskScalarFieldEnum | ServiceRiskScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceRisk findFirstOrThrow
+   */
+  export type ServiceRiskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceRisk to fetch.
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceRisks to fetch.
+     */
+    orderBy?: ServiceRiskOrderByWithRelationInput | ServiceRiskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceRisks.
+     */
+    cursor?: ServiceRiskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceRisks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceRisks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceRisks.
+     */
+    distinct?: ServiceRiskScalarFieldEnum | ServiceRiskScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceRisk findMany
+   */
+  export type ServiceRiskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceRisks to fetch.
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceRisks to fetch.
+     */
+    orderBy?: ServiceRiskOrderByWithRelationInput | ServiceRiskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceRisks.
+     */
+    cursor?: ServiceRiskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceRisks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceRisks.
+     */
+    skip?: number
+    distinct?: ServiceRiskScalarFieldEnum | ServiceRiskScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceRisk create
+   */
+  export type ServiceRiskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceRisk.
+     */
+    data: XOR<ServiceRiskCreateInput, ServiceRiskUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceRisk createMany
+   */
+  export type ServiceRiskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceRisks.
+     */
+    data: ServiceRiskCreateManyInput | ServiceRiskCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceRisk createManyAndReturn
+   */
+  export type ServiceRiskCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServiceRisks.
+     */
+    data: ServiceRiskCreateManyInput | ServiceRiskCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceRisk update
+   */
+  export type ServiceRiskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceRisk.
+     */
+    data: XOR<ServiceRiskUpdateInput, ServiceRiskUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceRisk to update.
+     */
+    where: ServiceRiskWhereUniqueInput
+  }
+
+  /**
+   * ServiceRisk updateMany
+   */
+  export type ServiceRiskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceRisks.
+     */
+    data: XOR<ServiceRiskUpdateManyMutationInput, ServiceRiskUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceRisks to update
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * Limit how many ServiceRisks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceRisk updateManyAndReturn
+   */
+  export type ServiceRiskUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * The data used to update ServiceRisks.
+     */
+    data: XOR<ServiceRiskUpdateManyMutationInput, ServiceRiskUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceRisks to update
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * Limit how many ServiceRisks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceRisk upsert
+   */
+  export type ServiceRiskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceRisk to update in case it exists.
+     */
+    where: ServiceRiskWhereUniqueInput
+    /**
+     * In case the ServiceRisk found by the `where` argument doesn't exist, create a new ServiceRisk with this data.
+     */
+    create: XOR<ServiceRiskCreateInput, ServiceRiskUncheckedCreateInput>
+    /**
+     * In case the ServiceRisk was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceRiskUpdateInput, ServiceRiskUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceRisk delete
+   */
+  export type ServiceRiskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+    /**
+     * Filter which ServiceRisk to delete.
+     */
+    where: ServiceRiskWhereUniqueInput
+  }
+
+  /**
+   * ServiceRisk deleteMany
+   */
+  export type ServiceRiskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceRisks to delete
+     */
+    where?: ServiceRiskWhereInput
+    /**
+     * Limit how many ServiceRisks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceRisk without action
+   */
+  export type ServiceRiskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceRisk
+     */
+    select?: ServiceRiskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceRisk
+     */
+    omit?: ServiceRiskOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RootCauseReport
+   */
+
+  export type AggregateRootCauseReport = {
+    _count: RootCauseReportCountAggregateOutputType | null
+    _avg: RootCauseReportAvgAggregateOutputType | null
+    _sum: RootCauseReportSumAggregateOutputType | null
+    _min: RootCauseReportMinAggregateOutputType | null
+    _max: RootCauseReportMaxAggregateOutputType | null
+  }
+
+  export type RootCauseReportAvgAggregateOutputType = {
+    confidence: number | null
+  }
+
+  export type RootCauseReportSumAggregateOutputType = {
+    confidence: number | null
+  }
+
+  export type RootCauseReportMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    cause: string | null
+    confidence: number | null
+    createdAt: Date | null
+  }
+
+  export type RootCauseReportMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    cause: string | null
+    confidence: number | null
+    createdAt: Date | null
+  }
+
+  export type RootCauseReportCountAggregateOutputType = {
+    id: number
+    service: number
+    cause: number
+    confidence: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RootCauseReportAvgAggregateInputType = {
+    confidence?: true
+  }
+
+  export type RootCauseReportSumAggregateInputType = {
+    confidence?: true
+  }
+
+  export type RootCauseReportMinAggregateInputType = {
+    id?: true
+    service?: true
+    cause?: true
+    confidence?: true
+    createdAt?: true
+  }
+
+  export type RootCauseReportMaxAggregateInputType = {
+    id?: true
+    service?: true
+    cause?: true
+    confidence?: true
+    createdAt?: true
+  }
+
+  export type RootCauseReportCountAggregateInputType = {
+    id?: true
+    service?: true
+    cause?: true
+    confidence?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RootCauseReportAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RootCauseReport to aggregate.
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RootCauseReports to fetch.
+     */
+    orderBy?: RootCauseReportOrderByWithRelationInput | RootCauseReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RootCauseReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RootCauseReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RootCauseReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RootCauseReports
+    **/
+    _count?: true | RootCauseReportCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RootCauseReportAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RootCauseReportSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RootCauseReportMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RootCauseReportMaxAggregateInputType
+  }
+
+  export type GetRootCauseReportAggregateType<T extends RootCauseReportAggregateArgs> = {
+        [P in keyof T & keyof AggregateRootCauseReport]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRootCauseReport[P]>
+      : GetScalarType<T[P], AggregateRootCauseReport[P]>
+  }
+
+
+
+
+  export type RootCauseReportGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RootCauseReportWhereInput
+    orderBy?: RootCauseReportOrderByWithAggregationInput | RootCauseReportOrderByWithAggregationInput[]
+    by: RootCauseReportScalarFieldEnum[] | RootCauseReportScalarFieldEnum
+    having?: RootCauseReportScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RootCauseReportCountAggregateInputType | true
+    _avg?: RootCauseReportAvgAggregateInputType
+    _sum?: RootCauseReportSumAggregateInputType
+    _min?: RootCauseReportMinAggregateInputType
+    _max?: RootCauseReportMaxAggregateInputType
+  }
+
+  export type RootCauseReportGroupByOutputType = {
+    id: string
+    service: string
+    cause: string
+    confidence: number
+    createdAt: Date
+    _count: RootCauseReportCountAggregateOutputType | null
+    _avg: RootCauseReportAvgAggregateOutputType | null
+    _sum: RootCauseReportSumAggregateOutputType | null
+    _min: RootCauseReportMinAggregateOutputType | null
+    _max: RootCauseReportMaxAggregateOutputType | null
+  }
+
+  type GetRootCauseReportGroupByPayload<T extends RootCauseReportGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RootCauseReportGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RootCauseReportGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RootCauseReportGroupByOutputType[P]>
+            : GetScalarType<T[P], RootCauseReportGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RootCauseReportSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    cause?: boolean
+    confidence?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["rootCauseReport"]>
+
+  export type RootCauseReportSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    cause?: boolean
+    confidence?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["rootCauseReport"]>
+
+  export type RootCauseReportSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    cause?: boolean
+    confidence?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["rootCauseReport"]>
+
+  export type RootCauseReportSelectScalar = {
+    id?: boolean
+    service?: boolean
+    cause?: boolean
+    confidence?: boolean
+    createdAt?: boolean
+  }
+
+  export type RootCauseReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "cause" | "confidence" | "createdAt", ExtArgs["result"]["rootCauseReport"]>
+
+  export type $RootCauseReportPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RootCauseReport"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      cause: string
+      confidence: number
+      createdAt: Date
+    }, ExtArgs["result"]["rootCauseReport"]>
+    composites: {}
+  }
+
+  type RootCauseReportGetPayload<S extends boolean | null | undefined | RootCauseReportDefaultArgs> = $Result.GetResult<Prisma.$RootCauseReportPayload, S>
+
+  type RootCauseReportCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RootCauseReportFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RootCauseReportCountAggregateInputType | true
+    }
+
+  export interface RootCauseReportDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RootCauseReport'], meta: { name: 'RootCauseReport' } }
+    /**
+     * Find zero or one RootCauseReport that matches the filter.
+     * @param {RootCauseReportFindUniqueArgs} args - Arguments to find a RootCauseReport
+     * @example
+     * // Get one RootCauseReport
+     * const rootCauseReport = await prisma.rootCauseReport.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RootCauseReportFindUniqueArgs>(args: SelectSubset<T, RootCauseReportFindUniqueArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RootCauseReport that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RootCauseReportFindUniqueOrThrowArgs} args - Arguments to find a RootCauseReport
+     * @example
+     * // Get one RootCauseReport
+     * const rootCauseReport = await prisma.rootCauseReport.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RootCauseReportFindUniqueOrThrowArgs>(args: SelectSubset<T, RootCauseReportFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RootCauseReport that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportFindFirstArgs} args - Arguments to find a RootCauseReport
+     * @example
+     * // Get one RootCauseReport
+     * const rootCauseReport = await prisma.rootCauseReport.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RootCauseReportFindFirstArgs>(args?: SelectSubset<T, RootCauseReportFindFirstArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RootCauseReport that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportFindFirstOrThrowArgs} args - Arguments to find a RootCauseReport
+     * @example
+     * // Get one RootCauseReport
+     * const rootCauseReport = await prisma.rootCauseReport.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RootCauseReportFindFirstOrThrowArgs>(args?: SelectSubset<T, RootCauseReportFindFirstOrThrowArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RootCauseReports that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RootCauseReports
+     * const rootCauseReports = await prisma.rootCauseReport.findMany()
+     * 
+     * // Get first 10 RootCauseReports
+     * const rootCauseReports = await prisma.rootCauseReport.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const rootCauseReportWithIdOnly = await prisma.rootCauseReport.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RootCauseReportFindManyArgs>(args?: SelectSubset<T, RootCauseReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RootCauseReport.
+     * @param {RootCauseReportCreateArgs} args - Arguments to create a RootCauseReport.
+     * @example
+     * // Create one RootCauseReport
+     * const RootCauseReport = await prisma.rootCauseReport.create({
+     *   data: {
+     *     // ... data to create a RootCauseReport
+     *   }
+     * })
+     * 
+     */
+    create<T extends RootCauseReportCreateArgs>(args: SelectSubset<T, RootCauseReportCreateArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RootCauseReports.
+     * @param {RootCauseReportCreateManyArgs} args - Arguments to create many RootCauseReports.
+     * @example
+     * // Create many RootCauseReports
+     * const rootCauseReport = await prisma.rootCauseReport.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RootCauseReportCreateManyArgs>(args?: SelectSubset<T, RootCauseReportCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RootCauseReports and returns the data saved in the database.
+     * @param {RootCauseReportCreateManyAndReturnArgs} args - Arguments to create many RootCauseReports.
+     * @example
+     * // Create many RootCauseReports
+     * const rootCauseReport = await prisma.rootCauseReport.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RootCauseReports and only return the `id`
+     * const rootCauseReportWithIdOnly = await prisma.rootCauseReport.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RootCauseReportCreateManyAndReturnArgs>(args?: SelectSubset<T, RootCauseReportCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RootCauseReport.
+     * @param {RootCauseReportDeleteArgs} args - Arguments to delete one RootCauseReport.
+     * @example
+     * // Delete one RootCauseReport
+     * const RootCauseReport = await prisma.rootCauseReport.delete({
+     *   where: {
+     *     // ... filter to delete one RootCauseReport
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RootCauseReportDeleteArgs>(args: SelectSubset<T, RootCauseReportDeleteArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RootCauseReport.
+     * @param {RootCauseReportUpdateArgs} args - Arguments to update one RootCauseReport.
+     * @example
+     * // Update one RootCauseReport
+     * const rootCauseReport = await prisma.rootCauseReport.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RootCauseReportUpdateArgs>(args: SelectSubset<T, RootCauseReportUpdateArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RootCauseReports.
+     * @param {RootCauseReportDeleteManyArgs} args - Arguments to filter RootCauseReports to delete.
+     * @example
+     * // Delete a few RootCauseReports
+     * const { count } = await prisma.rootCauseReport.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RootCauseReportDeleteManyArgs>(args?: SelectSubset<T, RootCauseReportDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RootCauseReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RootCauseReports
+     * const rootCauseReport = await prisma.rootCauseReport.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RootCauseReportUpdateManyArgs>(args: SelectSubset<T, RootCauseReportUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RootCauseReports and returns the data updated in the database.
+     * @param {RootCauseReportUpdateManyAndReturnArgs} args - Arguments to update many RootCauseReports.
+     * @example
+     * // Update many RootCauseReports
+     * const rootCauseReport = await prisma.rootCauseReport.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RootCauseReports and only return the `id`
+     * const rootCauseReportWithIdOnly = await prisma.rootCauseReport.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RootCauseReportUpdateManyAndReturnArgs>(args: SelectSubset<T, RootCauseReportUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RootCauseReport.
+     * @param {RootCauseReportUpsertArgs} args - Arguments to update or create a RootCauseReport.
+     * @example
+     * // Update or create a RootCauseReport
+     * const rootCauseReport = await prisma.rootCauseReport.upsert({
+     *   create: {
+     *     // ... data to create a RootCauseReport
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RootCauseReport we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RootCauseReportUpsertArgs>(args: SelectSubset<T, RootCauseReportUpsertArgs<ExtArgs>>): Prisma__RootCauseReportClient<$Result.GetResult<Prisma.$RootCauseReportPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RootCauseReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportCountArgs} args - Arguments to filter RootCauseReports to count.
+     * @example
+     * // Count the number of RootCauseReports
+     * const count = await prisma.rootCauseReport.count({
+     *   where: {
+     *     // ... the filter for the RootCauseReports we want to count
+     *   }
+     * })
+    **/
+    count<T extends RootCauseReportCountArgs>(
+      args?: Subset<T, RootCauseReportCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RootCauseReportCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RootCauseReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RootCauseReportAggregateArgs>(args: Subset<T, RootCauseReportAggregateArgs>): Prisma.PrismaPromise<GetRootCauseReportAggregateType<T>>
+
+    /**
+     * Group by RootCauseReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RootCauseReportGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RootCauseReportGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RootCauseReportGroupByArgs['orderBy'] }
+        : { orderBy?: RootCauseReportGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RootCauseReportGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRootCauseReportGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RootCauseReport model
+   */
+  readonly fields: RootCauseReportFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RootCauseReport.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RootCauseReportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RootCauseReport model
+   */
+  interface RootCauseReportFieldRefs {
+    readonly id: FieldRef<"RootCauseReport", 'String'>
+    readonly service: FieldRef<"RootCauseReport", 'String'>
+    readonly cause: FieldRef<"RootCauseReport", 'String'>
+    readonly confidence: FieldRef<"RootCauseReport", 'Int'>
+    readonly createdAt: FieldRef<"RootCauseReport", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RootCauseReport findUnique
+   */
+  export type RootCauseReportFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * Filter, which RootCauseReport to fetch.
+     */
+    where: RootCauseReportWhereUniqueInput
+  }
+
+  /**
+   * RootCauseReport findUniqueOrThrow
+   */
+  export type RootCauseReportFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * Filter, which RootCauseReport to fetch.
+     */
+    where: RootCauseReportWhereUniqueInput
+  }
+
+  /**
+   * RootCauseReport findFirst
+   */
+  export type RootCauseReportFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * Filter, which RootCauseReport to fetch.
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RootCauseReports to fetch.
+     */
+    orderBy?: RootCauseReportOrderByWithRelationInput | RootCauseReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RootCauseReports.
+     */
+    cursor?: RootCauseReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RootCauseReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RootCauseReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RootCauseReports.
+     */
+    distinct?: RootCauseReportScalarFieldEnum | RootCauseReportScalarFieldEnum[]
+  }
+
+  /**
+   * RootCauseReport findFirstOrThrow
+   */
+  export type RootCauseReportFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * Filter, which RootCauseReport to fetch.
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RootCauseReports to fetch.
+     */
+    orderBy?: RootCauseReportOrderByWithRelationInput | RootCauseReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RootCauseReports.
+     */
+    cursor?: RootCauseReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RootCauseReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RootCauseReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RootCauseReports.
+     */
+    distinct?: RootCauseReportScalarFieldEnum | RootCauseReportScalarFieldEnum[]
+  }
+
+  /**
+   * RootCauseReport findMany
+   */
+  export type RootCauseReportFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * Filter, which RootCauseReports to fetch.
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RootCauseReports to fetch.
+     */
+    orderBy?: RootCauseReportOrderByWithRelationInput | RootCauseReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RootCauseReports.
+     */
+    cursor?: RootCauseReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RootCauseReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RootCauseReports.
+     */
+    skip?: number
+    distinct?: RootCauseReportScalarFieldEnum | RootCauseReportScalarFieldEnum[]
+  }
+
+  /**
+   * RootCauseReport create
+   */
+  export type RootCauseReportCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RootCauseReport.
+     */
+    data: XOR<RootCauseReportCreateInput, RootCauseReportUncheckedCreateInput>
+  }
+
+  /**
+   * RootCauseReport createMany
+   */
+  export type RootCauseReportCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RootCauseReports.
+     */
+    data: RootCauseReportCreateManyInput | RootCauseReportCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RootCauseReport createManyAndReturn
+   */
+  export type RootCauseReportCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * The data used to create many RootCauseReports.
+     */
+    data: RootCauseReportCreateManyInput | RootCauseReportCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RootCauseReport update
+   */
+  export type RootCauseReportUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RootCauseReport.
+     */
+    data: XOR<RootCauseReportUpdateInput, RootCauseReportUncheckedUpdateInput>
+    /**
+     * Choose, which RootCauseReport to update.
+     */
+    where: RootCauseReportWhereUniqueInput
+  }
+
+  /**
+   * RootCauseReport updateMany
+   */
+  export type RootCauseReportUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RootCauseReports.
+     */
+    data: XOR<RootCauseReportUpdateManyMutationInput, RootCauseReportUncheckedUpdateManyInput>
+    /**
+     * Filter which RootCauseReports to update
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * Limit how many RootCauseReports to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RootCauseReport updateManyAndReturn
+   */
+  export type RootCauseReportUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * The data used to update RootCauseReports.
+     */
+    data: XOR<RootCauseReportUpdateManyMutationInput, RootCauseReportUncheckedUpdateManyInput>
+    /**
+     * Filter which RootCauseReports to update
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * Limit how many RootCauseReports to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RootCauseReport upsert
+   */
+  export type RootCauseReportUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RootCauseReport to update in case it exists.
+     */
+    where: RootCauseReportWhereUniqueInput
+    /**
+     * In case the RootCauseReport found by the `where` argument doesn't exist, create a new RootCauseReport with this data.
+     */
+    create: XOR<RootCauseReportCreateInput, RootCauseReportUncheckedCreateInput>
+    /**
+     * In case the RootCauseReport was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RootCauseReportUpdateInput, RootCauseReportUncheckedUpdateInput>
+  }
+
+  /**
+   * RootCauseReport delete
+   */
+  export type RootCauseReportDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+    /**
+     * Filter which RootCauseReport to delete.
+     */
+    where: RootCauseReportWhereUniqueInput
+  }
+
+  /**
+   * RootCauseReport deleteMany
+   */
+  export type RootCauseReportDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RootCauseReports to delete
+     */
+    where?: RootCauseReportWhereInput
+    /**
+     * Limit how many RootCauseReports to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RootCauseReport without action
+   */
+  export type RootCauseReportDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RootCauseReport
+     */
+    select?: RootCauseReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RootCauseReport
+     */
+    omit?: RootCauseReportOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FailurePrediction
+   */
+
+  export type AggregateFailurePrediction = {
+    _count: FailurePredictionCountAggregateOutputType | null
+    _avg: FailurePredictionAvgAggregateOutputType | null
+    _sum: FailurePredictionSumAggregateOutputType | null
+    _min: FailurePredictionMinAggregateOutputType | null
+    _max: FailurePredictionMaxAggregateOutputType | null
+  }
+
+  export type FailurePredictionAvgAggregateOutputType = {
+    windowHours: number | null
+    probability: number | null
+  }
+
+  export type FailurePredictionSumAggregateOutputType = {
+    windowHours: number | null
+    probability: number | null
+  }
+
+  export type FailurePredictionMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    windowHours: number | null
+    probability: number | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type FailurePredictionMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    windowHours: number | null
+    probability: number | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type FailurePredictionCountAggregateOutputType = {
+    id: number
+    service: number
+    windowHours: number
+    probability: number
+    reason: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FailurePredictionAvgAggregateInputType = {
+    windowHours?: true
+    probability?: true
+  }
+
+  export type FailurePredictionSumAggregateInputType = {
+    windowHours?: true
+    probability?: true
+  }
+
+  export type FailurePredictionMinAggregateInputType = {
+    id?: true
+    service?: true
+    windowHours?: true
+    probability?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type FailurePredictionMaxAggregateInputType = {
+    id?: true
+    service?: true
+    windowHours?: true
+    probability?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type FailurePredictionCountAggregateInputType = {
+    id?: true
+    service?: true
+    windowHours?: true
+    probability?: true
+    reason?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FailurePredictionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FailurePrediction to aggregate.
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailurePredictions to fetch.
+     */
+    orderBy?: FailurePredictionOrderByWithRelationInput | FailurePredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FailurePredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailurePredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailurePredictions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FailurePredictions
+    **/
+    _count?: true | FailurePredictionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FailurePredictionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FailurePredictionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FailurePredictionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FailurePredictionMaxAggregateInputType
+  }
+
+  export type GetFailurePredictionAggregateType<T extends FailurePredictionAggregateArgs> = {
+        [P in keyof T & keyof AggregateFailurePrediction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFailurePrediction[P]>
+      : GetScalarType<T[P], AggregateFailurePrediction[P]>
+  }
+
+
+
+
+  export type FailurePredictionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FailurePredictionWhereInput
+    orderBy?: FailurePredictionOrderByWithAggregationInput | FailurePredictionOrderByWithAggregationInput[]
+    by: FailurePredictionScalarFieldEnum[] | FailurePredictionScalarFieldEnum
+    having?: FailurePredictionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FailurePredictionCountAggregateInputType | true
+    _avg?: FailurePredictionAvgAggregateInputType
+    _sum?: FailurePredictionSumAggregateInputType
+    _min?: FailurePredictionMinAggregateInputType
+    _max?: FailurePredictionMaxAggregateInputType
+  }
+
+  export type FailurePredictionGroupByOutputType = {
+    id: string
+    service: string
+    windowHours: number
+    probability: number
+    reason: string | null
+    createdAt: Date
+    _count: FailurePredictionCountAggregateOutputType | null
+    _avg: FailurePredictionAvgAggregateOutputType | null
+    _sum: FailurePredictionSumAggregateOutputType | null
+    _min: FailurePredictionMinAggregateOutputType | null
+    _max: FailurePredictionMaxAggregateOutputType | null
+  }
+
+  type GetFailurePredictionGroupByPayload<T extends FailurePredictionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FailurePredictionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FailurePredictionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FailurePredictionGroupByOutputType[P]>
+            : GetScalarType<T[P], FailurePredictionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FailurePredictionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    windowHours?: boolean
+    probability?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["failurePrediction"]>
+
+  export type FailurePredictionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    windowHours?: boolean
+    probability?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["failurePrediction"]>
+
+  export type FailurePredictionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    windowHours?: boolean
+    probability?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["failurePrediction"]>
+
+  export type FailurePredictionSelectScalar = {
+    id?: boolean
+    service?: boolean
+    windowHours?: boolean
+    probability?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }
+
+  export type FailurePredictionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "windowHours" | "probability" | "reason" | "createdAt", ExtArgs["result"]["failurePrediction"]>
+
+  export type $FailurePredictionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FailurePrediction"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      windowHours: number
+      probability: number
+      reason: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["failurePrediction"]>
+    composites: {}
+  }
+
+  type FailurePredictionGetPayload<S extends boolean | null | undefined | FailurePredictionDefaultArgs> = $Result.GetResult<Prisma.$FailurePredictionPayload, S>
+
+  type FailurePredictionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FailurePredictionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FailurePredictionCountAggregateInputType | true
+    }
+
+  export interface FailurePredictionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FailurePrediction'], meta: { name: 'FailurePrediction' } }
+    /**
+     * Find zero or one FailurePrediction that matches the filter.
+     * @param {FailurePredictionFindUniqueArgs} args - Arguments to find a FailurePrediction
+     * @example
+     * // Get one FailurePrediction
+     * const failurePrediction = await prisma.failurePrediction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FailurePredictionFindUniqueArgs>(args: SelectSubset<T, FailurePredictionFindUniqueArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FailurePrediction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FailurePredictionFindUniqueOrThrowArgs} args - Arguments to find a FailurePrediction
+     * @example
+     * // Get one FailurePrediction
+     * const failurePrediction = await prisma.failurePrediction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FailurePredictionFindUniqueOrThrowArgs>(args: SelectSubset<T, FailurePredictionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FailurePrediction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionFindFirstArgs} args - Arguments to find a FailurePrediction
+     * @example
+     * // Get one FailurePrediction
+     * const failurePrediction = await prisma.failurePrediction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FailurePredictionFindFirstArgs>(args?: SelectSubset<T, FailurePredictionFindFirstArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FailurePrediction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionFindFirstOrThrowArgs} args - Arguments to find a FailurePrediction
+     * @example
+     * // Get one FailurePrediction
+     * const failurePrediction = await prisma.failurePrediction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FailurePredictionFindFirstOrThrowArgs>(args?: SelectSubset<T, FailurePredictionFindFirstOrThrowArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FailurePredictions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FailurePredictions
+     * const failurePredictions = await prisma.failurePrediction.findMany()
+     * 
+     * // Get first 10 FailurePredictions
+     * const failurePredictions = await prisma.failurePrediction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const failurePredictionWithIdOnly = await prisma.failurePrediction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FailurePredictionFindManyArgs>(args?: SelectSubset<T, FailurePredictionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FailurePrediction.
+     * @param {FailurePredictionCreateArgs} args - Arguments to create a FailurePrediction.
+     * @example
+     * // Create one FailurePrediction
+     * const FailurePrediction = await prisma.failurePrediction.create({
+     *   data: {
+     *     // ... data to create a FailurePrediction
+     *   }
+     * })
+     * 
+     */
+    create<T extends FailurePredictionCreateArgs>(args: SelectSubset<T, FailurePredictionCreateArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FailurePredictions.
+     * @param {FailurePredictionCreateManyArgs} args - Arguments to create many FailurePredictions.
+     * @example
+     * // Create many FailurePredictions
+     * const failurePrediction = await prisma.failurePrediction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FailurePredictionCreateManyArgs>(args?: SelectSubset<T, FailurePredictionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FailurePredictions and returns the data saved in the database.
+     * @param {FailurePredictionCreateManyAndReturnArgs} args - Arguments to create many FailurePredictions.
+     * @example
+     * // Create many FailurePredictions
+     * const failurePrediction = await prisma.failurePrediction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FailurePredictions and only return the `id`
+     * const failurePredictionWithIdOnly = await prisma.failurePrediction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FailurePredictionCreateManyAndReturnArgs>(args?: SelectSubset<T, FailurePredictionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FailurePrediction.
+     * @param {FailurePredictionDeleteArgs} args - Arguments to delete one FailurePrediction.
+     * @example
+     * // Delete one FailurePrediction
+     * const FailurePrediction = await prisma.failurePrediction.delete({
+     *   where: {
+     *     // ... filter to delete one FailurePrediction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FailurePredictionDeleteArgs>(args: SelectSubset<T, FailurePredictionDeleteArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FailurePrediction.
+     * @param {FailurePredictionUpdateArgs} args - Arguments to update one FailurePrediction.
+     * @example
+     * // Update one FailurePrediction
+     * const failurePrediction = await prisma.failurePrediction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FailurePredictionUpdateArgs>(args: SelectSubset<T, FailurePredictionUpdateArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FailurePredictions.
+     * @param {FailurePredictionDeleteManyArgs} args - Arguments to filter FailurePredictions to delete.
+     * @example
+     * // Delete a few FailurePredictions
+     * const { count } = await prisma.failurePrediction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FailurePredictionDeleteManyArgs>(args?: SelectSubset<T, FailurePredictionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FailurePredictions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FailurePredictions
+     * const failurePrediction = await prisma.failurePrediction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FailurePredictionUpdateManyArgs>(args: SelectSubset<T, FailurePredictionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FailurePredictions and returns the data updated in the database.
+     * @param {FailurePredictionUpdateManyAndReturnArgs} args - Arguments to update many FailurePredictions.
+     * @example
+     * // Update many FailurePredictions
+     * const failurePrediction = await prisma.failurePrediction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FailurePredictions and only return the `id`
+     * const failurePredictionWithIdOnly = await prisma.failurePrediction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FailurePredictionUpdateManyAndReturnArgs>(args: SelectSubset<T, FailurePredictionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FailurePrediction.
+     * @param {FailurePredictionUpsertArgs} args - Arguments to update or create a FailurePrediction.
+     * @example
+     * // Update or create a FailurePrediction
+     * const failurePrediction = await prisma.failurePrediction.upsert({
+     *   create: {
+     *     // ... data to create a FailurePrediction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FailurePrediction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FailurePredictionUpsertArgs>(args: SelectSubset<T, FailurePredictionUpsertArgs<ExtArgs>>): Prisma__FailurePredictionClient<$Result.GetResult<Prisma.$FailurePredictionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FailurePredictions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionCountArgs} args - Arguments to filter FailurePredictions to count.
+     * @example
+     * // Count the number of FailurePredictions
+     * const count = await prisma.failurePrediction.count({
+     *   where: {
+     *     // ... the filter for the FailurePredictions we want to count
+     *   }
+     * })
+    **/
+    count<T extends FailurePredictionCountArgs>(
+      args?: Subset<T, FailurePredictionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FailurePredictionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FailurePrediction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FailurePredictionAggregateArgs>(args: Subset<T, FailurePredictionAggregateArgs>): Prisma.PrismaPromise<GetFailurePredictionAggregateType<T>>
+
+    /**
+     * Group by FailurePrediction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailurePredictionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FailurePredictionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FailurePredictionGroupByArgs['orderBy'] }
+        : { orderBy?: FailurePredictionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FailurePredictionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFailurePredictionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FailurePrediction model
+   */
+  readonly fields: FailurePredictionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FailurePrediction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FailurePredictionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FailurePrediction model
+   */
+  interface FailurePredictionFieldRefs {
+    readonly id: FieldRef<"FailurePrediction", 'String'>
+    readonly service: FieldRef<"FailurePrediction", 'String'>
+    readonly windowHours: FieldRef<"FailurePrediction", 'Int'>
+    readonly probability: FieldRef<"FailurePrediction", 'Float'>
+    readonly reason: FieldRef<"FailurePrediction", 'String'>
+    readonly createdAt: FieldRef<"FailurePrediction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FailurePrediction findUnique
+   */
+  export type FailurePredictionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which FailurePrediction to fetch.
+     */
+    where: FailurePredictionWhereUniqueInput
+  }
+
+  /**
+   * FailurePrediction findUniqueOrThrow
+   */
+  export type FailurePredictionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which FailurePrediction to fetch.
+     */
+    where: FailurePredictionWhereUniqueInput
+  }
+
+  /**
+   * FailurePrediction findFirst
+   */
+  export type FailurePredictionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which FailurePrediction to fetch.
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailurePredictions to fetch.
+     */
+    orderBy?: FailurePredictionOrderByWithRelationInput | FailurePredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FailurePredictions.
+     */
+    cursor?: FailurePredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailurePredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailurePredictions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FailurePredictions.
+     */
+    distinct?: FailurePredictionScalarFieldEnum | FailurePredictionScalarFieldEnum[]
+  }
+
+  /**
+   * FailurePrediction findFirstOrThrow
+   */
+  export type FailurePredictionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which FailurePrediction to fetch.
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailurePredictions to fetch.
+     */
+    orderBy?: FailurePredictionOrderByWithRelationInput | FailurePredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FailurePredictions.
+     */
+    cursor?: FailurePredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailurePredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailurePredictions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FailurePredictions.
+     */
+    distinct?: FailurePredictionScalarFieldEnum | FailurePredictionScalarFieldEnum[]
+  }
+
+  /**
+   * FailurePrediction findMany
+   */
+  export type FailurePredictionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which FailurePredictions to fetch.
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailurePredictions to fetch.
+     */
+    orderBy?: FailurePredictionOrderByWithRelationInput | FailurePredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FailurePredictions.
+     */
+    cursor?: FailurePredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailurePredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailurePredictions.
+     */
+    skip?: number
+    distinct?: FailurePredictionScalarFieldEnum | FailurePredictionScalarFieldEnum[]
+  }
+
+  /**
+   * FailurePrediction create
+   */
+  export type FailurePredictionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a FailurePrediction.
+     */
+    data: XOR<FailurePredictionCreateInput, FailurePredictionUncheckedCreateInput>
+  }
+
+  /**
+   * FailurePrediction createMany
+   */
+  export type FailurePredictionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FailurePredictions.
+     */
+    data: FailurePredictionCreateManyInput | FailurePredictionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FailurePrediction createManyAndReturn
+   */
+  export type FailurePredictionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * The data used to create many FailurePredictions.
+     */
+    data: FailurePredictionCreateManyInput | FailurePredictionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FailurePrediction update
+   */
+  export type FailurePredictionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a FailurePrediction.
+     */
+    data: XOR<FailurePredictionUpdateInput, FailurePredictionUncheckedUpdateInput>
+    /**
+     * Choose, which FailurePrediction to update.
+     */
+    where: FailurePredictionWhereUniqueInput
+  }
+
+  /**
+   * FailurePrediction updateMany
+   */
+  export type FailurePredictionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FailurePredictions.
+     */
+    data: XOR<FailurePredictionUpdateManyMutationInput, FailurePredictionUncheckedUpdateManyInput>
+    /**
+     * Filter which FailurePredictions to update
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * Limit how many FailurePredictions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FailurePrediction updateManyAndReturn
+   */
+  export type FailurePredictionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * The data used to update FailurePredictions.
+     */
+    data: XOR<FailurePredictionUpdateManyMutationInput, FailurePredictionUncheckedUpdateManyInput>
+    /**
+     * Filter which FailurePredictions to update
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * Limit how many FailurePredictions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FailurePrediction upsert
+   */
+  export type FailurePredictionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the FailurePrediction to update in case it exists.
+     */
+    where: FailurePredictionWhereUniqueInput
+    /**
+     * In case the FailurePrediction found by the `where` argument doesn't exist, create a new FailurePrediction with this data.
+     */
+    create: XOR<FailurePredictionCreateInput, FailurePredictionUncheckedCreateInput>
+    /**
+     * In case the FailurePrediction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FailurePredictionUpdateInput, FailurePredictionUncheckedUpdateInput>
+  }
+
+  /**
+   * FailurePrediction delete
+   */
+  export type FailurePredictionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+    /**
+     * Filter which FailurePrediction to delete.
+     */
+    where: FailurePredictionWhereUniqueInput
+  }
+
+  /**
+   * FailurePrediction deleteMany
+   */
+  export type FailurePredictionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FailurePredictions to delete
+     */
+    where?: FailurePredictionWhereInput
+    /**
+     * Limit how many FailurePredictions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FailurePrediction without action
+   */
+  export type FailurePredictionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailurePrediction
+     */
+    select?: FailurePredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailurePrediction
+     */
+    omit?: FailurePredictionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ServiceDailyStats
+   */
+
+  export type AggregateServiceDailyStats = {
+    _count: ServiceDailyStatsCountAggregateOutputType | null
+    _avg: ServiceDailyStatsAvgAggregateOutputType | null
+    _sum: ServiceDailyStatsSumAggregateOutputType | null
+    _min: ServiceDailyStatsMinAggregateOutputType | null
+    _max: ServiceDailyStatsMaxAggregateOutputType | null
+  }
+
+  export type ServiceDailyStatsAvgAggregateOutputType = {
+    avgCpu: number | null
+    avgMemory: number | null
+    failures: number | null
+    anomalies: number | null
+  }
+
+  export type ServiceDailyStatsSumAggregateOutputType = {
+    avgCpu: number | null
+    avgMemory: number | null
+    failures: number | null
+    anomalies: number | null
+  }
+
+  export type ServiceDailyStatsMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    date: Date | null
+    avgCpu: number | null
+    avgMemory: number | null
+    failures: number | null
+    anomalies: number | null
+    createdAt: Date | null
+  }
+
+  export type ServiceDailyStatsMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    date: Date | null
+    avgCpu: number | null
+    avgMemory: number | null
+    failures: number | null
+    anomalies: number | null
+    createdAt: Date | null
+  }
+
+  export type ServiceDailyStatsCountAggregateOutputType = {
+    id: number
+    service: number
+    date: number
+    avgCpu: number
+    avgMemory: number
+    failures: number
+    anomalies: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ServiceDailyStatsAvgAggregateInputType = {
+    avgCpu?: true
+    avgMemory?: true
+    failures?: true
+    anomalies?: true
+  }
+
+  export type ServiceDailyStatsSumAggregateInputType = {
+    avgCpu?: true
+    avgMemory?: true
+    failures?: true
+    anomalies?: true
+  }
+
+  export type ServiceDailyStatsMinAggregateInputType = {
+    id?: true
+    service?: true
+    date?: true
+    avgCpu?: true
+    avgMemory?: true
+    failures?: true
+    anomalies?: true
+    createdAt?: true
+  }
+
+  export type ServiceDailyStatsMaxAggregateInputType = {
+    id?: true
+    service?: true
+    date?: true
+    avgCpu?: true
+    avgMemory?: true
+    failures?: true
+    anomalies?: true
+    createdAt?: true
+  }
+
+  export type ServiceDailyStatsCountAggregateInputType = {
+    id?: true
+    service?: true
+    date?: true
+    avgCpu?: true
+    avgMemory?: true
+    failures?: true
+    anomalies?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ServiceDailyStatsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceDailyStats to aggregate.
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDailyStats to fetch.
+     */
+    orderBy?: ServiceDailyStatsOrderByWithRelationInput | ServiceDailyStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceDailyStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDailyStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDailyStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceDailyStats
+    **/
+    _count?: true | ServiceDailyStatsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ServiceDailyStatsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServiceDailyStatsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceDailyStatsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceDailyStatsMaxAggregateInputType
+  }
+
+  export type GetServiceDailyStatsAggregateType<T extends ServiceDailyStatsAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceDailyStats]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceDailyStats[P]>
+      : GetScalarType<T[P], AggregateServiceDailyStats[P]>
+  }
+
+
+
+
+  export type ServiceDailyStatsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceDailyStatsWhereInput
+    orderBy?: ServiceDailyStatsOrderByWithAggregationInput | ServiceDailyStatsOrderByWithAggregationInput[]
+    by: ServiceDailyStatsScalarFieldEnum[] | ServiceDailyStatsScalarFieldEnum
+    having?: ServiceDailyStatsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceDailyStatsCountAggregateInputType | true
+    _avg?: ServiceDailyStatsAvgAggregateInputType
+    _sum?: ServiceDailyStatsSumAggregateInputType
+    _min?: ServiceDailyStatsMinAggregateInputType
+    _max?: ServiceDailyStatsMaxAggregateInputType
+  }
+
+  export type ServiceDailyStatsGroupByOutputType = {
+    id: string
+    service: string
+    date: Date
+    avgCpu: number
+    avgMemory: number
+    failures: number
+    anomalies: number
+    createdAt: Date
+    _count: ServiceDailyStatsCountAggregateOutputType | null
+    _avg: ServiceDailyStatsAvgAggregateOutputType | null
+    _sum: ServiceDailyStatsSumAggregateOutputType | null
+    _min: ServiceDailyStatsMinAggregateOutputType | null
+    _max: ServiceDailyStatsMaxAggregateOutputType | null
+  }
+
+  type GetServiceDailyStatsGroupByPayload<T extends ServiceDailyStatsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceDailyStatsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceDailyStatsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceDailyStatsGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceDailyStatsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceDailyStatsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    date?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    failures?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceDailyStats"]>
+
+  export type ServiceDailyStatsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    date?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    failures?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceDailyStats"]>
+
+  export type ServiceDailyStatsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    date?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    failures?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["serviceDailyStats"]>
+
+  export type ServiceDailyStatsSelectScalar = {
+    id?: boolean
+    service?: boolean
+    date?: boolean
+    avgCpu?: boolean
+    avgMemory?: boolean
+    failures?: boolean
+    anomalies?: boolean
+    createdAt?: boolean
+  }
+
+  export type ServiceDailyStatsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "date" | "avgCpu" | "avgMemory" | "failures" | "anomalies" | "createdAt", ExtArgs["result"]["serviceDailyStats"]>
+
+  export type $ServiceDailyStatsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceDailyStats"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      date: Date
+      avgCpu: number
+      avgMemory: number
+      failures: number
+      anomalies: number
+      createdAt: Date
+    }, ExtArgs["result"]["serviceDailyStats"]>
+    composites: {}
+  }
+
+  type ServiceDailyStatsGetPayload<S extends boolean | null | undefined | ServiceDailyStatsDefaultArgs> = $Result.GetResult<Prisma.$ServiceDailyStatsPayload, S>
+
+  type ServiceDailyStatsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceDailyStatsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceDailyStatsCountAggregateInputType | true
+    }
+
+  export interface ServiceDailyStatsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceDailyStats'], meta: { name: 'ServiceDailyStats' } }
+    /**
+     * Find zero or one ServiceDailyStats that matches the filter.
+     * @param {ServiceDailyStatsFindUniqueArgs} args - Arguments to find a ServiceDailyStats
+     * @example
+     * // Get one ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceDailyStatsFindUniqueArgs>(args: SelectSubset<T, ServiceDailyStatsFindUniqueArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceDailyStats that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceDailyStatsFindUniqueOrThrowArgs} args - Arguments to find a ServiceDailyStats
+     * @example
+     * // Get one ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceDailyStatsFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceDailyStatsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceDailyStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsFindFirstArgs} args - Arguments to find a ServiceDailyStats
+     * @example
+     * // Get one ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceDailyStatsFindFirstArgs>(args?: SelectSubset<T, ServiceDailyStatsFindFirstArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceDailyStats that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsFindFirstOrThrowArgs} args - Arguments to find a ServiceDailyStats
+     * @example
+     * // Get one ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceDailyStatsFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceDailyStatsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceDailyStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.findMany()
+     * 
+     * // Get first 10 ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceDailyStatsWithIdOnly = await prisma.serviceDailyStats.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceDailyStatsFindManyArgs>(args?: SelectSubset<T, ServiceDailyStatsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceDailyStats.
+     * @param {ServiceDailyStatsCreateArgs} args - Arguments to create a ServiceDailyStats.
+     * @example
+     * // Create one ServiceDailyStats
+     * const ServiceDailyStats = await prisma.serviceDailyStats.create({
+     *   data: {
+     *     // ... data to create a ServiceDailyStats
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceDailyStatsCreateArgs>(args: SelectSubset<T, ServiceDailyStatsCreateArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceDailyStats.
+     * @param {ServiceDailyStatsCreateManyArgs} args - Arguments to create many ServiceDailyStats.
+     * @example
+     * // Create many ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceDailyStatsCreateManyArgs>(args?: SelectSubset<T, ServiceDailyStatsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServiceDailyStats and returns the data saved in the database.
+     * @param {ServiceDailyStatsCreateManyAndReturnArgs} args - Arguments to create many ServiceDailyStats.
+     * @example
+     * // Create many ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServiceDailyStats and only return the `id`
+     * const serviceDailyStatsWithIdOnly = await prisma.serviceDailyStats.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServiceDailyStatsCreateManyAndReturnArgs>(args?: SelectSubset<T, ServiceDailyStatsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServiceDailyStats.
+     * @param {ServiceDailyStatsDeleteArgs} args - Arguments to delete one ServiceDailyStats.
+     * @example
+     * // Delete one ServiceDailyStats
+     * const ServiceDailyStats = await prisma.serviceDailyStats.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceDailyStats
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceDailyStatsDeleteArgs>(args: SelectSubset<T, ServiceDailyStatsDeleteArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceDailyStats.
+     * @param {ServiceDailyStatsUpdateArgs} args - Arguments to update one ServiceDailyStats.
+     * @example
+     * // Update one ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceDailyStatsUpdateArgs>(args: SelectSubset<T, ServiceDailyStatsUpdateArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceDailyStats.
+     * @param {ServiceDailyStatsDeleteManyArgs} args - Arguments to filter ServiceDailyStats to delete.
+     * @example
+     * // Delete a few ServiceDailyStats
+     * const { count } = await prisma.serviceDailyStats.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceDailyStatsDeleteManyArgs>(args?: SelectSubset<T, ServiceDailyStatsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceDailyStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceDailyStatsUpdateManyArgs>(args: SelectSubset<T, ServiceDailyStatsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceDailyStats and returns the data updated in the database.
+     * @param {ServiceDailyStatsUpdateManyAndReturnArgs} args - Arguments to update many ServiceDailyStats.
+     * @example
+     * // Update many ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServiceDailyStats and only return the `id`
+     * const serviceDailyStatsWithIdOnly = await prisma.serviceDailyStats.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServiceDailyStatsUpdateManyAndReturnArgs>(args: SelectSubset<T, ServiceDailyStatsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServiceDailyStats.
+     * @param {ServiceDailyStatsUpsertArgs} args - Arguments to update or create a ServiceDailyStats.
+     * @example
+     * // Update or create a ServiceDailyStats
+     * const serviceDailyStats = await prisma.serviceDailyStats.upsert({
+     *   create: {
+     *     // ... data to create a ServiceDailyStats
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceDailyStats we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceDailyStatsUpsertArgs>(args: SelectSubset<T, ServiceDailyStatsUpsertArgs<ExtArgs>>): Prisma__ServiceDailyStatsClient<$Result.GetResult<Prisma.$ServiceDailyStatsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServiceDailyStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsCountArgs} args - Arguments to filter ServiceDailyStats to count.
+     * @example
+     * // Count the number of ServiceDailyStats
+     * const count = await prisma.serviceDailyStats.count({
+     *   where: {
+     *     // ... the filter for the ServiceDailyStats we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceDailyStatsCountArgs>(
+      args?: Subset<T, ServiceDailyStatsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceDailyStatsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceDailyStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceDailyStatsAggregateArgs>(args: Subset<T, ServiceDailyStatsAggregateArgs>): Prisma.PrismaPromise<GetServiceDailyStatsAggregateType<T>>
+
+    /**
+     * Group by ServiceDailyStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceDailyStatsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceDailyStatsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceDailyStatsGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceDailyStatsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceDailyStatsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceDailyStatsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceDailyStats model
+   */
+  readonly fields: ServiceDailyStatsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceDailyStats.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceDailyStatsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceDailyStats model
+   */
+  interface ServiceDailyStatsFieldRefs {
+    readonly id: FieldRef<"ServiceDailyStats", 'String'>
+    readonly service: FieldRef<"ServiceDailyStats", 'String'>
+    readonly date: FieldRef<"ServiceDailyStats", 'DateTime'>
+    readonly avgCpu: FieldRef<"ServiceDailyStats", 'Float'>
+    readonly avgMemory: FieldRef<"ServiceDailyStats", 'Float'>
+    readonly failures: FieldRef<"ServiceDailyStats", 'Int'>
+    readonly anomalies: FieldRef<"ServiceDailyStats", 'Int'>
+    readonly createdAt: FieldRef<"ServiceDailyStats", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceDailyStats findUnique
+   */
+  export type ServiceDailyStatsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDailyStats to fetch.
+     */
+    where: ServiceDailyStatsWhereUniqueInput
+  }
+
+  /**
+   * ServiceDailyStats findUniqueOrThrow
+   */
+  export type ServiceDailyStatsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDailyStats to fetch.
+     */
+    where: ServiceDailyStatsWhereUniqueInput
+  }
+
+  /**
+   * ServiceDailyStats findFirst
+   */
+  export type ServiceDailyStatsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDailyStats to fetch.
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDailyStats to fetch.
+     */
+    orderBy?: ServiceDailyStatsOrderByWithRelationInput | ServiceDailyStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceDailyStats.
+     */
+    cursor?: ServiceDailyStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDailyStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDailyStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceDailyStats.
+     */
+    distinct?: ServiceDailyStatsScalarFieldEnum | ServiceDailyStatsScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceDailyStats findFirstOrThrow
+   */
+  export type ServiceDailyStatsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDailyStats to fetch.
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDailyStats to fetch.
+     */
+    orderBy?: ServiceDailyStatsOrderByWithRelationInput | ServiceDailyStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceDailyStats.
+     */
+    cursor?: ServiceDailyStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDailyStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDailyStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceDailyStats.
+     */
+    distinct?: ServiceDailyStatsScalarFieldEnum | ServiceDailyStatsScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceDailyStats findMany
+   */
+  export type ServiceDailyStatsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which ServiceDailyStats to fetch.
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceDailyStats to fetch.
+     */
+    orderBy?: ServiceDailyStatsOrderByWithRelationInput | ServiceDailyStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceDailyStats.
+     */
+    cursor?: ServiceDailyStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceDailyStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceDailyStats.
+     */
+    skip?: number
+    distinct?: ServiceDailyStatsScalarFieldEnum | ServiceDailyStatsScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceDailyStats create
+   */
+  export type ServiceDailyStatsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceDailyStats.
+     */
+    data: XOR<ServiceDailyStatsCreateInput, ServiceDailyStatsUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceDailyStats createMany
+   */
+  export type ServiceDailyStatsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceDailyStats.
+     */
+    data: ServiceDailyStatsCreateManyInput | ServiceDailyStatsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceDailyStats createManyAndReturn
+   */
+  export type ServiceDailyStatsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServiceDailyStats.
+     */
+    data: ServiceDailyStatsCreateManyInput | ServiceDailyStatsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceDailyStats update
+   */
+  export type ServiceDailyStatsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceDailyStats.
+     */
+    data: XOR<ServiceDailyStatsUpdateInput, ServiceDailyStatsUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceDailyStats to update.
+     */
+    where: ServiceDailyStatsWhereUniqueInput
+  }
+
+  /**
+   * ServiceDailyStats updateMany
+   */
+  export type ServiceDailyStatsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceDailyStats.
+     */
+    data: XOR<ServiceDailyStatsUpdateManyMutationInput, ServiceDailyStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceDailyStats to update
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * Limit how many ServiceDailyStats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceDailyStats updateManyAndReturn
+   */
+  export type ServiceDailyStatsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * The data used to update ServiceDailyStats.
+     */
+    data: XOR<ServiceDailyStatsUpdateManyMutationInput, ServiceDailyStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceDailyStats to update
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * Limit how many ServiceDailyStats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceDailyStats upsert
+   */
+  export type ServiceDailyStatsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceDailyStats to update in case it exists.
+     */
+    where: ServiceDailyStatsWhereUniqueInput
+    /**
+     * In case the ServiceDailyStats found by the `where` argument doesn't exist, create a new ServiceDailyStats with this data.
+     */
+    create: XOR<ServiceDailyStatsCreateInput, ServiceDailyStatsUncheckedCreateInput>
+    /**
+     * In case the ServiceDailyStats was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceDailyStatsUpdateInput, ServiceDailyStatsUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceDailyStats delete
+   */
+  export type ServiceDailyStatsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+    /**
+     * Filter which ServiceDailyStats to delete.
+     */
+    where: ServiceDailyStatsWhereUniqueInput
+  }
+
+  /**
+   * ServiceDailyStats deleteMany
+   */
+  export type ServiceDailyStatsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceDailyStats to delete
+     */
+    where?: ServiceDailyStatsWhereInput
+    /**
+     * Limit how many ServiceDailyStats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceDailyStats without action
+   */
+  export type ServiceDailyStatsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceDailyStats
+     */
+    select?: ServiceDailyStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceDailyStats
+     */
+    omit?: ServiceDailyStatsOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10196,6 +17320,96 @@ export namespace Prisma {
   };
 
   export type LogIngestionTokenScalarFieldEnum = (typeof LogIngestionTokenScalarFieldEnum)[keyof typeof LogIngestionTokenScalarFieldEnum]
+
+
+  export const StatisticsHourlyScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    hour: 'hour',
+    avgCpu: 'avgCpu',
+    avgMemory: 'avgMemory',
+    peakCpu: 'peakCpu',
+    peakMemory: 'peakMemory',
+    logsErrors: 'logsErrors',
+    logsWarnings: 'logsWarnings',
+    logsInfo: 'logsInfo',
+    failures: 'failures',
+    recoveries: 'recoveries',
+    crashLoops: 'crashLoops',
+    anomalies: 'anomalies',
+    createdAt: 'createdAt'
+  };
+
+  export type StatisticsHourlyScalarFieldEnum = (typeof StatisticsHourlyScalarFieldEnum)[keyof typeof StatisticsHourlyScalarFieldEnum]
+
+
+  export const StatisticsDailyScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    day: 'day',
+    avgCpu: 'avgCpu',
+    avgMemory: 'avgMemory',
+    errors: 'errors',
+    warnings: 'warnings',
+    info: 'info',
+    failures: 'failures',
+    recoveries: 'recoveries',
+    crashLoops: 'crashLoops',
+    uptimePercentage: 'uptimePercentage',
+    anomalyCount: 'anomalyCount',
+    createdAt: 'createdAt'
+  };
+
+  export type StatisticsDailyScalarFieldEnum = (typeof StatisticsDailyScalarFieldEnum)[keyof typeof StatisticsDailyScalarFieldEnum]
+
+
+  export const ServiceRiskScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    riskScore: 'riskScore',
+    level: 'level',
+    reason: 'reason',
+    createdAt: 'createdAt'
+  };
+
+  export type ServiceRiskScalarFieldEnum = (typeof ServiceRiskScalarFieldEnum)[keyof typeof ServiceRiskScalarFieldEnum]
+
+
+  export const RootCauseReportScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    cause: 'cause',
+    confidence: 'confidence',
+    createdAt: 'createdAt'
+  };
+
+  export type RootCauseReportScalarFieldEnum = (typeof RootCauseReportScalarFieldEnum)[keyof typeof RootCauseReportScalarFieldEnum]
+
+
+  export const FailurePredictionScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    windowHours: 'windowHours',
+    probability: 'probability',
+    reason: 'reason',
+    createdAt: 'createdAt'
+  };
+
+  export type FailurePredictionScalarFieldEnum = (typeof FailurePredictionScalarFieldEnum)[keyof typeof FailurePredictionScalarFieldEnum]
+
+
+  export const ServiceDailyStatsScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    date: 'date',
+    avgCpu: 'avgCpu',
+    avgMemory: 'avgMemory',
+    failures: 'failures',
+    anomalies: 'anomalies',
+    createdAt: 'createdAt'
+  };
+
+  export type ServiceDailyStatsScalarFieldEnum = (typeof ServiceDailyStatsScalarFieldEnum)[keyof typeof ServiceDailyStatsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10901,6 +18115,450 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"LogIngestionToken"> | Date | string
   }
 
+  export type StatisticsHourlyWhereInput = {
+    AND?: StatisticsHourlyWhereInput | StatisticsHourlyWhereInput[]
+    OR?: StatisticsHourlyWhereInput[]
+    NOT?: StatisticsHourlyWhereInput | StatisticsHourlyWhereInput[]
+    id?: StringFilter<"StatisticsHourly"> | string
+    service?: StringFilter<"StatisticsHourly"> | string
+    hour?: DateTimeFilter<"StatisticsHourly"> | Date | string
+    avgCpu?: FloatFilter<"StatisticsHourly"> | number
+    avgMemory?: FloatFilter<"StatisticsHourly"> | number
+    peakCpu?: FloatFilter<"StatisticsHourly"> | number
+    peakMemory?: FloatFilter<"StatisticsHourly"> | number
+    logsErrors?: IntFilter<"StatisticsHourly"> | number
+    logsWarnings?: IntFilter<"StatisticsHourly"> | number
+    logsInfo?: IntFilter<"StatisticsHourly"> | number
+    failures?: IntFilter<"StatisticsHourly"> | number
+    recoveries?: IntFilter<"StatisticsHourly"> | number
+    crashLoops?: IntFilter<"StatisticsHourly"> | number
+    anomalies?: IntFilter<"StatisticsHourly"> | number
+    createdAt?: DateTimeFilter<"StatisticsHourly"> | Date | string
+  }
+
+  export type StatisticsHourlyOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    hour?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsHourlyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StatisticsHourlyWhereInput | StatisticsHourlyWhereInput[]
+    OR?: StatisticsHourlyWhereInput[]
+    NOT?: StatisticsHourlyWhereInput | StatisticsHourlyWhereInput[]
+    service?: StringFilter<"StatisticsHourly"> | string
+    hour?: DateTimeFilter<"StatisticsHourly"> | Date | string
+    avgCpu?: FloatFilter<"StatisticsHourly"> | number
+    avgMemory?: FloatFilter<"StatisticsHourly"> | number
+    peakCpu?: FloatFilter<"StatisticsHourly"> | number
+    peakMemory?: FloatFilter<"StatisticsHourly"> | number
+    logsErrors?: IntFilter<"StatisticsHourly"> | number
+    logsWarnings?: IntFilter<"StatisticsHourly"> | number
+    logsInfo?: IntFilter<"StatisticsHourly"> | number
+    failures?: IntFilter<"StatisticsHourly"> | number
+    recoveries?: IntFilter<"StatisticsHourly"> | number
+    crashLoops?: IntFilter<"StatisticsHourly"> | number
+    anomalies?: IntFilter<"StatisticsHourly"> | number
+    createdAt?: DateTimeFilter<"StatisticsHourly"> | Date | string
+  }, "id">
+
+  export type StatisticsHourlyOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    hour?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+    _count?: StatisticsHourlyCountOrderByAggregateInput
+    _avg?: StatisticsHourlyAvgOrderByAggregateInput
+    _max?: StatisticsHourlyMaxOrderByAggregateInput
+    _min?: StatisticsHourlyMinOrderByAggregateInput
+    _sum?: StatisticsHourlySumOrderByAggregateInput
+  }
+
+  export type StatisticsHourlyScalarWhereWithAggregatesInput = {
+    AND?: StatisticsHourlyScalarWhereWithAggregatesInput | StatisticsHourlyScalarWhereWithAggregatesInput[]
+    OR?: StatisticsHourlyScalarWhereWithAggregatesInput[]
+    NOT?: StatisticsHourlyScalarWhereWithAggregatesInput | StatisticsHourlyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StatisticsHourly"> | string
+    service?: StringWithAggregatesFilter<"StatisticsHourly"> | string
+    hour?: DateTimeWithAggregatesFilter<"StatisticsHourly"> | Date | string
+    avgCpu?: FloatWithAggregatesFilter<"StatisticsHourly"> | number
+    avgMemory?: FloatWithAggregatesFilter<"StatisticsHourly"> | number
+    peakCpu?: FloatWithAggregatesFilter<"StatisticsHourly"> | number
+    peakMemory?: FloatWithAggregatesFilter<"StatisticsHourly"> | number
+    logsErrors?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    logsWarnings?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    logsInfo?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    failures?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    recoveries?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    crashLoops?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    anomalies?: IntWithAggregatesFilter<"StatisticsHourly"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"StatisticsHourly"> | Date | string
+  }
+
+  export type StatisticsDailyWhereInput = {
+    AND?: StatisticsDailyWhereInput | StatisticsDailyWhereInput[]
+    OR?: StatisticsDailyWhereInput[]
+    NOT?: StatisticsDailyWhereInput | StatisticsDailyWhereInput[]
+    id?: StringFilter<"StatisticsDaily"> | string
+    service?: StringFilter<"StatisticsDaily"> | string
+    day?: DateTimeFilter<"StatisticsDaily"> | Date | string
+    avgCpu?: FloatFilter<"StatisticsDaily"> | number
+    avgMemory?: FloatFilter<"StatisticsDaily"> | number
+    errors?: IntFilter<"StatisticsDaily"> | number
+    warnings?: IntFilter<"StatisticsDaily"> | number
+    info?: IntFilter<"StatisticsDaily"> | number
+    failures?: IntFilter<"StatisticsDaily"> | number
+    recoveries?: IntFilter<"StatisticsDaily"> | number
+    crashLoops?: IntFilter<"StatisticsDaily"> | number
+    uptimePercentage?: FloatFilter<"StatisticsDaily"> | number
+    anomalyCount?: IntFilter<"StatisticsDaily"> | number
+    createdAt?: DateTimeFilter<"StatisticsDaily"> | Date | string
+  }
+
+  export type StatisticsDailyOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    day?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsDailyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StatisticsDailyWhereInput | StatisticsDailyWhereInput[]
+    OR?: StatisticsDailyWhereInput[]
+    NOT?: StatisticsDailyWhereInput | StatisticsDailyWhereInput[]
+    service?: StringFilter<"StatisticsDaily"> | string
+    day?: DateTimeFilter<"StatisticsDaily"> | Date | string
+    avgCpu?: FloatFilter<"StatisticsDaily"> | number
+    avgMemory?: FloatFilter<"StatisticsDaily"> | number
+    errors?: IntFilter<"StatisticsDaily"> | number
+    warnings?: IntFilter<"StatisticsDaily"> | number
+    info?: IntFilter<"StatisticsDaily"> | number
+    failures?: IntFilter<"StatisticsDaily"> | number
+    recoveries?: IntFilter<"StatisticsDaily"> | number
+    crashLoops?: IntFilter<"StatisticsDaily"> | number
+    uptimePercentage?: FloatFilter<"StatisticsDaily"> | number
+    anomalyCount?: IntFilter<"StatisticsDaily"> | number
+    createdAt?: DateTimeFilter<"StatisticsDaily"> | Date | string
+  }, "id">
+
+  export type StatisticsDailyOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    day?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+    createdAt?: SortOrder
+    _count?: StatisticsDailyCountOrderByAggregateInput
+    _avg?: StatisticsDailyAvgOrderByAggregateInput
+    _max?: StatisticsDailyMaxOrderByAggregateInput
+    _min?: StatisticsDailyMinOrderByAggregateInput
+    _sum?: StatisticsDailySumOrderByAggregateInput
+  }
+
+  export type StatisticsDailyScalarWhereWithAggregatesInput = {
+    AND?: StatisticsDailyScalarWhereWithAggregatesInput | StatisticsDailyScalarWhereWithAggregatesInput[]
+    OR?: StatisticsDailyScalarWhereWithAggregatesInput[]
+    NOT?: StatisticsDailyScalarWhereWithAggregatesInput | StatisticsDailyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StatisticsDaily"> | string
+    service?: StringWithAggregatesFilter<"StatisticsDaily"> | string
+    day?: DateTimeWithAggregatesFilter<"StatisticsDaily"> | Date | string
+    avgCpu?: FloatWithAggregatesFilter<"StatisticsDaily"> | number
+    avgMemory?: FloatWithAggregatesFilter<"StatisticsDaily"> | number
+    errors?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    warnings?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    info?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    failures?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    recoveries?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    crashLoops?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    uptimePercentage?: FloatWithAggregatesFilter<"StatisticsDaily"> | number
+    anomalyCount?: IntWithAggregatesFilter<"StatisticsDaily"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"StatisticsDaily"> | Date | string
+  }
+
+  export type ServiceRiskWhereInput = {
+    AND?: ServiceRiskWhereInput | ServiceRiskWhereInput[]
+    OR?: ServiceRiskWhereInput[]
+    NOT?: ServiceRiskWhereInput | ServiceRiskWhereInput[]
+    id?: StringFilter<"ServiceRisk"> | string
+    service?: StringFilter<"ServiceRisk"> | string
+    riskScore?: IntFilter<"ServiceRisk"> | number
+    level?: StringFilter<"ServiceRisk"> | string
+    reason?: StringNullableFilter<"ServiceRisk"> | string | null
+    createdAt?: DateTimeFilter<"ServiceRisk"> | Date | string
+  }
+
+  export type ServiceRiskOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    riskScore?: SortOrder
+    level?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceRiskWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ServiceRiskWhereInput | ServiceRiskWhereInput[]
+    OR?: ServiceRiskWhereInput[]
+    NOT?: ServiceRiskWhereInput | ServiceRiskWhereInput[]
+    service?: StringFilter<"ServiceRisk"> | string
+    riskScore?: IntFilter<"ServiceRisk"> | number
+    level?: StringFilter<"ServiceRisk"> | string
+    reason?: StringNullableFilter<"ServiceRisk"> | string | null
+    createdAt?: DateTimeFilter<"ServiceRisk"> | Date | string
+  }, "id">
+
+  export type ServiceRiskOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    riskScore?: SortOrder
+    level?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ServiceRiskCountOrderByAggregateInput
+    _avg?: ServiceRiskAvgOrderByAggregateInput
+    _max?: ServiceRiskMaxOrderByAggregateInput
+    _min?: ServiceRiskMinOrderByAggregateInput
+    _sum?: ServiceRiskSumOrderByAggregateInput
+  }
+
+  export type ServiceRiskScalarWhereWithAggregatesInput = {
+    AND?: ServiceRiskScalarWhereWithAggregatesInput | ServiceRiskScalarWhereWithAggregatesInput[]
+    OR?: ServiceRiskScalarWhereWithAggregatesInput[]
+    NOT?: ServiceRiskScalarWhereWithAggregatesInput | ServiceRiskScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServiceRisk"> | string
+    service?: StringWithAggregatesFilter<"ServiceRisk"> | string
+    riskScore?: IntWithAggregatesFilter<"ServiceRisk"> | number
+    level?: StringWithAggregatesFilter<"ServiceRisk"> | string
+    reason?: StringNullableWithAggregatesFilter<"ServiceRisk"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ServiceRisk"> | Date | string
+  }
+
+  export type RootCauseReportWhereInput = {
+    AND?: RootCauseReportWhereInput | RootCauseReportWhereInput[]
+    OR?: RootCauseReportWhereInput[]
+    NOT?: RootCauseReportWhereInput | RootCauseReportWhereInput[]
+    id?: StringFilter<"RootCauseReport"> | string
+    service?: StringFilter<"RootCauseReport"> | string
+    cause?: StringFilter<"RootCauseReport"> | string
+    confidence?: IntFilter<"RootCauseReport"> | number
+    createdAt?: DateTimeFilter<"RootCauseReport"> | Date | string
+  }
+
+  export type RootCauseReportOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    cause?: SortOrder
+    confidence?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RootCauseReportWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RootCauseReportWhereInput | RootCauseReportWhereInput[]
+    OR?: RootCauseReportWhereInput[]
+    NOT?: RootCauseReportWhereInput | RootCauseReportWhereInput[]
+    service?: StringFilter<"RootCauseReport"> | string
+    cause?: StringFilter<"RootCauseReport"> | string
+    confidence?: IntFilter<"RootCauseReport"> | number
+    createdAt?: DateTimeFilter<"RootCauseReport"> | Date | string
+  }, "id">
+
+  export type RootCauseReportOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    cause?: SortOrder
+    confidence?: SortOrder
+    createdAt?: SortOrder
+    _count?: RootCauseReportCountOrderByAggregateInput
+    _avg?: RootCauseReportAvgOrderByAggregateInput
+    _max?: RootCauseReportMaxOrderByAggregateInput
+    _min?: RootCauseReportMinOrderByAggregateInput
+    _sum?: RootCauseReportSumOrderByAggregateInput
+  }
+
+  export type RootCauseReportScalarWhereWithAggregatesInput = {
+    AND?: RootCauseReportScalarWhereWithAggregatesInput | RootCauseReportScalarWhereWithAggregatesInput[]
+    OR?: RootCauseReportScalarWhereWithAggregatesInput[]
+    NOT?: RootCauseReportScalarWhereWithAggregatesInput | RootCauseReportScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RootCauseReport"> | string
+    service?: StringWithAggregatesFilter<"RootCauseReport"> | string
+    cause?: StringWithAggregatesFilter<"RootCauseReport"> | string
+    confidence?: IntWithAggregatesFilter<"RootCauseReport"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"RootCauseReport"> | Date | string
+  }
+
+  export type FailurePredictionWhereInput = {
+    AND?: FailurePredictionWhereInput | FailurePredictionWhereInput[]
+    OR?: FailurePredictionWhereInput[]
+    NOT?: FailurePredictionWhereInput | FailurePredictionWhereInput[]
+    id?: StringFilter<"FailurePrediction"> | string
+    service?: StringFilter<"FailurePrediction"> | string
+    windowHours?: IntFilter<"FailurePrediction"> | number
+    probability?: FloatFilter<"FailurePrediction"> | number
+    reason?: StringNullableFilter<"FailurePrediction"> | string | null
+    createdAt?: DateTimeFilter<"FailurePrediction"> | Date | string
+  }
+
+  export type FailurePredictionOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    windowHours?: SortOrder
+    probability?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FailurePredictionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FailurePredictionWhereInput | FailurePredictionWhereInput[]
+    OR?: FailurePredictionWhereInput[]
+    NOT?: FailurePredictionWhereInput | FailurePredictionWhereInput[]
+    service?: StringFilter<"FailurePrediction"> | string
+    windowHours?: IntFilter<"FailurePrediction"> | number
+    probability?: FloatFilter<"FailurePrediction"> | number
+    reason?: StringNullableFilter<"FailurePrediction"> | string | null
+    createdAt?: DateTimeFilter<"FailurePrediction"> | Date | string
+  }, "id">
+
+  export type FailurePredictionOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    windowHours?: SortOrder
+    probability?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: FailurePredictionCountOrderByAggregateInput
+    _avg?: FailurePredictionAvgOrderByAggregateInput
+    _max?: FailurePredictionMaxOrderByAggregateInput
+    _min?: FailurePredictionMinOrderByAggregateInput
+    _sum?: FailurePredictionSumOrderByAggregateInput
+  }
+
+  export type FailurePredictionScalarWhereWithAggregatesInput = {
+    AND?: FailurePredictionScalarWhereWithAggregatesInput | FailurePredictionScalarWhereWithAggregatesInput[]
+    OR?: FailurePredictionScalarWhereWithAggregatesInput[]
+    NOT?: FailurePredictionScalarWhereWithAggregatesInput | FailurePredictionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FailurePrediction"> | string
+    service?: StringWithAggregatesFilter<"FailurePrediction"> | string
+    windowHours?: IntWithAggregatesFilter<"FailurePrediction"> | number
+    probability?: FloatWithAggregatesFilter<"FailurePrediction"> | number
+    reason?: StringNullableWithAggregatesFilter<"FailurePrediction"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"FailurePrediction"> | Date | string
+  }
+
+  export type ServiceDailyStatsWhereInput = {
+    AND?: ServiceDailyStatsWhereInput | ServiceDailyStatsWhereInput[]
+    OR?: ServiceDailyStatsWhereInput[]
+    NOT?: ServiceDailyStatsWhereInput | ServiceDailyStatsWhereInput[]
+    id?: StringFilter<"ServiceDailyStats"> | string
+    service?: StringFilter<"ServiceDailyStats"> | string
+    date?: DateTimeFilter<"ServiceDailyStats"> | Date | string
+    avgCpu?: FloatFilter<"ServiceDailyStats"> | number
+    avgMemory?: FloatFilter<"ServiceDailyStats"> | number
+    failures?: IntFilter<"ServiceDailyStats"> | number
+    anomalies?: IntFilter<"ServiceDailyStats"> | number
+    createdAt?: DateTimeFilter<"ServiceDailyStats"> | Date | string
+  }
+
+  export type ServiceDailyStatsOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    date?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDailyStatsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ServiceDailyStatsWhereInput | ServiceDailyStatsWhereInput[]
+    OR?: ServiceDailyStatsWhereInput[]
+    NOT?: ServiceDailyStatsWhereInput | ServiceDailyStatsWhereInput[]
+    service?: StringFilter<"ServiceDailyStats"> | string
+    date?: DateTimeFilter<"ServiceDailyStats"> | Date | string
+    avgCpu?: FloatFilter<"ServiceDailyStats"> | number
+    avgMemory?: FloatFilter<"ServiceDailyStats"> | number
+    failures?: IntFilter<"ServiceDailyStats"> | number
+    anomalies?: IntFilter<"ServiceDailyStats"> | number
+    createdAt?: DateTimeFilter<"ServiceDailyStats"> | Date | string
+  }, "id">
+
+  export type ServiceDailyStatsOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    date?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+    _count?: ServiceDailyStatsCountOrderByAggregateInput
+    _avg?: ServiceDailyStatsAvgOrderByAggregateInput
+    _max?: ServiceDailyStatsMaxOrderByAggregateInput
+    _min?: ServiceDailyStatsMinOrderByAggregateInput
+    _sum?: ServiceDailyStatsSumOrderByAggregateInput
+  }
+
+  export type ServiceDailyStatsScalarWhereWithAggregatesInput = {
+    AND?: ServiceDailyStatsScalarWhereWithAggregatesInput | ServiceDailyStatsScalarWhereWithAggregatesInput[]
+    OR?: ServiceDailyStatsScalarWhereWithAggregatesInput[]
+    NOT?: ServiceDailyStatsScalarWhereWithAggregatesInput | ServiceDailyStatsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServiceDailyStats"> | string
+    service?: StringWithAggregatesFilter<"ServiceDailyStats"> | string
+    date?: DateTimeWithAggregatesFilter<"ServiceDailyStats"> | Date | string
+    avgCpu?: FloatWithAggregatesFilter<"ServiceDailyStats"> | number
+    avgMemory?: FloatWithAggregatesFilter<"ServiceDailyStats"> | number
+    failures?: IntWithAggregatesFilter<"ServiceDailyStats"> | number
+    anomalies?: IntWithAggregatesFilter<"ServiceDailyStats"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ServiceDailyStats"> | Date | string
+  }
+
   export type NotificationCreateInput = {
     id?: string
     type: string
@@ -11537,6 +19195,510 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StatisticsHourlyCreateInput = {
+    id?: string
+    service: string
+    hour: Date | string
+    avgCpu: number
+    avgMemory: number
+    peakCpu: number
+    peakMemory: number
+    logsErrors: number
+    logsWarnings: number
+    logsInfo: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    anomalies: number
+    createdAt?: Date | string
+  }
+
+  export type StatisticsHourlyUncheckedCreateInput = {
+    id?: string
+    service: string
+    hour: Date | string
+    avgCpu: number
+    avgMemory: number
+    peakCpu: number
+    peakMemory: number
+    logsErrors: number
+    logsWarnings: number
+    logsInfo: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    anomalies: number
+    createdAt?: Date | string
+  }
+
+  export type StatisticsHourlyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    hour?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    peakCpu?: FloatFieldUpdateOperationsInput | number
+    peakMemory?: FloatFieldUpdateOperationsInput | number
+    logsErrors?: IntFieldUpdateOperationsInput | number
+    logsWarnings?: IntFieldUpdateOperationsInput | number
+    logsInfo?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsHourlyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    hour?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    peakCpu?: FloatFieldUpdateOperationsInput | number
+    peakMemory?: FloatFieldUpdateOperationsInput | number
+    logsErrors?: IntFieldUpdateOperationsInput | number
+    logsWarnings?: IntFieldUpdateOperationsInput | number
+    logsInfo?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsHourlyCreateManyInput = {
+    id?: string
+    service: string
+    hour: Date | string
+    avgCpu: number
+    avgMemory: number
+    peakCpu: number
+    peakMemory: number
+    logsErrors: number
+    logsWarnings: number
+    logsInfo: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    anomalies: number
+    createdAt?: Date | string
+  }
+
+  export type StatisticsHourlyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    hour?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    peakCpu?: FloatFieldUpdateOperationsInput | number
+    peakMemory?: FloatFieldUpdateOperationsInput | number
+    logsErrors?: IntFieldUpdateOperationsInput | number
+    logsWarnings?: IntFieldUpdateOperationsInput | number
+    logsInfo?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsHourlyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    hour?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    peakCpu?: FloatFieldUpdateOperationsInput | number
+    peakMemory?: FloatFieldUpdateOperationsInput | number
+    logsErrors?: IntFieldUpdateOperationsInput | number
+    logsWarnings?: IntFieldUpdateOperationsInput | number
+    logsInfo?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsDailyCreateInput = {
+    id?: string
+    service: string
+    day: Date | string
+    avgCpu: number
+    avgMemory: number
+    errors: number
+    warnings: number
+    info: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    uptimePercentage: number
+    anomalyCount: number
+    createdAt?: Date | string
+  }
+
+  export type StatisticsDailyUncheckedCreateInput = {
+    id?: string
+    service: string
+    day: Date | string
+    avgCpu: number
+    avgMemory: number
+    errors: number
+    warnings: number
+    info: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    uptimePercentage: number
+    anomalyCount: number
+    createdAt?: Date | string
+  }
+
+  export type StatisticsDailyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    day?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    errors?: IntFieldUpdateOperationsInput | number
+    warnings?: IntFieldUpdateOperationsInput | number
+    info?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    uptimePercentage?: FloatFieldUpdateOperationsInput | number
+    anomalyCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsDailyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    day?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    errors?: IntFieldUpdateOperationsInput | number
+    warnings?: IntFieldUpdateOperationsInput | number
+    info?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    uptimePercentage?: FloatFieldUpdateOperationsInput | number
+    anomalyCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsDailyCreateManyInput = {
+    id?: string
+    service: string
+    day: Date | string
+    avgCpu: number
+    avgMemory: number
+    errors: number
+    warnings: number
+    info: number
+    failures: number
+    recoveries: number
+    crashLoops: number
+    uptimePercentage: number
+    anomalyCount: number
+    createdAt?: Date | string
+  }
+
+  export type StatisticsDailyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    day?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    errors?: IntFieldUpdateOperationsInput | number
+    warnings?: IntFieldUpdateOperationsInput | number
+    info?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    uptimePercentage?: FloatFieldUpdateOperationsInput | number
+    anomalyCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StatisticsDailyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    day?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    errors?: IntFieldUpdateOperationsInput | number
+    warnings?: IntFieldUpdateOperationsInput | number
+    info?: IntFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    recoveries?: IntFieldUpdateOperationsInput | number
+    crashLoops?: IntFieldUpdateOperationsInput | number
+    uptimePercentage?: FloatFieldUpdateOperationsInput | number
+    anomalyCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceRiskCreateInput = {
+    id?: string
+    service: string
+    riskScore: number
+    level: string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ServiceRiskUncheckedCreateInput = {
+    id?: string
+    service: string
+    riskScore: number
+    level: string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ServiceRiskUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    riskScore?: IntFieldUpdateOperationsInput | number
+    level?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceRiskUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    riskScore?: IntFieldUpdateOperationsInput | number
+    level?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceRiskCreateManyInput = {
+    id?: string
+    service: string
+    riskScore: number
+    level: string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ServiceRiskUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    riskScore?: IntFieldUpdateOperationsInput | number
+    level?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceRiskUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    riskScore?: IntFieldUpdateOperationsInput | number
+    level?: StringFieldUpdateOperationsInput | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RootCauseReportCreateInput = {
+    id?: string
+    service: string
+    cause: string
+    confidence: number
+    createdAt?: Date | string
+  }
+
+  export type RootCauseReportUncheckedCreateInput = {
+    id?: string
+    service: string
+    cause: string
+    confidence: number
+    createdAt?: Date | string
+  }
+
+  export type RootCauseReportUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cause?: StringFieldUpdateOperationsInput | string
+    confidence?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RootCauseReportUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cause?: StringFieldUpdateOperationsInput | string
+    confidence?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RootCauseReportCreateManyInput = {
+    id?: string
+    service: string
+    cause: string
+    confidence: number
+    createdAt?: Date | string
+  }
+
+  export type RootCauseReportUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cause?: StringFieldUpdateOperationsInput | string
+    confidence?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RootCauseReportUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    cause?: StringFieldUpdateOperationsInput | string
+    confidence?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailurePredictionCreateInput = {
+    id?: string
+    service: string
+    windowHours: number
+    probability: number
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FailurePredictionUncheckedCreateInput = {
+    id?: string
+    service: string
+    windowHours: number
+    probability: number
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FailurePredictionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    windowHours?: IntFieldUpdateOperationsInput | number
+    probability?: FloatFieldUpdateOperationsInput | number
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailurePredictionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    windowHours?: IntFieldUpdateOperationsInput | number
+    probability?: FloatFieldUpdateOperationsInput | number
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailurePredictionCreateManyInput = {
+    id?: string
+    service: string
+    windowHours: number
+    probability: number
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FailurePredictionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    windowHours?: IntFieldUpdateOperationsInput | number
+    probability?: FloatFieldUpdateOperationsInput | number
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailurePredictionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    windowHours?: IntFieldUpdateOperationsInput | number
+    probability?: FloatFieldUpdateOperationsInput | number
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDailyStatsCreateInput = {
+    id?: string
+    service: string
+    date: Date | string
+    avgCpu: number
+    avgMemory: number
+    failures: number
+    anomalies: number
+    createdAt?: Date | string
+  }
+
+  export type ServiceDailyStatsUncheckedCreateInput = {
+    id?: string
+    service: string
+    date: Date | string
+    avgCpu: number
+    avgMemory: number
+    failures: number
+    anomalies: number
+    createdAt?: Date | string
+  }
+
+  export type ServiceDailyStatsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDailyStatsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDailyStatsCreateManyInput = {
+    id?: string
+    service: string
+    date: Date | string
+    avgCpu: number
+    avgMemory: number
+    failures: number
+    anomalies: number
+    createdAt?: Date | string
+  }
+
+  export type ServiceDailyStatsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceDailyStatsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    avgCpu?: FloatFieldUpdateOperationsInput | number
+    avgMemory?: FloatFieldUpdateOperationsInput | number
+    failures?: IntFieldUpdateOperationsInput | number
+    anomalies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -12101,6 +20263,316 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type StatisticsHourlyCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    hour?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsHourlyAvgOrderByAggregateInput = {
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+  }
+
+  export type StatisticsHourlyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    hour?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsHourlyMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    hour?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsHourlySumOrderByAggregateInput = {
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    peakCpu?: SortOrder
+    peakMemory?: SortOrder
+    logsErrors?: SortOrder
+    logsWarnings?: SortOrder
+    logsInfo?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    anomalies?: SortOrder
+  }
+
+  export type StatisticsDailyCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    day?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsDailyAvgOrderByAggregateInput = {
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+  }
+
+  export type StatisticsDailyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    day?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsDailyMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    day?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StatisticsDailySumOrderByAggregateInput = {
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    errors?: SortOrder
+    warnings?: SortOrder
+    info?: SortOrder
+    failures?: SortOrder
+    recoveries?: SortOrder
+    crashLoops?: SortOrder
+    uptimePercentage?: SortOrder
+    anomalyCount?: SortOrder
+  }
+
+  export type ServiceRiskCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    riskScore?: SortOrder
+    level?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceRiskAvgOrderByAggregateInput = {
+    riskScore?: SortOrder
+  }
+
+  export type ServiceRiskMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    riskScore?: SortOrder
+    level?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceRiskMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    riskScore?: SortOrder
+    level?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceRiskSumOrderByAggregateInput = {
+    riskScore?: SortOrder
+  }
+
+  export type RootCauseReportCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    cause?: SortOrder
+    confidence?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RootCauseReportAvgOrderByAggregateInput = {
+    confidence?: SortOrder
+  }
+
+  export type RootCauseReportMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    cause?: SortOrder
+    confidence?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RootCauseReportMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    cause?: SortOrder
+    confidence?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RootCauseReportSumOrderByAggregateInput = {
+    confidence?: SortOrder
+  }
+
+  export type FailurePredictionCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    windowHours?: SortOrder
+    probability?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FailurePredictionAvgOrderByAggregateInput = {
+    windowHours?: SortOrder
+    probability?: SortOrder
+  }
+
+  export type FailurePredictionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    windowHours?: SortOrder
+    probability?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FailurePredictionMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    windowHours?: SortOrder
+    probability?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FailurePredictionSumOrderByAggregateInput = {
+    windowHours?: SortOrder
+    probability?: SortOrder
+  }
+
+  export type ServiceDailyStatsCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    date?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDailyStatsAvgOrderByAggregateInput = {
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
+  }
+
+  export type ServiceDailyStatsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    date?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDailyStatsMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    date?: SortOrder
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ServiceDailyStatsSumOrderByAggregateInput = {
+    avgCpu?: SortOrder
+    avgMemory?: SortOrder
+    failures?: SortOrder
+    anomalies?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
